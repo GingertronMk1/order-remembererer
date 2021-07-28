@@ -3,13 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class ModelUpdated extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     private $type;
     private $model;
@@ -17,7 +17,8 @@ class ModelUpdated extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param mixed $type
+     * @param mixed $model
      */
     public function __construct($type, $model)
     {

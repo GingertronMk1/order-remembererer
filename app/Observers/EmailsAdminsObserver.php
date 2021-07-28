@@ -12,7 +12,6 @@ class EmailsAdminsObserver
      * Handle the "created" event.
      *
      * @param  $model
-     * @return void
      */
     public function created($model)
     {
@@ -23,7 +22,6 @@ class EmailsAdminsObserver
      * Handle the Model "updated" event.
      *
      * @param  $model
-     * @return void
      */
     public function updated($model)
     {
@@ -34,32 +32,26 @@ class EmailsAdminsObserver
      * Handle the Model "deleted" event.
      *
      * @param  $model
-     * @return void
      */
     public function deleted($model)
     {
-        //
     }
 
     /**
      * Handle the Model "restored" event.
      *
      * @param  $model
-     * @return void
      */
     public function restored($model)
     {
-        //
     }
 
     /**
      * Handle the Model "force deleted" event.
      *
      * @param  $model
-     * @return void
      */
     public function forceDeleted($model)
     {
-        //
     }
 }
