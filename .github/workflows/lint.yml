@@ -1,0 +1,45 @@
+name: Lint PHP and JS
+
+# Trigger on push and pull request to main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  eslint:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Install all the NPM stuff
+      - name: NPM install
+        shell: bash
+        run: npm install
+
+      # Linting tings
+      - name: NPM lint
+        shell: bash
+        run: npm run lint
+  phplint:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Composer install
+      - name: Composer install
+        shell: bash
+        run: composer install
+      # Do the linting
+      - name: Run PHP-CS-Fixer
+        shell: bash
+        run: composer fix-show
