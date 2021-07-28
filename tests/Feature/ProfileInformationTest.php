@@ -6,11 +6,15 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_profile_information_can_be_updated()
+    public function testProfileInformationCanBeUpdated()
     {
         $this->actingAs($user = User::factory()->create());
 

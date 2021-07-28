@@ -7,11 +7,15 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class DeleteTeamTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_teams_can_be_deleted()
+    public function testTeamsCanBeDeleted()
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
@@ -20,7 +24,8 @@ class DeleteTeamTest extends TestCase
         ]));
 
         $team->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'test-role']
+            $otherUser = User::factory()->create(),
+            ['role' => 'test-role']
         );
 
         $response = $this->delete('/teams/'.$team->id);
@@ -29,7 +34,7 @@ class DeleteTeamTest extends TestCase
         $this->assertCount(0, $otherUser->fresh()->teams);
     }
 
-    public function test_personal_teams_cant_be_deleted()
+    public function testPersonalTeamsCantBeDeleted()
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 

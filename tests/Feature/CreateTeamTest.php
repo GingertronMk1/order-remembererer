@@ -6,11 +6,15 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class CreateTeamTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_teams_can_be_created()
+    public function testTeamsCanBeCreated()
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 

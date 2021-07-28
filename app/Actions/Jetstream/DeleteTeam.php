@@ -9,8 +9,7 @@ class DeleteTeam implements DeletesTeams
     /**
      * Delete the given team.
      *
-     * @param  mixed  $team
-     * @return void
+     * @param mixed $team
      */
     public function delete($team)
     {

@@ -4,10 +4,11 @@ namespace App\Traits;
 
 trait HasNoPersonalTeam
 {
-        /**
+    /**
      * Determine if the user owns the given team.
      *
-     * @param  mixed  $team
+     * @param mixed $team
+     *
      * @return bool
      */
     public function ownsTeam($team)
@@ -19,7 +20,8 @@ trait HasNoPersonalTeam
     /**
      * Determine if the given team is the current team.
      *
-     * @param  mixed  $team
+     * @param mixed $team
+     *
      * @return bool
      */
     public function isCurrentTeam($team)
@@ -30,8 +32,7 @@ trait HasNoPersonalTeam
     /**
      * Determine if the user is apart of any team.
      *
-     * @param  mixed  $team
-     * @return bool
+     * @param mixed $team
      */
     public function isMemberOfATeam(): bool
     {

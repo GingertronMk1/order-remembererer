@@ -533,22 +533,7 @@
 
       ----------- end diff -----------
 
-  21) app/Models/User.php
-      ---------- begin diff ----------
---- /Users/jackellis/Git/order-remembererer/app/Models/User.php
-+++ /Users/jackellis/Git/order-remembererer/app/Models/User.php
-@@ -3,7 +3,6 @@
- namespace App\Models;
- 
- use App\Traits\HasNoPersonalTeam;
--use Illuminate\Contracts\Auth\MustVerifyEmail;
- use Illuminate\Database\Eloquent\Factories\HasFactory;
- use Illuminate\Foundation\Auth\User as Authenticatable;
- use Illuminate\Notifications\Notifiable;
-
-      ----------- end diff -----------
-
-  22) app/Exceptions/Handler.php
+  21) app/Exceptions/Handler.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Exceptions/Handler.php
 +++ /Users/jackellis/Git/order-remembererer/app/Exceptions/Handler.php
@@ -577,7 +562,7 @@
 
       ----------- end diff -----------
 
-  23) app/Policies/TeamPolicy.php
+  22) app/Policies/TeamPolicy.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Policies/TeamPolicy.php
 +++ /Users/jackellis/Git/order-remembererer/app/Policies/TeamPolicy.php
@@ -654,7 +639,7 @@
 
       ----------- end diff -----------
 
-  24) app/Http/Middleware/VerifyCsrfToken.php
+  23) app/Http/Middleware/VerifyCsrfToken.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/VerifyCsrfToken.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/VerifyCsrfToken.php
@@ -668,7 +653,7 @@
 
       ----------- end diff -----------
 
-  25) app/Http/Middleware/RedirectIfAuthenticated.php
+  24) app/Http/Middleware/RedirectIfAuthenticated.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/RedirectIfAuthenticated.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/RedirectIfAuthenticated.php
@@ -687,7 +672,7 @@
 
       ----------- end diff -----------
 
-  26) app/Http/Middleware/Authenticate.php
+  25) app/Http/Middleware/Authenticate.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/Authenticate.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/Authenticate.php
@@ -711,7 +696,7 @@
 
       ----------- end diff -----------
 
-  27) app/Http/Middleware/TrustProxies.php
+  26) app/Http/Middleware/TrustProxies.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/TrustProxies.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/TrustProxies.php
@@ -727,11 +712,11 @@
 
       ----------- end diff -----------
 
-  28) app/Http/Middleware/EnsureTeam.php
+  27) app/Http/Middleware/EnsureTeam.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EnsureTeam.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EnsureTeam.php
-@@ -11,17 +11,15 @@
+@@ -10,8 +10,6 @@
      /**
       * Handle an incoming request.
       *
@@ -740,26 +725,23 @@
       * @return mixed
       */
      public function handle(Request $request, Closure $next)
-     {
--
-         if (!Auth::user()->isMemberOfATeam()) {
-             return redirect()->route('teams.create');
-         }
-         $this->ensureUserHasCurrentTeamSet();
+@@ -22,9 +20,10 @@
+                 $user->current_team_id = $user->allTeams()->first()->id;
+                 $user->save();
+             }
 +
-         return $next($request);
-     }
- 
-@@ -34,5 +32,4 @@
-             $user->save();
+             return $next($request);
+-        } else {
+-            return redirect()->route('teams.create');
          }
++
++        return redirect()->route('teams.create');
      }
--
  }
 
       ----------- end diff -----------
 
-  29) app/Http/Middleware/HandleInertiaRequests.php
+  28) app/Http/Middleware/HandleInertiaRequests.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/HandleInertiaRequests.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/HandleInertiaRequests.php
@@ -800,7 +782,7 @@
 
       ----------- end diff -----------
 
-  30) app/Http/Middleware/PreventRequestsDuringMaintenance.php
+  29) app/Http/Middleware/PreventRequestsDuringMaintenance.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/PreventRequestsDuringMaintenance.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/PreventRequestsDuringMaintenance.php
@@ -814,7 +796,7 @@
 
       ----------- end diff -----------
 
-  31) app/Http/Middleware/EncryptCookies.php
+  30) app/Http/Middleware/EncryptCookies.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EncryptCookies.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EncryptCookies.php
@@ -828,7 +810,7 @@
 
       ----------- end diff -----------
 
-  32) app/Http/Controllers/Controller.php
+  31) app/Http/Controllers/Controller.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Http/Controllers/Controller.php
 +++ /Users/jackellis/Git/order-remembererer/app/Http/Controllers/Controller.php
@@ -844,7 +826,7 @@
 
       ----------- end diff -----------
 
-  33) app/Actions/Fortify/UpdateUserProfileInformation.php
+  32) app/Actions/Fortify/UpdateUserProfileInformation.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserProfileInformation.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserProfileInformation.php
@@ -884,7 +866,7 @@
 
       ----------- end diff -----------
 
-  34) app/Actions/Fortify/PasswordValidationRules.php
+  33) app/Actions/Fortify/PasswordValidationRules.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/PasswordValidationRules.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/PasswordValidationRules.php
@@ -899,7 +881,7 @@
 
       ----------- end diff -----------
 
-  35) app/Actions/Fortify/UpdateUserPassword.php
+  34) app/Actions/Fortify/UpdateUserPassword.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserPassword.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserPassword.php
@@ -926,7 +908,7 @@
 
       ----------- end diff -----------
 
-  36) app/Actions/Fortify/ResetUserPassword.php
+  35) app/Actions/Fortify/ResetUserPassword.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/ResetUserPassword.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/ResetUserPassword.php
@@ -944,7 +926,7 @@
 
       ----------- end diff -----------
 
-  37) app/Actions/Fortify/CreateNewUser.php
+  36) app/Actions/Fortify/CreateNewUser.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/CreateNewUser.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/CreateNewUser.php
@@ -969,7 +951,7 @@
 
       ----------- end diff -----------
 
-  38) app/Actions/Jetstream/DeleteUser.php
+  37) app/Actions/Jetstream/DeleteUser.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteUser.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteUser.php
@@ -1006,7 +988,7 @@
 
       ----------- end diff -----------
 
-  39) app/Actions/Jetstream/InviteTeamMember.php
+  38) app/Actions/Jetstream/InviteTeamMember.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/InviteTeamMember.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/InviteTeamMember.php
@@ -1069,7 +1051,7 @@
 
       ----------- end diff -----------
 
-  40) app/Actions/Jetstream/RemoveTeamMember.php
+  39) app/Actions/Jetstream/RemoveTeamMember.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/RemoveTeamMember.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/RemoveTeamMember.php
@@ -1125,7 +1107,7 @@
 
       ----------- end diff -----------
 
-  41) app/Actions/Jetstream/DeleteTeam.php
+  40) app/Actions/Jetstream/DeleteTeam.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteTeam.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteTeam.php
@@ -1142,7 +1124,7 @@
 
       ----------- end diff -----------
 
-  42) app/Actions/Jetstream/AddTeamMember.php
+  41) app/Actions/Jetstream/AddTeamMember.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/AddTeamMember.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/AddTeamMember.php
@@ -1205,7 +1187,7 @@
 
       ----------- end diff -----------
 
-  43) app/Actions/Jetstream/UpdateTeamName.php
+  42) app/Actions/Jetstream/UpdateTeamName.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/UpdateTeamName.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/UpdateTeamName.php
@@ -1225,7 +1207,7 @@
 
       ----------- end diff -----------
 
-  44) app/Actions/Jetstream/CreateTeam.php
+  43) app/Actions/Jetstream/CreateTeam.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/CreateTeam.php
 +++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/CreateTeam.php
@@ -1243,7 +1225,7 @@
 
       ----------- end diff -----------
 
-  45) app/Console/Kernel.php
+  44) app/Console/Kernel.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/app/Console/Kernel.php
 +++ /Users/jackellis/Git/order-remembererer/app/Console/Kernel.php
@@ -1274,7 +1256,7 @@
 
       ----------- end diff -----------
 
-  46) config/sanctum.php
+  45) config/sanctum.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/sanctum.php
 +++ /Users/jackellis/Git/order-remembererer/config/sanctum.php
@@ -1295,7 +1277,7 @@
 
       ----------- end diff -----------
 
-  47) config/hashing.php
+  46) config/hashing.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/hashing.php
 +++ /Users/jackellis/Git/order-remembererer/config/hashing.php
@@ -1316,7 +1298,7 @@
 
       ----------- end diff -----------
 
-  48) config/fortify.php
+  47) config/fortify.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/fortify.php
 +++ /Users/jackellis/Git/order-remembererer/config/fortify.php
@@ -1337,7 +1319,7 @@
 
       ----------- end diff -----------
 
-  49) config/auth.php
+  48) config/auth.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/auth.php
 +++ /Users/jackellis/Git/order-remembererer/config/auth.php
@@ -1358,7 +1340,7 @@
 
       ----------- end diff -----------
 
-  50) config/app.php
+  49) config/app.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/app.php
 +++ /Users/jackellis/Git/order-remembererer/config/app.php
@@ -1425,7 +1407,7 @@
 
       ----------- end diff -----------
 
-  51) config/mail.php
+  50) config/mail.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/mail.php
 +++ /Users/jackellis/Git/order-remembererer/config/mail.php
@@ -1446,7 +1428,7 @@
 
       ----------- end diff -----------
 
-  52) config/services.php
+  51) config/services.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/services.php
 +++ /Users/jackellis/Git/order-remembererer/config/services.php
@@ -1467,7 +1449,7 @@
 
       ----------- end diff -----------
 
-  53) config/database.php
+  52) config/database.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/database.php
 +++ /Users/jackellis/Git/order-remembererer/config/database.php
@@ -1487,15 +1469,7 @@
          'sqlite' => [
              'driver' => 'sqlite',
              'url' => env('DATABASE_URL'),
-@@ -90,7 +88,6 @@
-             'prefix' => '',
-             'prefix_indexes' => true,
-         ],
--
-     ],
- 
-     /*
-@@ -118,7 +115,6 @@
+@@ -127,7 +125,6 @@
      */
  
      'redis' => [
@@ -1503,7 +1477,7 @@
          'client' => env('REDIS_CLIENT', 'phpredis'),
  
          'options' => [
-@@ -141,7 +137,5 @@
+@@ -150,7 +147,5 @@
              'port' => env('REDIS_PORT', '6379'),
              'database' => env('REDIS_CACHE_DB', '1'),
          ],
@@ -1514,7 +1488,7 @@
 
       ----------- end diff -----------
 
-  54) config/cache.php
+  53) config/cache.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/cache.php
 +++ /Users/jackellis/Git/order-remembererer/config/cache.php
@@ -1551,7 +1525,7 @@
 
       ----------- end diff -----------
 
-  55) config/session.php
+  54) config/session.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/session.php
 +++ /Users/jackellis/Git/order-remembererer/config/session.php
@@ -1572,7 +1546,7 @@
 
       ----------- end diff -----------
 
-  56) config/queue.php
+  55) config/queue.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/queue.php
 +++ /Users/jackellis/Git/order-remembererer/config/queue.php
@@ -1609,7 +1583,7 @@
 
       ----------- end diff -----------
 
-  57) config/broadcasting.php
+  56) config/broadcasting.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/broadcasting.php
 +++ /Users/jackellis/Git/order-remembererer/config/broadcasting.php
@@ -1640,7 +1614,7 @@
 
       ----------- end diff -----------
 
-  58) config/view.php
+  57) config/view.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/view.php
 +++ /Users/jackellis/Git/order-remembererer/config/view.php
@@ -1661,7 +1635,7 @@
 
       ----------- end diff -----------
 
-  59) config/cors.php
+  58) config/cors.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/cors.php
 +++ /Users/jackellis/Git/order-remembererer/config/cors.php
@@ -1682,7 +1656,7 @@
 
       ----------- end diff -----------
 
-  60) config/jetstream.php
+  59) config/jetstream.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/jetstream.php
 +++ /Users/jackellis/Git/order-remembererer/config/jetstream.php
@@ -1703,7 +1677,7 @@
 
       ----------- end diff -----------
 
-  61) config/logging.php
+  60) config/logging.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/logging.php
 +++ /Users/jackellis/Git/order-remembererer/config/logging.php
@@ -1724,7 +1698,7 @@
 
       ----------- end diff -----------
 
-  62) config/filesystems.php
+  61) config/filesystems.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/config/filesystems.php
 +++ /Users/jackellis/Git/order-remembererer/config/filesystems.php
@@ -1761,7 +1735,7 @@
 
       ----------- end diff -----------
 
-  63) resources/lang/en/passwords.php
+  62) resources/lang/en/passwords.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/resources/lang/en/passwords.php
 +++ /Users/jackellis/Git/order-remembererer/resources/lang/en/passwords.php
@@ -1782,7 +1756,7 @@
 
       ----------- end diff -----------
 
-  64) resources/lang/en/auth.php
+  63) resources/lang/en/auth.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/resources/lang/en/auth.php
 +++ /Users/jackellis/Git/order-remembererer/resources/lang/en/auth.php
@@ -1803,7 +1777,7 @@
 
       ----------- end diff -----------
 
-  65) resources/lang/en/pagination.php
+  64) resources/lang/en/pagination.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/resources/lang/en/pagination.php
 +++ /Users/jackellis/Git/order-remembererer/resources/lang/en/pagination.php
@@ -1824,7 +1798,7 @@
 
       ----------- end diff -----------
 
-  66) resources/lang/en/validation.php
+  65) resources/lang/en/validation.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/resources/lang/en/validation.php
 +++ /Users/jackellis/Git/order-remembererer/resources/lang/en/validation.php
@@ -1845,7 +1819,7 @@
 
       ----------- end diff -----------
 
-  67) node_modules/flatted/php/flatted.php
+  66) node_modules/flatted/php/flatted.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/node_modules/flatted/php/flatted.php
 +++ /Users/jackellis/Git/order-remembererer/node_modules/flatted/php/flatted.php
@@ -2142,7 +2116,7 @@
 
       ----------- end diff -----------
 
-  68) tests/Unit/ExampleTest.php
+  67) tests/Unit/ExampleTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Unit/ExampleTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Unit/ExampleTest.php
@@ -2169,7 +2143,7 @@
 
       ----------- end diff -----------
 
-  69) tests/Feature/PasswordConfirmationTest.php
+  68) tests/Feature/PasswordConfirmationTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordConfirmationTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordConfirmationTest.php
@@ -2211,7 +2185,7 @@
 
       ----------- end diff -----------
 
-  70) tests/Feature/EmailVerificationTest.php
+  69) tests/Feature/EmailVerificationTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/EmailVerificationTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/EmailVerificationTest.php
@@ -2265,7 +2239,7 @@
 
       ----------- end diff -----------
 
-  71) tests/Feature/RegistrationTest.php
+  70) tests/Feature/RegistrationTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/RegistrationTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/RegistrationTest.php
@@ -2313,7 +2287,7 @@
 
       ----------- end diff -----------
 
-  72) tests/Feature/ExampleTest.php
+  71) tests/Feature/ExampleTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/ExampleTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/ExampleTest.php
@@ -2343,7 +2317,7 @@
 
       ----------- end diff -----------
 
-  73) tests/Feature/TwoFactorAuthenticationSettingsTest.php
+  72) tests/Feature/TwoFactorAuthenticationSettingsTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/TwoFactorAuthenticationSettingsTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/TwoFactorAuthenticationSettingsTest.php
@@ -2385,7 +2359,7 @@
 
       ----------- end diff -----------
 
-  74) tests/Feature/BrowserSessionsTest.php
+  73) tests/Feature/BrowserSessionsTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/BrowserSessionsTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/BrowserSessionsTest.php
@@ -2409,7 +2383,7 @@
 
       ----------- end diff -----------
 
-  75) tests/Feature/UpdateTeamMemberRoleTest.php
+  74) tests/Feature/UpdateTeamMemberRoleTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamMemberRoleTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamMemberRoleTest.php
@@ -2472,7 +2446,7 @@
 
       ----------- end diff -----------
 
-  76) tests/Feature/DeleteAccountTest.php
+  75) tests/Feature/DeleteAccountTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteAccountTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteAccountTest.php
@@ -2511,7 +2485,7 @@
 
       ----------- end diff -----------
 
-  77) tests/Feature/InviteTeamMemberTest.php
+  76) tests/Feature/InviteTeamMemberTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/InviteTeamMemberTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/InviteTeamMemberTest.php
@@ -2544,7 +2518,7 @@
 
       ----------- end diff -----------
 
-  78) tests/Feature/DeleteTeamTest.php
+  77) tests/Feature/DeleteTeamTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteTeamTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteTeamTest.php
@@ -2587,7 +2561,7 @@
 
       ----------- end diff -----------
 
-  79) tests/Feature/CreateTeamTest.php
+  78) tests/Feature/CreateTeamTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/CreateTeamTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/CreateTeamTest.php
@@ -2611,7 +2585,7 @@
 
       ----------- end diff -----------
 
-  80) tests/Feature/UpdateTeamNameTest.php
+  79) tests/Feature/UpdateTeamNameTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamNameTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamNameTest.php
@@ -2635,7 +2609,7 @@
 
       ----------- end diff -----------
 
-  81) tests/Feature/UpdatePasswordTest.php
+  80) tests/Feature/UpdatePasswordTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/UpdatePasswordTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/UpdatePasswordTest.php
@@ -2677,7 +2651,7 @@
 
       ----------- end diff -----------
 
-  82) tests/Feature/AuthenticationTest.php
+  81) tests/Feature/AuthenticationTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/AuthenticationTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/AuthenticationTest.php
@@ -2719,7 +2693,7 @@
 
       ----------- end diff -----------
 
-  83) tests/Feature/LeaveTeamTest.php
+  82) tests/Feature/LeaveTeamTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/LeaveTeamTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/LeaveTeamTest.php
@@ -2759,7 +2733,7 @@
 
       ----------- end diff -----------
 
-  84) tests/Feature/ApiTokenPermissionsTest.php
+  83) tests/Feature/ApiTokenPermissionsTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/ApiTokenPermissionsTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/ApiTokenPermissionsTest.php
@@ -2786,7 +2760,7 @@
 
       ----------- end diff -----------
 
-  85) tests/Feature/DeleteApiTokenTest.php
+  84) tests/Feature/DeleteApiTokenTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteApiTokenTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteApiTokenTest.php
@@ -2813,7 +2787,7 @@
 
       ----------- end diff -----------
 
-  86) tests/Feature/RemoveTeamMemberTest.php
+  85) tests/Feature/RemoveTeamMemberTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/RemoveTeamMemberTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/RemoveTeamMemberTest.php
@@ -2860,7 +2834,7 @@
 
       ----------- end diff -----------
 
-  87) tests/Feature/CreateApiTokenTest.php
+  86) tests/Feature/CreateApiTokenTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/CreateApiTokenTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/CreateApiTokenTest.php
@@ -2887,7 +2861,7 @@
 
       ----------- end diff -----------
 
-  88) tests/Feature/ProfileInformationTest.php
+  87) tests/Feature/ProfileInformationTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/ProfileInformationTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/ProfileInformationTest.php
@@ -2911,7 +2885,7 @@
 
       ----------- end diff -----------
 
-  89) tests/Feature/PasswordResetTest.php
+  88) tests/Feature/PasswordResetTest.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordResetTest.php
 +++ /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordResetTest.php
@@ -2974,7 +2948,7 @@
 
       ----------- end diff -----------
 
-  90) storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
+  89) storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
@@ -2989,7 +2963,7 @@
 
       ----------- end diff -----------
 
-  91) storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
+  90) storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
@@ -3003,7 +2977,7 @@
 
       ----------- end diff -----------
 
-  92) storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
+  91) storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
@@ -3067,7 +3041,7 @@
 
       ----------- end diff -----------
 
-  93) storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
+  92) storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
@@ -3082,7 +3056,7 @@
 
       ----------- end diff -----------
 
-  94) storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
+  93) storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
@@ -3104,7 +3078,7 @@
 
       ----------- end diff -----------
 
-  95) storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
+  94) storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
@@ -3117,7 +3091,7 @@
 
       ----------- end diff -----------
 
-  96) storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
+  95) storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
@@ -3132,7 +3106,7 @@
 
       ----------- end diff -----------
 
-  97) storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
+  96) storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
@@ -3192,6 +3166,21 @@
 -<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/message.blade.php ENDPATH**/ ?>
 \ No newline at end of file
 +<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/message.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  97) storage/framework/views/045619918d7f0de202648c7fbf3727ba60cd020c.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/045619918d7f0de202648c7fbf3727ba60cd020c.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/045619918d7f0de202648c7fbf3727ba60cd020c.php
+@@ -6,4 +6,4 @@
+ </td>
+ </tr>
+ </table>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/subcopy.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/subcopy.blade.php ENDPATH*/ ?>
 \ No newline at end of file
 
       ----------- end diff -----------
@@ -3299,7 +3288,129 @@
 
       ----------- end diff -----------
 
- 101) storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
+ 101) storage/framework/views/250c013513cfd5dd0dab84e5bb5100c89e1fd65c.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/250c013513cfd5dd0dab84e5bb5100c89e1fd65c.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/250c013513cfd5dd0dab84e5bb5100c89e1fd65c.php
+@@ -1,31 +1,36 @@
+ <?php $__env->startComponent('mail::message'); ?>
+ 
+-<?php if(! empty($greeting)): ?>
++<?php if (!empty($greeting)) { ?>
+ # <?php echo e($greeting); ?>
+ 
+-<?php else: ?>
+-<?php if($level === 'error'): ?>
++<?php } else { ?>
++<?php if ('error' === $level) { ?>
+ # <?php echo app('translator')->get('Whoops!'); ?>
+-<?php else: ?>
++<?php } else { ?>
+ # <?php echo app('translator')->get('Hello!'); ?>
+-<?php endif; ?>
+-<?php endif; ?>
++<?php } ?>
++<?php } ?>
+ 
+ 
+-<?php $__currentLoopData = $introLines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
++<?php $__currentLoopData = $introLines; $__env->addLoop($__currentLoopData); foreach ($__currentLoopData as $line) {
++    $__env->incrementLoopIndices();
++    $loop = $__env->getLastLoop(); ?>
+ <?php echo e($line); ?>
+ 
+ 
+-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
++<?php
++} $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+ 
+ 
+-<?php if(isset($actionText)): ?>
++<?php if (isset($actionText)) { ?>
+ <?php
+     switch ($level) {
+         case 'success':
+         case 'error':
+             $color = $level;
++
+             break;
++
+         default:
+             $color = 'primary';
+     }
+@@ -33,45 +38,48 @@
+ <?php $__env->startComponent('mail::button', ['url' => $actionUrl, 'color' => $color]); ?>
+ <?php echo e($actionText); ?>
+ 
+-<?php if (isset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e)): ?>
++<?php if (isset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e)) { ?>
+ <?php $component = $__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e; ?>
+ <?php unset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+-<?php endif; ?>
++<?php } ?>
+ 
+ 
+-<?php $__currentLoopData = $outroLines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
++<?php $__currentLoopData = $outroLines; $__env->addLoop($__currentLoopData); foreach ($__currentLoopData as $line) {
++    $__env->incrementLoopIndices();
++    $loop = $__env->getLastLoop(); ?>
+ <?php echo e($line); ?>
+ 
+ 
+-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
++<?php
++} $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+ 
+ 
+-<?php if(! empty($salutation)): ?>
++<?php if (!empty($salutation)) { ?>
+ <?php echo e($salutation); ?>
+ 
+-<?php else: ?>
++<?php } else { ?>
+ <?php echo app('translator')->get('Regards'); ?>,<br>
+ <?php echo e(config('app.name')); ?>
+ 
+-<?php endif; ?>
++<?php } ?>
+ 
+ 
+-<?php if(isset($actionText)): ?>
++<?php if (isset($actionText)) { ?>
+ <?php $__env->slot('subcopy'); ?>
+ <?php echo app('translator')->get(
+-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
++        "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
+     'into your web browser:',
+-    [
+-        'actionText' => $actionText,
+-    ]
+-); ?> <span class="break-all">[<?php echo e($displayableActionUrl); ?>](<?php echo e($actionUrl); ?>)</span>
++        [
++            'actionText' => $actionText,
++        ]
++    ); ?> <span class="break-all">[<?php echo e($displayableActionUrl); ?>](<?php echo e($actionUrl); ?>)</span>
+ <?php $__env->endSlot(); ?>
+-<?php endif; ?>
+-<?php if (isset($__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d)): ?>
++<?php } ?>
++<?php if (isset($__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d)) { ?>
+ <?php $component = $__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d; ?>
+ <?php unset($__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 102) storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
@@ -3326,7 +3437,7 @@
 
       ----------- end diff -----------
 
- 102) storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
+ 103) storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
@@ -3340,7 +3451,7 @@
 
       ----------- end diff -----------
 
- 103) storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
+ 104) storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
@@ -3355,7 +3466,21 @@
 
       ----------- end diff -----------
 
- 104) storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
+ 105) storage/framework/views/dbd6a7957b9b1fb48c90a1e8ce56eed04cb5b955.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/dbd6a7957b9b1fb48c90a1e8ce56eed04cb5b955.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/dbd6a7957b9b1fb48c90a1e8ce56eed04cb5b955.php
+@@ -1,3 +1,3 @@
+ <?php echo e($slot); ?>
+ 
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/subcopy.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/subcopy.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 106) storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
       ---------- begin diff ----------
 --- /Users/jackellis/Git/order-remembererer/storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
 +++ /Users/jackellis/Git/order-remembererer/storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
@@ -3370,5 +3495,28 @@
 
       ----------- end diff -----------
 
+ 107) routes/web.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/routes/web.php
++++ /Users/jackellis/Git/order-remembererer/routes/web.php
+@@ -27,9 +27,9 @@
+ Route::middleware([
+     'auth:sanctum',
+     'verified',
+-    'ensure-team'
+-    ])->group(function() {
+-    Route::get('/dashboard', function () {
+-        return Inertia::render('Dashboard');
+-    })->name('dashboard');
+-});
++    'ensure-team',
++])->group(function () {
++        Route::get('/dashboard', function () {
++            return Inertia::render('Dashboard');
++        })->name('dashboard');
++    });
 
-Checked all files in 1.313 seconds, 16.000 MB memory used
+      ----------- end diff -----------
+
+
+Fixed all files in 1.564 seconds, 16.000 MB memory used

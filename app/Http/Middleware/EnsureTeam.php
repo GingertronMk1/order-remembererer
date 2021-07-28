@@ -10,8 +10,6 @@ class EnsureTeam
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -22,9 +20,10 @@ class EnsureTeam
                 $user->current_team_id = $user->allTeams()->first()->id;
                 $user->save();
             }
+
             return $next($request);
-        } else {
-            return redirect()->route('teams.create');
         }
+
+        return redirect()->route('teams.create');
     }
 }
