@@ -32,11 +32,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
               <div class="ml-3 relative">
                 <!-- Teams Dropdown -->
-                <jet-dropdown
-                  v-if="$page.props.jetstream.hasTeamFeatures"
-                  align="right"
-                  width="60"
-                >
+                <jet-dropdown v-if="allow_teams" align="right" width="60">
                   <template #trigger>
                     <span class="inline-flex rounded-md">
                       <button
@@ -80,7 +76,7 @@
                   <template #content>
                     <div class="w-60">
                       <!-- Team Management -->
-                      <template v-if="$page.props.jetstream.hasTeamFeatures">
+                      <template v-if="allow_teams">
                         <div class="block px-4 py-2 text-xs text-gray-400">
                           Manage Team
                         </div>
@@ -346,7 +342,7 @@
               </form>
 
               <!-- Team Management -->
-              <template v-if="$page.props.jetstream.hasTeamFeatures">
+              <template v-if="allow_teams">
                 <div class="border-t border-gray-200"></div>
 
                 <div class="block px-4 py-2 text-xs text-gray-400">
@@ -468,6 +464,14 @@ export default {
           active: active || this.route().current(route),
         };
       });
+    },
+
+    allow_teams() {
+      return (
+        this.$page.props.jetstream.hasTeamFeatures &&
+        this.$page.props.user.teams &&
+        this.$page.props.user.teams.length > 0
+      );
     },
   },
 
