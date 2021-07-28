@@ -31,7 +31,7 @@ Route::middleware([
     'ensure-team',
 ])->group(function () {
     Route::resources([
-        'cuisine' => CuisineController::class
+        'cuisine' => CuisineController::class,
     ]);
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');

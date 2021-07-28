@@ -1,7 +1,7 @@
 <template>
-<app-layout>
-   <cuisine-form />
-</app-layout>
+  <app-layout>
+    <cuisine-form />
+  </app-layout>
 </template>
 <script>
 import CuisineForm from "@/Components/CuisineForm.vue";

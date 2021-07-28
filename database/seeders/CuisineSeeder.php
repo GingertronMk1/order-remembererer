@@ -9,21 +9,19 @@ class CuisineSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
-        if(Cuisine::count() === 0) {
+        if (0 === Cuisine::count()) {
             $names = [
-                "Fusion cuisine",
-                "Haute cuisine",
-                "Nouvelle cuisine",
-                "Vegan cuisine",
-                "Vegetarian cuisine",
+                'Fusion cuisine',
+                'Haute cuisine',
+                'Nouvelle cuisine',
+                'Vegan cuisine',
+                'Vegetarian cuisine',
             ];
 
-            foreach($names as $name) {
+            foreach ($names as $name) {
                 $cuisine = new Cuisine(compact('name'));
                 $cuisine->system = true;
                 $cuisine->save();

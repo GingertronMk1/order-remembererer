@@ -1,16 +1,20 @@
 <template>
   <form-section @submitted="formSubmit">
-    <template #title v-if="form.id"> Update Cuisine </template>
-    <template #title v-else> Add Cuisine </template>
+    <template v-if="form.id" #title> Update Cuisine </template>
+    <template v-else #title> Add Cuisine </template>
 
     <template #form>
       <div class="col-span-6 sm:col-span-4">
         <jet-label for="name" value="Name" />
-        <jet-input v-model="form.name" type="text" id="name" class="w-full" />
+        <jet-input id="name" v-model="form.name" type="text" class="w-full" />
       </div>
       <div class="col-span-6 sm:col-span-4">
         <jet-label for="description" value="Description" />
-        <jet-textarea v-model="form.description" id="description" class="w-full" />
+        <jet-textarea
+          id="description"
+          v-model="form.description"
+          class="w-full"
+        />
       </div>
     </template>
     <template #actions>

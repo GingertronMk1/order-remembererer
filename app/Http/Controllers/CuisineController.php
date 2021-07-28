@@ -15,7 +15,7 @@ class CuisineController extends Controller
     public function index()
     {
         return inertia('Cuisine/Index', [
-            'cuisines' => Cuisine::all()
+            'cuisines' => Cuisine::all(),
         ]);
     }
 
@@ -32,12 +32,11 @@ class CuisineController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        if(Cuisine::create($request->all())) {
+        if (Cuisine::create($request->all())) {
             return redirect()->route('cuisine.index');
         }
     }
@@ -45,18 +44,15 @@ class CuisineController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cuisine  $cuisine
      * @return \Illuminate\Http\Response
      */
     public function show(Cuisine $cuisine)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cuisine  $cuisine
      * @return \Illuminate\Http\Response
      */
     public function edit(Cuisine $cuisine)
@@ -67,13 +63,11 @@ class CuisineController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cuisine  $cuisine
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cuisine $cuisine)
     {
-        if($cuisine->update($request->all())) {
+        if ($cuisine->update($request->all())) {
             return redirect()->route('cuisine.index');
         }
     }
@@ -81,12 +75,11 @@ class CuisineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cuisine  $cuisine
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cuisine $cuisine)
     {
-        if($cuisine->delete()) {
+        if ($cuisine->delete()) {
             return redirect()->back();
         }
     }
