@@ -44,7 +44,14 @@
         </label>
       </div>
 
-      <div class="flex items-center justify-end mt-4">
+      <div class="flex items-center justify-end mt-4 space-x-4">
+        <inertia-link
+          :href="route('register')"
+          class="underline text-sm text-gray-600 hover:text-gray-900"
+        >
+            Register
+        </inertia-link>
+
         <inertia-link
           v-if="canResetPassword"
           :href="route('password.request')"
