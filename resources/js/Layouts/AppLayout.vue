@@ -469,15 +469,19 @@ export default {
     allow_teams() {
       return (
         this.$page.props.jetstream.hasTeamFeatures &&
-        this.$page.props.user.teams &&
-        this.$page.props.user.teams.length > 0
+        this.$page.props.user.all_teams &&
+        this.$page.props.user.all_teams.length > 0
       );
     },
   },
 
   mounted() {
     if (process.env.NODE_ENV !== "production") {
-      console.log(Object.assign({}, this.$page.props));
+      let obj = Object.assign({}, this.$page.props);
+      Object.keys(obj).map(function (key) {
+        obj[key] = Object.assign({}, obj[key]);
+      });
+      console.log(obj);
     }
   },
 
