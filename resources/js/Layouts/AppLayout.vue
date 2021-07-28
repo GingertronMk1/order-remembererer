@@ -412,7 +412,7 @@
       </header>
 
       <!-- Page Content -->
-      <main>
+      <main class="container mx-auto pt-4">
         <slot></slot>
       </main>
     </div>
@@ -450,6 +450,10 @@ export default {
         {
           name: "Dashboard",
           route: "dashboard",
+        },
+        {
+          name: "Cuisines",
+          route: "cuisine.index",
         },
       ],
     };
