@@ -1,0 +1,40 @@
+
+> @ lint /Users/jackellis/Git/order-remembererer
+> eslint "./resources/js/**/*.{js,vue}"
+
+
+/Users/jackellis/Git/order-remembererer/resources/js/Layouts/AppLayout.vue
+  447:5  warning  Prop 'title' requires default value to be set  vue/require-default-prop
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/PrivacyPolicy.vue
+  39:11  warning  Prop "policy" should define at least its type  vue/require-prop-types
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/Teams/Partials/DeleteTeamForm.vue
+  64:11  warning  Prop "team" should define at least its type  vue/require-prop-types
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/Teams/Partials/TeamMemberManager.vue
+  225:19  error    Parsing error: unexpected-character-in-attribute-name                                                                                                                                                                     vue/no-parsing-error
+  230:18  error    Parsing error: Unexpected closing tag "button". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags  prettier/prettier
+  450:11  warning  Prop "team" should define at least its type                                                                                                                                                                               vue/require-prop-types
+  450:19  warning  Prop "availableRoles" should define at least its type                                                                                                                                                                     vue/require-prop-types
+  450:37  warning  Prop "userPermissions" should define at least its type                                                                                                                                                                    vue/require-prop-types
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/Teams/Partials/UpdateTeamNameForm.vue
+  75:11  warning  Prop "team" should define at least its type         vue/require-prop-types
+  75:19  warning  Prop "permissions" should define at least its type  vue/require-prop-types
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/Teams/Show.vue
+  45:11  warning  Prop "team" should define at least its type            vue/require-prop-types
+  45:19  warning  Prop "availableRoles" should define at least its type  vue/require-prop-types
+  45:37  warning  Prop "permissions" should define at least its type     vue/require-prop-types
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/TermsOfService.vue
+  39:11  warning  Prop "terms" should define at least its type  vue/require-prop-types
+
+/Users/jackellis/Git/order-remembererer/resources/js/Pages/Welcome.vue
+  366:1  warning  The <script> should be above the <style> on line 302    vue/component-tags-order
+  378:5  warning  Prop 'laravelVersion' requires default value to be set  vue/require-default-prop
+  379:5  warning  Prop 'phpVersion' requires default value to be set      vue/require-default-prop
+
+✖ 17 problems (2 errors, 15 warnings)
+

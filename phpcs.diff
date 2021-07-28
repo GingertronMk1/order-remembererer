@@ -1,0 +1,3374 @@
+   1) database/migrations/2014_10_12_100000_create_password_resets_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2014_10_12_100000_create_password_resets_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2014_10_12_100000_create_password_resets_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -22,8 +20,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   2) database/migrations/2020_05_21_300000_create_team_invitations_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2020_05_21_300000_create_team_invitations_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2020_05_21_300000_create_team_invitations_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -26,8 +24,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   3) database/migrations/2020_05_21_100000_create_teams_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2020_05_21_100000_create_teams_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2020_05_21_100000_create_teams_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -24,8 +22,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   4) database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -26,8 +24,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   5) database/migrations/2020_05_21_200000_create_team_user_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2020_05_21_200000_create_team_user_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2020_05_21_200000_create_team_user_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -26,8 +24,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   6) database/migrations/2021_07_27_192709_create_sessions_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2021_07_27_192709_create_sessions_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2021_07_27_192709_create_sessions_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -25,8 +23,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   7) database/migrations/2014_10_12_200000_add_two_factor_columns_to_users_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2014_10_12_200000_add_two_factor_columns_to_users_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2014_10_12_200000_add_two_factor_columns_to_users_table.php
+@@ -8,26 +8,24 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+         Schema::table('users', function (Blueprint $table) {
+             $table->text('two_factor_secret')
+-                    ->after('password')
+-                    ->nullable();
++                ->after('password')
++                ->nullable()
++            ;
+ 
+             $table->text('two_factor_recovery_codes')
+-                    ->after('two_factor_secret')
+-                    ->nullable();
++                ->after('two_factor_secret')
++                ->nullable()
++            ;
+         });
+     }
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   8) database/migrations/2014_10_12_000000_create_users_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2014_10_12_000000_create_users_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2014_10_12_000000_create_users_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -28,8 +26,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+   9) database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/migrations/2019_08_19_000000_create_failed_jobs_table.php
++++ /Users/jackellis/Git/order-remembererer/database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Run the migrations.
+-     *
+-     * @return void
+      */
+     public function up()
+     {
+@@ -26,8 +24,6 @@
+ 
+     /**
+      * Reverse the migrations.
+-     *
+-     * @return void
+      */
+     public function down()
+     {
+
+      ----------- end diff -----------
+
+  10) database/seeders/DatabaseSeeder.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/seeders/DatabaseSeeder.php
++++ /Users/jackellis/Git/order-remembererer/database/seeders/DatabaseSeeder.php
+@@ -8,8 +8,6 @@
+ {
+     /**
+      * Seed the application's database.
+-     *
+-     * @return void
+      */
+     public function run()
+     {
+
+      ----------- end diff -----------
+
+  11) database/factories/UserFactory.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/database/factories/UserFactory.php
++++ /Users/jackellis/Git/order-remembererer/database/factories/UserFactory.php
+@@ -54,7 +54,7 @@
+      */
+     public function withPersonalTeam()
+     {
+-        if (! Features::hasTeamFeatures()) {
++        if (!Features::hasTeamFeatures()) {
+             return $this->state([]);
+         }
+ 
+
+      ----------- end diff -----------
+
+  12) server.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/server.php
++++ /Users/jackellis/Git/order-remembererer/server.php
+@@ -1,12 +1,10 @@
+ <?php
+ 
+ /**
+- * Laravel - A PHP Framework For Web Artisans
++ * Laravel - A PHP Framework For Web Artisans.
+  *
+- * @package  Laravel
+  * @author   Taylor Otwell <taylor@laravel.com>
+  */
+-
+ $uri = urldecode(
+     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+ );
+@@ -14,7 +12,7 @@
+ // This file allows us to emulate Apache's "mod_rewrite" functionality from the
+ // built-in PHP web server. This provides a convenient way to test a Laravel
+ // application without having installed a "real" web server software here.
+-if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
++if ('/' !== $uri && file_exists(__DIR__.'/public'.$uri)) {
+     return false;
+ }
+ 
+
+      ----------- end diff -----------
+
+  13) app/Traits/HasNoPersonalTeam.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Traits/HasNoPersonalTeam.php
++++ /Users/jackellis/Git/order-remembererer/app/Traits/HasNoPersonalTeam.php
+@@ -4,10 +4,11 @@
+ 
+ trait HasNoPersonalTeam
+ {
+-        /**
++    /**
+      * Determine if the user owns the given team.
+      *
+-     * @param  mixed  $team
++     * @param mixed $team
++     *
+      * @return bool
+      */
+     public function ownsTeam($team)
+@@ -19,7 +20,8 @@
+     /**
+      * Determine if the given team is the current team.
+      *
+-     * @param  mixed  $team
++     * @param mixed $team
++     *
+      * @return bool
+      */
+     public function isCurrentTeam($team)
+@@ -30,8 +32,7 @@
+     /**
+      * Determine if the user is apart of any team.
+      *
+-     * @param  mixed  $team
+-     * @return bool
++     * @param mixed $team
+      */
+     public function isMemberOfATeam(): bool
+     {
+
+      ----------- end diff -----------
+
+  14) app/Providers/AppServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/AppServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/AppServiceProvider.php
+@@ -8,21 +8,15 @@
+ {
+     /**
+      * Register any application services.
+-     *
+-     * @return void
+      */
+     public function register()
+     {
+-        //
+     }
+ 
+     /**
+      * Bootstrap any application services.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+-        //
+     }
+ }
+
+      ----------- end diff -----------
+
+  15) app/Providers/FortifyServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/FortifyServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/FortifyServiceProvider.php
+@@ -16,18 +16,13 @@
+ {
+     /**
+      * Register any application services.
+-     *
+-     * @return void
+      */
+     public function register()
+     {
+-        //
+     }
+ 
+     /**
+      * Bootstrap any application services.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+
+      ----------- end diff -----------
+
+  16) app/Providers/AuthServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/AuthServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/AuthServiceProvider.php
+@@ -19,13 +19,9 @@
+ 
+     /**
+      * Register any authentication / authorization services.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+         $this->registerPolicies();
+-
+-        //
+     }
+ }
+
+      ----------- end diff -----------
+
+  17) app/Providers/RouteServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/RouteServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/RouteServiceProvider.php
+@@ -24,14 +24,12 @@
+      *
+      * When present, controller route declarations will automatically be prefixed with this namespace.
+      *
+-     * @var string|null
++     * @var null|string
+      */
+     // protected $namespace = 'App\\Http\\Controllers';
+ 
+     /**
+      * Define your route model bindings, pattern filters, etc.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+@@ -41,18 +39,18 @@
+             Route::prefix('api')
+                 ->middleware('api')
+                 ->namespace($this->namespace)
+-                ->group(base_path('routes/api.php'));
++                ->group(base_path('routes/api.php'))
++            ;
+ 
+             Route::middleware('web')
+                 ->namespace($this->namespace)
+-                ->group(base_path('routes/web.php'));
++                ->group(base_path('routes/web.php'))
++            ;
+         });
+     }
+ 
+     /**
+      * Configure the rate limiters for the application.
+-     *
+-     * @return void
+      */
+     protected function configureRateLimiting()
+     {
+
+      ----------- end diff -----------
+
+  18) app/Providers/JetstreamServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/JetstreamServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/JetstreamServiceProvider.php
+@@ -16,18 +16,13 @@
+ {
+     /**
+      * Register any application services.
+-     *
+-     * @return void
+      */
+     public function register()
+     {
+-        //
+     }
+ 
+     /**
+      * Bootstrap any application services.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+@@ -44,8 +39,6 @@
+ 
+     /**
+      * Configure the roles and permissions that are available within the application.
+-     *
+-     * @return void
+      */
+     protected function configurePermissions()
+     {
+
+      ----------- end diff -----------
+
+  19) app/Providers/BroadcastServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/BroadcastServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/BroadcastServiceProvider.php
+@@ -9,8 +9,6 @@
+ {
+     /**
+      * Bootstrap any application services.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+
+      ----------- end diff -----------
+
+  20) app/Providers/EventServiceProvider.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Providers/EventServiceProvider.php
++++ /Users/jackellis/Git/order-remembererer/app/Providers/EventServiceProvider.php
+@@ -22,11 +22,8 @@
+ 
+     /**
+      * Register any events for your application.
+-     *
+-     * @return void
+      */
+     public function boot()
+     {
+-        //
+     }
+ }
+
+      ----------- end diff -----------
+
+  21) app/Models/User.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Models/User.php
++++ /Users/jackellis/Git/order-remembererer/app/Models/User.php
+@@ -3,7 +3,6 @@
+ namespace App\Models;
+ 
+ use App\Traits\HasNoPersonalTeam;
+-use Illuminate\Contracts\Auth\MustVerifyEmail;
+ use Illuminate\Database\Eloquent\Factories\HasFactory;
+ use Illuminate\Foundation\Auth\User as Authenticatable;
+ use Illuminate\Notifications\Notifiable;
+
+      ----------- end diff -----------
+
+  22) app/Exceptions/Handler.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Exceptions/Handler.php
++++ /Users/jackellis/Git/order-remembererer/app/Exceptions/Handler.php
+@@ -13,7 +13,6 @@
+      * @var array
+      */
+     protected $dontReport = [
+-        //
+     ];
+ 
+     /**
+@@ -29,13 +28,10 @@
+ 
+     /**
+      * Register the exception handling callbacks for the application.
+-     *
+-     * @return void
+      */
+     public function register()
+     {
+         $this->reportable(function (Throwable $e) {
+-            //
+         });
+     }
+ }
+
+      ----------- end diff -----------
+
+  23) app/Policies/TeamPolicy.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Policies/TeamPolicy.php
++++ /Users/jackellis/Git/order-remembererer/app/Policies/TeamPolicy.php
+@@ -13,7 +13,6 @@
+     /**
+      * Determine whether the user can view any models.
+      *
+-     * @param  \App\Models\User  $user
+      * @return mixed
+      */
+     public function viewAny(User $user)
+@@ -24,8 +23,6 @@
+     /**
+      * Determine whether the user can view the model.
+      *
+-     * @param  \App\Models\User  $user
+-     * @param  \App\Models\Team  $team
+      * @return mixed
+      */
+     public function view(User $user, Team $team)
+@@ -36,7 +33,6 @@
+     /**
+      * Determine whether the user can create models.
+      *
+-     * @param  \App\Models\User  $user
+      * @return mixed
+      */
+     public function create(User $user)
+@@ -47,8 +43,6 @@
+     /**
+      * Determine whether the user can update the model.
+      *
+-     * @param  \App\Models\User  $user
+-     * @param  \App\Models\Team  $team
+      * @return mixed
+      */
+     public function update(User $user, Team $team)
+@@ -59,8 +53,6 @@
+     /**
+      * Determine whether the user can add team members.
+      *
+-     * @param  \App\Models\User  $user
+-     * @param  \App\Models\Team  $team
+      * @return mixed
+      */
+     public function addTeamMember(User $user, Team $team)
+@@ -71,8 +63,6 @@
+     /**
+      * Determine whether the user can update team member permissions.
+      *
+-     * @param  \App\Models\User  $user
+-     * @param  \App\Models\Team  $team
+      * @return mixed
+      */
+     public function updateTeamMember(User $user, Team $team)
+@@ -83,8 +73,6 @@
+     /**
+      * Determine whether the user can remove team members.
+      *
+-     * @param  \App\Models\User  $user
+-     * @param  \App\Models\Team  $team
+      * @return mixed
+      */
+     public function removeTeamMember(User $user, Team $team)
+@@ -95,8 +83,6 @@
+     /**
+      * Determine whether the user can delete the model.
+      *
+-     * @param  \App\Models\User  $user
+-     * @param  \App\Models\Team  $team
+      * @return mixed
+      */
+     public function delete(User $user, Team $team)
+
+      ----------- end diff -----------
+
+  24) app/Http/Middleware/VerifyCsrfToken.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/VerifyCsrfToken.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/VerifyCsrfToken.php
+@@ -12,6 +12,5 @@
+      * @var array
+      */
+     protected $except = [
+-        //
+     ];
+ }
+
+      ----------- end diff -----------
+
+  25) app/Http/Middleware/RedirectIfAuthenticated.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/RedirectIfAuthenticated.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/RedirectIfAuthenticated.php
+@@ -12,9 +12,8 @@
+     /**
+      * Handle an incoming request.
+      *
+-     * @param  \Illuminate\Http\Request  $request
+-     * @param  \Closure  $next
+-     * @param  string|null  ...$guards
++     * @param null|string ...$guards
++     *
+      * @return mixed
+      */
+     public function handle(Request $request, Closure $next, ...$guards)
+
+      ----------- end diff -----------
+
+  26) app/Http/Middleware/Authenticate.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/Authenticate.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/Authenticate.php
+@@ -9,12 +9,13 @@
+     /**
+      * Get the path the user should be redirected to when they are not authenticated.
+      *
+-     * @param  \Illuminate\Http\Request  $request
+-     * @return string|null
++     * @param \Illuminate\Http\Request $request
++     *
++     * @return null|string
+      */
+     protected function redirectTo($request)
+     {
+-        if (! $request->expectsJson()) {
++        if (!$request->expectsJson()) {
+             return route('login');
+         }
+     }
+
+      ----------- end diff -----------
+
+  27) app/Http/Middleware/TrustProxies.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/TrustProxies.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/TrustProxies.php
+@@ -10,7 +10,7 @@
+     /**
+      * The trusted proxies for this application.
+      *
+-     * @var array|string|null
++     * @var null|array|string
+      */
+     protected $proxies;
+ 
+
+      ----------- end diff -----------
+
+  28) app/Http/Middleware/EnsureTeam.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EnsureTeam.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EnsureTeam.php
+@@ -11,17 +11,15 @@
+     /**
+      * Handle an incoming request.
+      *
+-     * @param  \Illuminate\Http\Request  $request
+-     * @param  \Closure  $next
+      * @return mixed
+      */
+     public function handle(Request $request, Closure $next)
+     {
+-
+         if (!Auth::user()->isMemberOfATeam()) {
+             return redirect()->route('teams.create');
+         }
+         $this->ensureUserHasCurrentTeamSet();
++
+         return $next($request);
+     }
+ 
+@@ -34,5 +32,4 @@
+             $user->save();
+         }
+     }
+-
+ }
+
+      ----------- end diff -----------
+
+  29) app/Http/Middleware/HandleInertiaRequests.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/HandleInertiaRequests.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/HandleInertiaRequests.php
+@@ -11,6 +11,7 @@
+      * The root template that's loaded on the first page visit.
+      *
+      * @see https://inertiajs.com/server-side-setup#root-template
++     *
+      * @var string
+      */
+     protected $rootView = 'app';
+@@ -19,8 +20,8 @@
+      * Determines the current asset version.
+      *
+      * @see https://inertiajs.com/asset-versioning
+-     * @param  \Illuminate\Http\Request  $request
+-     * @return string|null
++     *
++     * @return null|string
+      */
+     public function version(Request $request)
+     {
+@@ -31,13 +32,12 @@
+      * Defines the props that are shared by default.
+      *
+      * @see https://inertiajs.com/shared-data
+-     * @param  \Illuminate\Http\Request  $request
++     *
+      * @return array
+      */
+     public function share(Request $request)
+     {
+         return array_merge(parent::share($request), [
+-            //
+         ]);
+     }
+ }
+
+      ----------- end diff -----------
+
+  30) app/Http/Middleware/PreventRequestsDuringMaintenance.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/PreventRequestsDuringMaintenance.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/PreventRequestsDuringMaintenance.php
+@@ -12,6 +12,5 @@
+      * @var array
+      */
+     protected $except = [
+-        //
+     ];
+ }
+
+      ----------- end diff -----------
+
+  31) app/Http/Middleware/EncryptCookies.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EncryptCookies.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Middleware/EncryptCookies.php
+@@ -12,6 +12,5 @@
+      * @var array
+      */
+     protected $except = [
+-        //
+     ];
+ }
+
+      ----------- end diff -----------
+
+  32) app/Http/Controllers/Controller.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Http/Controllers/Controller.php
++++ /Users/jackellis/Git/order-remembererer/app/Http/Controllers/Controller.php
+@@ -9,5 +9,7 @@
+ 
+ class Controller extends BaseController
+ {
+-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
++    use AuthorizesRequests;
++    use DispatchesJobs;
++    use ValidatesRequests;
+ }
+
+      ----------- end diff -----------
+
+  33) app/Actions/Fortify/UpdateUserProfileInformation.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserProfileInformation.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserProfileInformation.php
+@@ -12,9 +12,7 @@
+     /**
+      * Validate and update the given user's profile information.
+      *
+-     * @param  mixed  $user
+-     * @param  array  $input
+-     * @return void
++     * @param mixed $user
+      */
+     public function update($user, array $input)
+     {
+@@ -28,8 +26,8 @@
+             $user->updateProfilePhoto($input['photo']);
+         }
+ 
+-        if ($input['email'] !== $user->email &&
+-            $user instanceof MustVerifyEmail) {
++        if ($input['email'] !== $user->email
++            && $user instanceof MustVerifyEmail) {
+             $this->updateVerifiedUser($user, $input);
+         } else {
+             $user->forceFill([
+@@ -42,9 +40,7 @@
+     /**
+      * Update the given verified user's profile information.
+      *
+-     * @param  mixed  $user
+-     * @param  array  $input
+-     * @return void
++     * @param mixed $user
+      */
+     protected function updateVerifiedUser($user, array $input)
+     {
+
+      ----------- end diff -----------
+
+  34) app/Actions/Fortify/PasswordValidationRules.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/PasswordValidationRules.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/PasswordValidationRules.php
+@@ -13,6 +13,6 @@
+      */
+     protected function passwordRules()
+     {
+-        return ['required', 'string', new Password, 'confirmed'];
++        return ['required', 'string', new Password(), 'confirmed'];
+     }
+ }
+
+      ----------- end diff -----------
+
+  35) app/Actions/Fortify/UpdateUserPassword.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserPassword.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/UpdateUserPassword.php
+@@ -13,9 +13,7 @@
+     /**
+      * Validate and update the user's password.
+      *
+-     * @param  mixed  $user
+-     * @param  array  $input
+-     * @return void
++     * @param mixed $user
+      */
+     public function update($user, array $input)
+     {
+@@ -23,7 +21,7 @@
+             'current_password' => ['required', 'string'],
+             'password' => $this->passwordRules(),
+         ])->after(function ($validator) use ($user, $input) {
+-            if (! isset($input['current_password']) || ! Hash::check($input['current_password'], $user->password)) {
++            if (!isset($input['current_password']) || !Hash::check($input['current_password'], $user->password)) {
+                 $validator->errors()->add('current_password', __('The provided password does not match your current password.'));
+             }
+         })->validateWithBag('updatePassword');
+
+      ----------- end diff -----------
+
+  36) app/Actions/Fortify/ResetUserPassword.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/ResetUserPassword.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/ResetUserPassword.php
+@@ -13,9 +13,7 @@
+     /**
+      * Validate and reset the user's forgotten password.
+      *
+-     * @param  mixed  $user
+-     * @param  array  $input
+-     * @return void
++     * @param mixed $user
+      */
+     public function reset($user, array $input)
+     {
+
+      ----------- end diff -----------
+
+  37) app/Actions/Fortify/CreateNewUser.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/CreateNewUser.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Fortify/CreateNewUser.php
+@@ -17,7 +17,6 @@
+     /**
+      * Create a newly registered user.
+      *
+-     * @param  array  $input
+      * @return \App\Models\User
+      */
+     public function create(array $input)
+@@ -42,9 +41,6 @@
+ 
+     /**
+      * Create a personal team for the user.
+-     *
+-     * @param  \App\Models\User  $user
+-     * @return void
+      */
+     protected function createTeam(User $user)
+     {
+
+      ----------- end diff -----------
+
+  38) app/Actions/Jetstream/DeleteUser.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteUser.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteUser.php
+@@ -17,9 +17,6 @@
+ 
+     /**
+      * Create a new action instance.
+-     *
+-     * @param  \Laravel\Jetstream\Contracts\DeletesTeams  $deletesTeams
+-     * @return void
+      */
+     public function __construct(DeletesTeams $deletesTeams)
+     {
+@@ -29,8 +26,7 @@
+     /**
+      * Delete the given user.
+      *
+-     * @param  mixed  $user
+-     * @return void
++     * @param mixed $user
+      */
+     public function delete($user)
+     {
+@@ -45,8 +41,7 @@
+     /**
+      * Delete the teams and team associations attached to the user.
+      *
+-     * @param  mixed  $user
+-     * @return void
++     * @param mixed $user
+      */
+     protected function deleteTeams($user)
+     {
+
+      ----------- end diff -----------
+
+  39) app/Actions/Jetstream/InviteTeamMember.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/InviteTeamMember.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/InviteTeamMember.php
+@@ -17,11 +17,8 @@
+     /**
+      * Invite a new team member to the given team.
+      *
+-     * @param  mixed  $user
+-     * @param  mixed  $team
+-     * @param  string  $email
+-     * @param  string|null  $role
+-     * @return void
++     * @param mixed $user
++     * @param mixed $team
+      */
+     public function invite($user, $team, string $email, string $role = null)
+     {
+@@ -42,10 +39,7 @@
+     /**
+      * Validate the invite member operation.
+      *
+-     * @param  mixed  $team
+-     * @param  string  $email
+-     * @param  string|null  $role
+-     * @return void
++     * @param mixed $team
+      */
+     protected function validate($team, string $email, ?string $role)
+     {
+@@ -62,7 +56,8 @@
+     /**
+      * Get the validation rules for inviting a team member.
+      *
+-     * @param  mixed  $team
++     * @param mixed $team
++     *
+      * @return array
+      */
+     protected function rules($team)
+@@ -72,7 +67,7 @@
+                 $query->where('team_id', $team->id);
+             })],
+             'role' => Jetstream::hasRoles()
+-                            ? ['required', 'string', new Role]
++                            ? ['required', 'string', new Role()]
+                             : null,
+         ]);
+     }
+@@ -80,8 +75,8 @@
+     /**
+      * Ensure that the user is not already on the team.
+      *
+-     * @param  mixed  $team
+-     * @param  string  $email
++     * @param mixed $team
++     *
+      * @return \Closure
+      */
+     protected function ensureUserIsNotAlreadyOnTeam($team, string $email)
+
+      ----------- end diff -----------
+
+  40) app/Actions/Jetstream/RemoveTeamMember.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/RemoveTeamMember.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/RemoveTeamMember.php
+@@ -13,10 +13,9 @@
+     /**
+      * Remove the team member from the given team.
+      *
+-     * @param  mixed  $user
+-     * @param  mixed  $team
+-     * @param  mixed  $teamMember
+-     * @return void
++     * @param mixed $user
++     * @param mixed $team
++     * @param mixed $teamMember
+      */
+     public function remove($user, $team, $teamMember)
+     {
+@@ -32,16 +31,15 @@
+     /**
+      * Authorize that the user can remove the team member.
+      *
+-     * @param  mixed  $user
+-     * @param  mixed  $team
+-     * @param  mixed  $teamMember
+-     * @return void
++     * @param mixed $user
++     * @param mixed $team
++     * @param mixed $teamMember
+      */
+     protected function authorize($user, $team, $teamMember)
+     {
+-        if (! Gate::forUser($user)->check('removeTeamMember', $team) &&
+-            $user->id !== $teamMember->id) {
+-            throw new AuthorizationException;
++        if (!Gate::forUser($user)->check('removeTeamMember', $team)
++            && $user->id !== $teamMember->id) {
++            throw new AuthorizationException();
+         }
+     }
+ 
+@@ -48,9 +46,8 @@
+     /**
+      * Ensure that the currently authenticated user does not own the team.
+      *
+-     * @param  mixed  $teamMember
+-     * @param  mixed  $team
+-     * @return void
++     * @param mixed $teamMember
++     * @param mixed $team
+      */
+     protected function ensureUserDoesNotOwnTeam($teamMember, $team)
+     {
+
+      ----------- end diff -----------
+
+  41) app/Actions/Jetstream/DeleteTeam.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteTeam.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/DeleteTeam.php
+@@ -9,8 +9,7 @@
+     /**
+      * Delete the given team.
+      *
+-     * @param  mixed  $team
+-     * @return void
++     * @param mixed $team
+      */
+     public function delete($team)
+     {
+
+      ----------- end diff -----------
+
+  42) app/Actions/Jetstream/AddTeamMember.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/AddTeamMember.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/AddTeamMember.php
+@@ -15,11 +15,8 @@
+     /**
+      * Add a new team member to the given team.
+      *
+-     * @param  mixed  $user
+-     * @param  mixed  $team
+-     * @param  string  $email
+-     * @param  string|null  $role
+-     * @return void
++     * @param mixed $user
++     * @param mixed $team
+      */
+     public function add($user, $team, string $email, string $role = null)
+     {
+@@ -32,7 +29,8 @@
+         AddingTeamMember::dispatch($team, $newTeamMember);
+ 
+         $team->users()->attach(
+-            $newTeamMember, ['role' => $role]
++            $newTeamMember,
++            ['role' => $role]
+         );
+ 
+         TeamMemberAdded::dispatch($team, $newTeamMember);
+@@ -41,10 +39,7 @@
+     /**
+      * Validate the add member operation.
+      *
+-     * @param  mixed  $team
+-     * @param  string  $email
+-     * @param  string|null  $role
+-     * @return void
++     * @param mixed $team
+      */
+     protected function validate($team, string $email, ?string $role)
+     {
+@@ -68,7 +63,7 @@
+         return array_filter([
+             'email' => ['required', 'email', 'exists:users'],
+             'role' => Jetstream::hasRoles()
+-                            ? ['required', 'string', new Role]
++                            ? ['required', 'string', new Role()]
+                             : null,
+         ]);
+     }
+@@ -76,8 +71,8 @@
+     /**
+      * Ensure that the user is not already on the team.
+      *
+-     * @param  mixed  $team
+-     * @param  string  $email
++     * @param mixed $team
++     *
+      * @return \Closure
+      */
+     protected function ensureUserIsNotAlreadyOnTeam($team, string $email)
+
+      ----------- end diff -----------
+
+  43) app/Actions/Jetstream/UpdateTeamName.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/UpdateTeamName.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/UpdateTeamName.php
+@@ -11,10 +11,8 @@
+     /**
+      * Validate and update the given team's name.
+      *
+-     * @param  mixed  $user
+-     * @param  mixed  $team
+-     * @param  array  $input
+-     * @return void
++     * @param mixed $user
++     * @param mixed $team
+      */
+     public function update($user, $team, array $input)
+     {
+
+      ----------- end diff -----------
+
+  44) app/Actions/Jetstream/CreateTeam.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/CreateTeam.php
++++ /Users/jackellis/Git/order-remembererer/app/Actions/Jetstream/CreateTeam.php
+@@ -13,8 +13,8 @@
+     /**
+      * Validate and create a new team for the given user.
+      *
+-     * @param  mixed  $user
+-     * @param  array  $input
++     * @param mixed $user
++     *
+      * @return mixed
+      */
+     public function create($user, array $input)
+
+      ----------- end diff -----------
+
+  45) app/Console/Kernel.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/app/Console/Kernel.php
++++ /Users/jackellis/Git/order-remembererer/app/Console/Kernel.php
+@@ -13,14 +13,10 @@
+      * @var array
+      */
+     protected $commands = [
+-        //
+     ];
+ 
+     /**
+      * Define the application's command schedule.
+-     *
+-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+-     * @return void
+      */
+     protected function schedule(Schedule $schedule)
+     {
+@@ -29,8 +25,6 @@
+ 
+     /**
+      * Register the commands for the application.
+-     *
+-     * @return void
+      */
+     protected function commands()
+     {
+
+      ----------- end diff -----------
+
+  46) config/sanctum.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/sanctum.php
++++ /Users/jackellis/Git/order-remembererer/config/sanctum.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Stateful Domains
+@@ -47,5 +46,4 @@
+         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
+         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  47) config/hashing.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/hashing.php
++++ /Users/jackellis/Git/order-remembererer/config/hashing.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Hash Driver
+@@ -48,5 +47,4 @@
+         'threads' => 2,
+         'time' => 2,
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  48) config/fortify.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/fortify.php
++++ /Users/jackellis/Git/order-remembererer/config/fortify.php
+@@ -4,7 +4,6 @@
+ use Laravel\Fortify\Features;
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Fortify Guard
+@@ -141,5 +140,4 @@
+             'confirmPassword' => true,
+         ]),
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  49) config/auth.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/auth.php
++++ /Users/jackellis/Git/order-remembererer/config/auth.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Authentication Defaults
+@@ -113,5 +112,4 @@
+     */
+ 
+     'password_timeout' => 10800,
+-
+ ];
+
+      ----------- end diff -----------
+
+  50) config/app.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/app.php
++++ /Users/jackellis/Git/order-remembererer/config/app.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Application Name
+@@ -135,10 +134,7 @@
+     */
+ 
+     'providers' => [
+-
+-        /*
+-         * Laravel Framework Service Providers...
+-         */
++        // Laravel Framework Service Providers...
+         Illuminate\Auth\AuthServiceProvider::class,
+         Illuminate\Broadcasting\BroadcastServiceProvider::class,
+         Illuminate\Bus\BusServiceProvider::class,
+@@ -162,13 +158,9 @@
+         Illuminate\Validation\ValidationServiceProvider::class,
+         Illuminate\View\ViewServiceProvider::class,
+ 
+-        /*
+-         * Package Service Providers...
+-         */
++        // Package Service Providers...
+ 
+-        /*
+-         * Application Service Providers...
+-         */
++        // Application Service Providers...
+         App\Providers\AppServiceProvider::class,
+         App\Providers\AuthServiceProvider::class,
+         // App\Providers\BroadcastServiceProvider::class,
+@@ -176,7 +168,6 @@
+         App\Providers\RouteServiceProvider::class,
+         App\Providers\FortifyServiceProvider::class,
+         App\Providers\JetstreamServiceProvider::class,
+-
+     ],
+ 
+     /*
+@@ -191,7 +182,6 @@
+     */
+ 
+     'aliases' => [
+-
+         'App' => Illuminate\Support\Facades\App::class,
+         'Arr' => Illuminate\Support\Arr::class,
+         'Artisan' => Illuminate\Support\Facades\Artisan::class,
+@@ -230,7 +220,5 @@
+         'URL' => Illuminate\Support\Facades\URL::class,
+         'Validator' => Illuminate\Support\Facades\Validator::class,
+         'View' => Illuminate\Support\Facades\View::class,
+-
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  51) config/mail.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/mail.php
++++ /Users/jackellis/Git/order-remembererer/config/mail.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Mailer
+@@ -106,5 +105,4 @@
+             resource_path('views/vendor/mail'),
+         ],
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  52) config/services.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/services.php
++++ /Users/jackellis/Git/order-remembererer/config/services.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Third Party Services
+@@ -29,5 +28,4 @@
+         'secret' => env('AWS_SECRET_ACCESS_KEY'),
+         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  53) config/database.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/database.php
++++ /Users/jackellis/Git/order-remembererer/config/database.php
+@@ -3,7 +3,6 @@
+ use Illuminate\Support\Str;
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Database Connection Name
+@@ -34,7 +33,6 @@
+     */
+ 
+     'connections' => [
+-
+         'sqlite' => [
+             'driver' => 'sqlite',
+             'url' => env('DATABASE_URL'),
+@@ -90,7 +88,6 @@
+             'prefix' => '',
+             'prefix_indexes' => true,
+         ],
+-
+     ],
+ 
+     /*
+@@ -118,7 +115,6 @@
+     */
+ 
+     'redis' => [
+-
+         'client' => env('REDIS_CLIENT', 'phpredis'),
+ 
+         'options' => [
+@@ -141,7 +137,5 @@
+             'port' => env('REDIS_PORT', '6379'),
+             'database' => env('REDIS_CACHE_DB', '1'),
+         ],
+-
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  54) config/cache.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/cache.php
++++ /Users/jackellis/Git/order-remembererer/config/cache.php
+@@ -3,7 +3,6 @@
+ use Illuminate\Support\Str;
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Cache Store
+@@ -32,7 +31,6 @@
+     */
+ 
+     'stores' => [
+-
+         'apc' => [
+             'driver' => 'apc',
+         ],
+@@ -91,7 +89,6 @@
+         'octane' => [
+             'driver' => 'octane',
+         ],
+-
+     ],
+ 
+     /*
+@@ -106,5 +103,4 @@
+     */
+ 
+     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
+-
+ ];
+
+      ----------- end diff -----------
+
+  55) config/session.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/session.php
++++ /Users/jackellis/Git/order-remembererer/config/session.php
+@@ -3,7 +3,6 @@
+ use Illuminate\Support\Str;
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Session Driver
+@@ -197,5 +196,4 @@
+     */
+ 
+     'same_site' => 'lax',
+-
+ ];
+
+      ----------- end diff -----------
+
+  56) config/queue.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/queue.php
++++ /Users/jackellis/Git/order-remembererer/config/queue.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Queue Connection Name
+@@ -29,7 +28,6 @@
+     */
+ 
+     'connections' => [
+-
+         'sync' => [
+             'driver' => 'sync',
+         ],
+@@ -70,7 +68,6 @@
+             'block_for' => null,
+             'after_commit' => false,
+         ],
+-
+     ],
+ 
+     /*
+@@ -89,5 +86,4 @@
+         'database' => env('DB_CONNECTION', 'mysql'),
+         'table' => 'failed_jobs',
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  57) config/broadcasting.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/broadcasting.php
++++ /Users/jackellis/Git/order-remembererer/config/broadcasting.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Broadcaster
+@@ -29,7 +28,6 @@
+     */
+ 
+     'connections' => [
+-
+         'pusher' => [
+             'driver' => 'pusher',
+             'key' => env('PUSHER_APP_KEY'),
+@@ -58,7 +56,5 @@
+         'null' => [
+             'driver' => 'null',
+         ],
+-
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  58) config/view.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/view.php
++++ /Users/jackellis/Git/order-remembererer/config/view.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | View Storage Paths
+@@ -32,5 +31,4 @@
+         'VIEW_COMPILED_PATH',
+         realpath(storage_path('framework/views'))
+     ),
+-
+ ];
+
+      ----------- end diff -----------
+
+  59) config/cors.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/cors.php
++++ /Users/jackellis/Git/order-remembererer/config/cors.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Cross-Origin Resource Sharing (CORS) Configuration
+@@ -30,5 +29,4 @@
+     'max_age' => 0,
+ 
+     'supports_credentials' => false,
+-
+ ];
+
+      ----------- end diff -----------
+
+  60) config/jetstream.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/jetstream.php
++++ /Users/jackellis/Git/order-remembererer/config/jetstream.php
+@@ -3,7 +3,6 @@
+ use Laravel\Jetstream\Features;
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Jetstream Stack
+@@ -61,5 +60,4 @@
+     */
+ 
+     'profile_photo_disk' => 'public',
+-
+ ];
+
+      ----------- end diff -----------
+
+  61) config/logging.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/logging.php
++++ /Users/jackellis/Git/order-remembererer/config/logging.php
+@@ -5,7 +5,6 @@
+ use Monolog\Handler\SyslogUdpHandler;
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Log Channel
+@@ -101,5 +100,4 @@
+             'path' => storage_path('logs/laravel.log'),
+         ],
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  62) config/filesystems.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/config/filesystems.php
++++ /Users/jackellis/Git/order-remembererer/config/filesystems.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Default Filesystem Disk
+@@ -29,7 +28,6 @@
+     */
+ 
+     'disks' => [
+-
+         'local' => [
+             'driver' => 'local',
+             'root' => storage_path('app'),
+@@ -52,7 +50,6 @@
+             'endpoint' => env('AWS_ENDPOINT'),
+             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+         ],
+-
+     ],
+ 
+     /*
+@@ -69,5 +66,4 @@
+     'links' => [
+         public_path('storage') => storage_path('app/public'),
+     ],
+-
+ ];
+
+      ----------- end diff -----------
+
+  63) resources/lang/en/passwords.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/resources/lang/en/passwords.php
++++ /Users/jackellis/Git/order-remembererer/resources/lang/en/passwords.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Password Reset Language Lines
+@@ -18,5 +17,4 @@
+     'throttled' => 'Please wait before retrying.',
+     'token' => 'This password reset token is invalid.',
+     'user' => "We can't find a user with that email address.",
+-
+ ];
+
+      ----------- end diff -----------
+
+  64) resources/lang/en/auth.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/resources/lang/en/auth.php
++++ /Users/jackellis/Git/order-remembererer/resources/lang/en/auth.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Authentication Language Lines
+@@ -16,5 +15,4 @@
+     'failed' => 'These credentials do not match our records.',
+     'password' => 'The provided password is incorrect.',
+     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+-
+ ];
+
+      ----------- end diff -----------
+
+  65) resources/lang/en/pagination.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/resources/lang/en/pagination.php
++++ /Users/jackellis/Git/order-remembererer/resources/lang/en/pagination.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Pagination Language Lines
+@@ -15,5 +14,4 @@
+ 
+     'previous' => '&laquo; Previous',
+     'next' => 'Next &raquo;',
+-
+ ];
+
+      ----------- end diff -----------
+
+  66) resources/lang/en/validation.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/resources/lang/en/validation.php
++++ /Users/jackellis/Git/order-remembererer/resources/lang/en/validation.php
+@@ -1,7 +1,6 @@
+ <?php
+ 
+ return [
+-
+     /*
+     |--------------------------------------------------------------------------
+     | Validation Language Lines
+@@ -152,5 +151,4 @@
+     */
+ 
+     'attributes' => [],
+-
+ ];
+
+      ----------- end diff -----------
+
+  67) node_modules/flatted/php/flatted.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/node_modules/flatted/php/flatted.php
++++ /Users/jackellis/Git/order-remembererer/node_modules/flatted/php/flatted.php
+@@ -2,7 +2,7 @@
+ 
+ /*!
+  * ISC License
+- * 
++ *
+  * Copyright (c) 2018-2021, Andrea Giammarchi, @WebReflection
+  *
+  * Permission to use, copy, modify, and/or distribute this software for any
+@@ -18,139 +18,165 @@
+  * PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
+-class FlattedString {
+-  public function __construct($value) {
+-    $this->value = $value;
+-  }
++class FlattedString
++{
++    public function __construct($value)
++    {
++        $this->value = $value;
++    }
+ }
+ 
+-class Flatted {
+-
+-  // public utilities
+-  public static function parse($json, $assoc = false, $depth = 512, $options = 0) {
+-    $input = array_map(
+-      'Flatted::asString',
+-      array_map(
+-        'Flatted::wrap',
+-        json_decode($json, $assoc, $depth, $options)
++class Flatted
++{
++    // public utilities
++    public static function parse($json, $assoc = false, $depth = 512, $options = 0)
++    {
++        $input = array_map(
++            'Flatted::asString',
++            array_map(
++          'Flatted::wrap',
++          json_decode($json, $assoc, $depth, $options)
+       )
+-    );
+-    $value = &$input[0];
+-    $set = array();
+-    $set[] = &$value;
+-    if (is_array($value))
+-      return Flatted::loop(false, array_keys($value), $input, $set, $value);
+-    if (is_object($value))
+-      return Flatted::loop(true, Flatted::keys($value), $input, $set, $value);
+-    return $value;
+-  }
++        );
++        $value = &$input[0];
++        $set = [];
++        $set[] = &$value;
++        if (is_array($value)) {
++            return Flatted::loop(false, array_keys($value), $input, $set, $value);
++        }
++        if (is_object($value)) {
++            return Flatted::loop(true, Flatted::keys($value), $input, $set, $value);
++        }
+ 
+-  public static function stringify($value, $options = 0, $depth = 512) {
+-    $known = new stdClass;
+-    $known->key = array();
+-    $known->value = array();
+-    $input = array();
+-    $output = array();
+-    $i = intval(Flatted::index($known, $input, $value));
+-    while ($i < count($input)) {
+-      $output[$i] = Flatted::transform($known, $input, $input[$i]);
+-      $i++;
++        return $value;
+     }
+-    return json_encode($output, $options, $depth);
+-  }
+ 
+-  // private helpers
+-  private static function asString($value) {
+-    return $value instanceof FlattedString ? $value->value : $value;
+-  }
++    public static function stringify($value, $options = 0, $depth = 512)
++    {
++        $known = new stdClass();
++        $known->key = [];
++        $known->value = [];
++        $input = [];
++        $output = [];
++        $i = intval(Flatted::index($known, $input, $value));
++        while ($i < count($input)) {
++            $output[$i] = Flatted::transform($known, $input, $input[$i]);
++            ++$i;
++        }
+ 
+-  private static function index(&$known, &$input, &$value) {
+-    $input[] = &$value;
+-    $index = strval(count($input) - 1);
+-    $known->key[] = &$value;
+-    $known->value[] = &$index;
+-    return $index;
+-  }
++        return json_encode($output, $options, $depth);
++    }
+ 
+-  private static function keys(&$value) {
+-    $obj = new ReflectionObject($value);
+-    $props = $obj->getProperties();
+-    $keys = array();
+-    foreach ($props as $prop)
+-      $keys[] = $prop->getName();
+-    return $keys;
+-  }
++    // private helpers
++    private static function asString($value)
++    {
++        return $value instanceof FlattedString ? $value->value : $value;
++    }
+ 
+-  private static function loop($obj, $keys, &$input, &$set, &$output) {
+-    foreach ($keys as $key) {
+-      $value = $obj ? $output->$key : $output[$key];
+-      if ($value instanceof FlattedString)
+-        Flatted::ref($obj, $key, $input[$value->value], $input, $set, $output);
++    private static function index(&$known, &$input, &$value)
++    {
++        $input[] = &$value;
++        $index = strval(count($input) - 1);
++        $known->key[] = &$value;
++        $known->value[] = &$index;
++
++        return $index;
+     }
+-    return $output;
+-  }
+ 
+-  private static function relate(&$known, &$input, &$value) {
+-    if (is_string($value) || is_array($value) || is_object($value)) {
+-      $key = array_search($value, $known->key, true);
+-      if ($key !== false)
+-        return $known->value[$key];
+-      return Flatted::index($known, $input, $value);
++    private static function keys(&$value)
++    {
++        $obj = new ReflectionObject($value);
++        $props = $obj->getProperties();
++        $keys = [];
++        foreach ($props as $prop) {
++            $keys[] = $prop->getName();
++        }
++
++        return $keys;
+     }
+-    return $value;
+-  }
+ 
+-  private static function ref($obj, &$key, &$value, &$input, &$set, &$output) {
+-    if (is_array($value) && !in_array($value, $set, true)) {
+-      $set[] = $value;
+-      $value = Flatted::loop(false, array_keys($value), $input, $set, $value);
++    private static function loop($obj, $keys, &$input, &$set, &$output)
++    {
++        foreach ($keys as $key) {
++            $value = $obj ? $output->{$key} : $output[$key];
++            if ($value instanceof FlattedString) {
++                Flatted::ref($obj, $key, $input[$value->value], $input, $set, $output);
++            }
++        }
++
++        return $output;
+     }
+-    elseif (is_object($value) && !in_array($value, $set, true)) {
+-      $set[] = $value;
+-      $value = Flatted::loop(true, Flatted::keys($value), $input, $set, $value);
++
++    private static function relate(&$known, &$input, &$value)
++    {
++        if (is_string($value) || is_array($value) || is_object($value)) {
++            $key = array_search($value, $known->key, true);
++            if (false !== $key) {
++                return $known->value[$key];
++            }
++
++            return Flatted::index($known, $input, $value);
++        }
++
++        return $value;
+     }
+-    if ($obj) {
+-      $output->$key = &$value;
++
++    private static function ref($obj, &$key, &$value, &$input, &$set, &$output)
++    {
++        if (is_array($value) && !in_array($value, $set, true)) {
++            $set[] = $value;
++            $value = Flatted::loop(false, array_keys($value), $input, $set, $value);
++        } elseif (is_object($value) && !in_array($value, $set, true)) {
++            $set[] = $value;
++            $value = Flatted::loop(true, Flatted::keys($value), $input, $set, $value);
++        }
++        if ($obj) {
++            $output->{$key} = &$value;
++        } else {
++            $output[$key] = &$value;
++        }
+     }
+-    else {
+-      $output[$key] = &$value;
+-    }
+-  }
+ 
+-  private static function transform(&$known, &$input, &$value) {
+-    if (is_array($value)) {
+-      return array_map(
+-        function ($value) use(&$known, &$input) {
+-          return Flatted::relate($known, $input, $value);
++    private static function transform(&$known, &$input, &$value)
++    {
++        if (is_array($value)) {
++            return array_map(
++                function ($value) use (&$known, &$input) {
++            return Flatted::relate($known, $input, $value);
+         },
+-        $value
+-      );
++                $value
++            );
++        }
++        if (is_object($value)) {
++            $object = new stdClass();
++            $keys = Flatted::keys($value);
++            foreach ($keys as $key) {
++                $object->{$key} = Flatted::relate($known, $input, $value->{$key});
++            }
++
++            return $object;
++        }
++
++        return $value;
+     }
+-    if (is_object($value)) {
+-      $object = new stdClass;
+-      $keys = Flatted::keys($value);
+-      foreach ($keys as $key)
+-        $object->$key = Flatted::relate($known, $input, $value->$key);
+-      return $object;
+-    }
+-    return $value;
+-  }
+ 
+-  private static function wrap($value) {
+-    if (is_string($value)) {
+-      return new FlattedString($value);
++    private static function wrap($value)
++    {
++        if (is_string($value)) {
++            return new FlattedString($value);
++        }
++        if (is_array($value)) {
++            return array_map('Flatted::wrap', $value);
++        }
++        if (is_object($value)) {
++            $keys = Flatted::keys($value);
++            foreach ($keys as $key) {
++                $value->{$key} = self::wrap($value->{$key});
++            }
++
++            return $value;
++        }
++
++        return $value;
+     }
+-    if (is_array($value)) {
+-      return array_map('Flatted::wrap', $value);
+-    }
+-    if (is_object($value)) {
+-      $keys = Flatted::keys($value);
+-      foreach ($keys as $key) {
+-        $value->$key = self::wrap($value->$key);
+-      }
+-      return $value;
+-    }
+-    return $value;
+-  }
+ }
+-?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  68) tests/Unit/ExampleTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Unit/ExampleTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Unit/ExampleTest.php
+@@ -4,14 +4,16 @@
+ 
+ use PHPUnit\Framework\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class ExampleTest extends TestCase
+ {
+     /**
+      * A basic test example.
+-     *
+-     * @return void
+      */
+-    public function test_example()
++    public function testExample()
+     {
+         $this->assertTrue(true);
+     }
+
+      ----------- end diff -----------
+
+  69) tests/Feature/PasswordConfirmationTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordConfirmationTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordConfirmationTest.php
+@@ -7,11 +7,15 @@
+ use Laravel\Jetstream\Features;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class PasswordConfirmationTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_confirm_password_screen_can_be_rendered()
++    public function testConfirmPasswordScreenCanBeRendered()
+     {
+         $user = Features::hasTeamFeatures()
+                         ? User::factory()->withPersonalTeam()->create()
+@@ -22,7 +26,7 @@
+         $response->assertStatus(200);
+     }
+ 
+-    public function test_password_can_be_confirmed()
++    public function testPasswordCanBeConfirmed()
+     {
+         $user = User::factory()->create();
+ 
+@@ -34,7 +38,7 @@
+         $response->assertSessionHasNoErrors();
+     }
+ 
+-    public function test_password_is_not_confirmed_with_invalid_password()
++    public function testPasswordIsNotConfirmedWithInvalidPassword()
+     {
+         $user = User::factory()->create();
+ 
+
+      ----------- end diff -----------
+
+  70) tests/Feature/EmailVerificationTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/EmailVerificationTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/EmailVerificationTest.php
+@@ -9,16 +9,19 @@
+ use Illuminate\Support\Facades\Event;
+ use Illuminate\Support\Facades\URL;
+ use Laravel\Fortify\Features;
+-use Laravel\Jetstream\Features as JetstreamFeatures;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class EmailVerificationTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_email_verification_screen_can_be_rendered()
++    public function testEmailVerificationScreenCanBeRendered()
+     {
+-        if (! Features::enabled(Features::emailVerification())) {
++        if (!Features::enabled(Features::emailVerification())) {
+             return $this->markTestSkipped('Email verification not enabled.');
+         }
+ 
+@@ -31,9 +34,9 @@
+         $response->assertStatus(200);
+     }
+ 
+-    public function test_email_can_be_verified()
++    public function testEmailCanBeVerified()
+     {
+-        if (! Features::enabled(Features::emailVerification())) {
++        if (!Features::enabled(Features::emailVerification())) {
+             return $this->markTestSkipped('Email verification not enabled.');
+         }
+ 
+@@ -57,9 +60,9 @@
+         $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
+     }
+ 
+-    public function test_email_can_not_verified_with_invalid_hash()
++    public function testEmailCanNotVerifiedWithInvalidHash()
+     {
+-        if (! Features::enabled(Features::emailVerification())) {
++        if (!Features::enabled(Features::emailVerification())) {
+             return $this->markTestSkipped('Email verification not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  71) tests/Feature/RegistrationTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/RegistrationTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/RegistrationTest.php
+@@ -8,13 +8,17 @@
+ use Laravel\Jetstream\Jetstream;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class RegistrationTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_registration_screen_can_be_rendered()
++    public function testRegistrationScreenCanBeRendered()
+     {
+-        if (! Features::enabled(Features::registration())) {
++        if (!Features::enabled(Features::registration())) {
+             return $this->markTestSkipped('Registration support is not enabled.');
+         }
+ 
+@@ -23,7 +27,7 @@
+         $response->assertStatus(200);
+     }
+ 
+-    public function test_registration_screen_cannot_be_rendered_if_support_is_disabled()
++    public function testRegistrationScreenCannotBeRenderedIfSupportIsDisabled()
+     {
+         if (Features::enabled(Features::registration())) {
+             return $this->markTestSkipped('Registration support is enabled.');
+@@ -34,9 +38,9 @@
+         $response->assertStatus(404);
+     }
+ 
+-    public function test_new_users_can_register()
++    public function testNewUsersCanRegister()
+     {
+-        if (! Features::enabled(Features::registration())) {
++        if (!Features::enabled(Features::registration())) {
+             return $this->markTestSkipped('Registration support is not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  72) tests/Feature/ExampleTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/ExampleTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/ExampleTest.php
+@@ -2,17 +2,18 @@
+ 
+ namespace Tests\Feature;
+ 
+-use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class ExampleTest extends TestCase
+ {
+     /**
+      * A basic test example.
+-     *
+-     * @return void
+      */
+-    public function test_example()
++    public function testExample()
+     {
+         $response = $this->get('/');
+ 
+
+      ----------- end diff -----------
+
+  73) tests/Feature/TwoFactorAuthenticationSettingsTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/TwoFactorAuthenticationSettingsTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/TwoFactorAuthenticationSettingsTest.php
+@@ -6,11 +6,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class TwoFactorAuthenticationSettingsTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_two_factor_authentication_can_be_enabled()
++    public function testTwoFactorAuthenticationCanBeEnabled()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+@@ -22,7 +26,7 @@
+         $this->assertCount(8, $user->fresh()->recoveryCodes());
+     }
+ 
+-    public function test_recovery_codes_can_be_regenerated()
++    public function testRecoveryCodesCanBeRegenerated()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+@@ -39,7 +43,7 @@
+         $this->assertCount(8, array_diff($user->recoveryCodes(), $user->fresh()->recoveryCodes()));
+     }
+ 
+-    public function test_two_factor_authentication_can_be_disabled()
++    public function testTwoFactorAuthenticationCanBeDisabled()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+
+      ----------- end diff -----------
+
+  74) tests/Feature/BrowserSessionsTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/BrowserSessionsTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/BrowserSessionsTest.php
+@@ -6,11 +6,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class BrowserSessionsTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_other_browser_sessions_can_be_logged_out()
++    public function testOtherBrowserSessionsCanBeLoggedOut()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+
+      ----------- end diff -----------
+
+  75) tests/Feature/UpdateTeamMemberRoleTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamMemberRoleTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamMemberRoleTest.php
+@@ -6,16 +6,21 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class UpdateTeamMemberRoleTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_team_member_roles_can_be_updated()
++    public function testTeamMemberRolesCanBeUpdated()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+         $user->currentTeam->users()->attach(
+-            $otherUser = User::factory()->create(), ['role' => 'admin']
++            $otherUser = User::factory()->create(),
++            ['role' => 'admin']
+         );
+ 
+         $response = $this->put('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id, [
+@@ -23,16 +28,18 @@
+         ]);
+ 
+         $this->assertTrue($otherUser->fresh()->hasTeamRole(
+-            $user->currentTeam->fresh(), 'editor'
++            $user->currentTeam->fresh(),
++            'editor'
+         ));
+     }
+ 
+-    public function test_only_team_owner_can_update_team_member_roles()
++    public function testOnlyTeamOwnerCanUpdateTeamMemberRoles()
+     {
+         $user = User::factory()->withPersonalTeam()->create();
+ 
+         $user->currentTeam->users()->attach(
+-            $otherUser = User::factory()->create(), ['role' => 'admin']
++            $otherUser = User::factory()->create(),
++            ['role' => 'admin']
+         );
+ 
+         $this->actingAs($otherUser);
+@@ -42,7 +49,8 @@
+         ]);
+ 
+         $this->assertTrue($otherUser->fresh()->hasTeamRole(
+-            $user->currentTeam->fresh(), 'admin'
++            $user->currentTeam->fresh(),
++            'admin'
+         ));
+     }
+ }
+
+      ----------- end diff -----------
+
+  76) tests/Feature/DeleteAccountTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteAccountTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteAccountTest.php
+@@ -7,13 +7,17 @@
+ use Laravel\Jetstream\Features;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class DeleteAccountTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_user_accounts_can_be_deleted()
++    public function testUserAccountsCanBeDeleted()
+     {
+-        if (! Features::hasAccountDeletionFeatures()) {
++        if (!Features::hasAccountDeletionFeatures()) {
+             return $this->markTestSkipped('Account deletion is not enabled.');
+         }
+ 
+@@ -26,9 +30,9 @@
+         $this->assertNull($user->fresh());
+     }
+ 
+-    public function test_correct_password_must_be_provided_before_account_can_be_deleted()
++    public function testCorrectPasswordMustBeProvidedBeforeAccountCanBeDeleted()
+     {
+-        if (! Features::hasAccountDeletionFeatures()) {
++        if (!Features::hasAccountDeletionFeatures()) {
+             return $this->markTestSkipped('Account deletion is not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  77) tests/Feature/InviteTeamMemberTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/InviteTeamMemberTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/InviteTeamMemberTest.php
+@@ -8,11 +8,15 @@
+ use Laravel\Jetstream\Mail\TeamInvitation;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class InviteTeamMemberTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_team_members_can_be_invited_to_team()
++    public function testTeamMembersCanBeInvitedToTeam()
+     {
+         Mail::fake();
+ 
+@@ -28,7 +32,7 @@
+         $this->assertCount(1, $user->currentTeam->fresh()->teamInvitations);
+     }
+ 
+-    public function test_team_member_invitations_can_be_cancelled()
++    public function testTeamMemberInvitationsCanBeCancelled()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+
+      ----------- end diff -----------
+
+  78) tests/Feature/DeleteTeamTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteTeamTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteTeamTest.php
+@@ -7,11 +7,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class DeleteTeamTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_teams_can_be_deleted()
++    public function testTeamsCanBeDeleted()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+@@ -20,7 +24,8 @@
+         ]));
+ 
+         $team->users()->attach(
+-            $otherUser = User::factory()->create(), ['role' => 'test-role']
++            $otherUser = User::factory()->create(),
++            ['role' => 'test-role']
+         );
+ 
+         $response = $this->delete('/teams/'.$team->id);
+@@ -29,7 +34,7 @@
+         $this->assertCount(0, $otherUser->fresh()->teams);
+     }
+ 
+-    public function test_personal_teams_cant_be_deleted()
++    public function testPersonalTeamsCantBeDeleted()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+
+      ----------- end diff -----------
+
+  79) tests/Feature/CreateTeamTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/CreateTeamTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/CreateTeamTest.php
+@@ -6,11 +6,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class CreateTeamTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_teams_can_be_created()
++    public function testTeamsCanBeCreated()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+
+      ----------- end diff -----------
+
+  80) tests/Feature/UpdateTeamNameTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamNameTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/UpdateTeamNameTest.php
+@@ -6,11 +6,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class UpdateTeamNameTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_team_names_can_be_updated()
++    public function testTeamNamesCanBeUpdated()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+
+      ----------- end diff -----------
+
+  81) tests/Feature/UpdatePasswordTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/UpdatePasswordTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/UpdatePasswordTest.php
+@@ -7,11 +7,15 @@
+ use Illuminate\Support\Facades\Hash;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class UpdatePasswordTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_password_can_be_updated()
++    public function testPasswordCanBeUpdated()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+@@ -24,7 +28,7 @@
+         $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+     }
+ 
+-    public function test_current_password_must_be_correct()
++    public function testCurrentPasswordMustBeCorrect()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+@@ -39,7 +43,7 @@
+         $this->assertTrue(Hash::check('password', $user->fresh()->password));
+     }
+ 
+-    public function test_new_passwords_must_match()
++    public function testNewPasswordsMustMatch()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+
+      ----------- end diff -----------
+
+  82) tests/Feature/AuthenticationTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/AuthenticationTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/AuthenticationTest.php
+@@ -7,11 +7,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class AuthenticationTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_login_screen_can_be_rendered()
++    public function testLoginScreenCanBeRendered()
+     {
+         $response = $this->get('/login');
+ 
+@@ -18,7 +22,7 @@
+         $response->assertStatus(200);
+     }
+ 
+-    public function test_users_can_authenticate_using_the_login_screen()
++    public function testUsersCanAuthenticateUsingTheLoginScreen()
+     {
+         $user = User::factory()->create();
+ 
+@@ -31,7 +35,7 @@
+         $response->assertRedirect(RouteServiceProvider::HOME);
+     }
+ 
+-    public function test_users_can_not_authenticate_with_invalid_password()
++    public function testUsersCanNotAuthenticateWithInvalidPassword()
+     {
+         $user = User::factory()->create();
+ 
+
+      ----------- end diff -----------
+
+  83) tests/Feature/LeaveTeamTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/LeaveTeamTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/LeaveTeamTest.php
+@@ -6,16 +6,21 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class LeaveTeamTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_users_can_leave_teams()
++    public function testUsersCanLeaveTeams()
+     {
+         $user = User::factory()->withPersonalTeam()->create();
+ 
+         $user->currentTeam->users()->attach(
+-            $otherUser = User::factory()->create(), ['role' => 'admin']
++            $otherUser = User::factory()->create(),
++            ['role' => 'admin']
+         );
+ 
+         $this->actingAs($otherUser);
+@@ -25,7 +30,7 @@
+         $this->assertCount(0, $user->currentTeam->fresh()->users);
+     }
+ 
+-    public function test_team_owners_cant_leave_their_own_team()
++    public function testTeamOwnersCantLeaveTheirOwnTeam()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+
+      ----------- end diff -----------
+
+  84) tests/Feature/ApiTokenPermissionsTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/ApiTokenPermissionsTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/ApiTokenPermissionsTest.php
+@@ -8,13 +8,17 @@
+ use Laravel\Jetstream\Features;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class ApiTokenPermissionsTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_api_token_permissions_can_be_updated()
++    public function testApiTokenPermissionsCanBeUpdated()
+     {
+-        if (! Features::hasApiFeatures()) {
++        if (!Features::hasApiFeatures()) {
+             return $this->markTestSkipped('API support is not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  85) tests/Feature/DeleteApiTokenTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteApiTokenTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/DeleteApiTokenTest.php
+@@ -8,13 +8,17 @@
+ use Laravel\Jetstream\Features;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class DeleteApiTokenTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_api_tokens_can_be_deleted()
++    public function testApiTokensCanBeDeleted()
+     {
+-        if (! Features::hasApiFeatures()) {
++        if (!Features::hasApiFeatures()) {
+             return $this->markTestSkipped('API support is not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  86) tests/Feature/RemoveTeamMemberTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/RemoveTeamMemberTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/RemoveTeamMemberTest.php
+@@ -6,16 +6,21 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class RemoveTeamMemberTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_team_members_can_be_removed_from_teams()
++    public function testTeamMembersCanBeRemovedFromTeams()
+     {
+         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+ 
+         $user->currentTeam->users()->attach(
+-            $otherUser = User::factory()->create(), ['role' => 'admin']
++            $otherUser = User::factory()->create(),
++            ['role' => 'admin']
+         );
+ 
+         $response = $this->delete('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id);
+@@ -23,12 +28,13 @@
+         $this->assertCount(0, $user->currentTeam->fresh()->users);
+     }
+ 
+-    public function test_only_team_owner_can_remove_team_members()
++    public function testOnlyTeamOwnerCanRemoveTeamMembers()
+     {
+         $user = User::factory()->withPersonalTeam()->create();
+ 
+         $user->currentTeam->users()->attach(
+-            $otherUser = User::factory()->create(), ['role' => 'admin']
++            $otherUser = User::factory()->create(),
++            ['role' => 'admin']
+         );
+ 
+         $this->actingAs($otherUser);
+
+      ----------- end diff -----------
+
+  87) tests/Feature/CreateApiTokenTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/CreateApiTokenTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/CreateApiTokenTest.php
+@@ -7,13 +7,17 @@
+ use Laravel\Jetstream\Features;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class CreateApiTokenTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_api_tokens_can_be_created()
++    public function testApiTokensCanBeCreated()
+     {
+-        if (! Features::hasApiFeatures()) {
++        if (!Features::hasApiFeatures()) {
+             return $this->markTestSkipped('API support is not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  88) tests/Feature/ProfileInformationTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/ProfileInformationTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/ProfileInformationTest.php
+@@ -6,11 +6,15 @@
+ use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class ProfileInformationTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_profile_information_can_be_updated()
++    public function testProfileInformationCanBeUpdated()
+     {
+         $this->actingAs($user = User::factory()->create());
+ 
+
+      ----------- end diff -----------
+
+  89) tests/Feature/PasswordResetTest.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordResetTest.php
++++ /Users/jackellis/Git/order-remembererer/tests/Feature/PasswordResetTest.php
+@@ -9,13 +9,17 @@
+ use Laravel\Fortify\Features;
+ use Tests\TestCase;
+ 
++/**
++ * @internal
++ * @coversNothing
++ */
+ class PasswordResetTest extends TestCase
+ {
+     use RefreshDatabase;
+ 
+-    public function test_reset_password_link_screen_can_be_rendered()
++    public function testResetPasswordLinkScreenCanBeRendered()
+     {
+-        if (! Features::enabled(Features::updatePasswords())) {
++        if (!Features::enabled(Features::updatePasswords())) {
+             return $this->markTestSkipped('Password updates are not enabled.');
+         }
+ 
+@@ -24,9 +28,9 @@
+         $response->assertStatus(200);
+     }
+ 
+-    public function test_reset_password_link_can_be_requested()
++    public function testResetPasswordLinkCanBeRequested()
+     {
+-        if (! Features::enabled(Features::updatePasswords())) {
++        if (!Features::enabled(Features::updatePasswords())) {
+             return $this->markTestSkipped('Password updates are not enabled.');
+         }
+ 
+@@ -41,9 +45,9 @@
+         Notification::assertSentTo($user, ResetPassword::class);
+     }
+ 
+-    public function test_reset_password_screen_can_be_rendered()
++    public function testResetPasswordScreenCanBeRendered()
+     {
+-        if (! Features::enabled(Features::updatePasswords())) {
++        if (!Features::enabled(Features::updatePasswords())) {
+             return $this->markTestSkipped('Password updates are not enabled.');
+         }
+ 
+@@ -64,9 +68,9 @@
+         });
+     }
+ 
+-    public function test_password_can_be_reset_with_valid_token()
++    public function testPasswordCanBeResetWithValidToken()
+     {
+-        if (! Features::enabled(Features::updatePasswords())) {
++        if (!Features::enabled(Features::updatePasswords())) {
+             return $this->markTestSkipped('Password updates are not enabled.');
+         }
+ 
+
+      ----------- end diff -----------
+
+  90) storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/991d1ff0de0fcf832ee890175709605f6c058294.php
+@@ -2,4 +2,4 @@
+ <?php $__env->startSection('code', '404'); ?>
+ <?php $__env->startSection('message', __('Not Found')); ?>
+ 
+-<?php echo $__env->make('errors::minimal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/404.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php echo $__env->make('errors::minimal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/404.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  91) storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/f92dea904dfc99190fae783e68f9ffcdd5f2e820.php
+@@ -1,3 +1,3 @@
+ <?php echo e($slot); ?>: <?php echo e($url); ?>
+ 
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/button.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/button.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  92) storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/c760737997689c346952456fe5cb8ed22fafe4aa.php
+@@ -4,10 +4,10 @@
+ <?php $__env->startComponent('mail::header', ['url' => config('app.url')]); ?>
+ <?php echo e(config('app.name')); ?>
+ 
+-<?php if (isset($__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4)): ?>
++<?php if (isset($__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4)) { ?>
+ <?php $component = $__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4; ?>
+ <?php unset($__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+ <?php $__env->endSlot(); ?>
+ 
+@@ -16,32 +16,32 @@
+ 
+ 
+ 
+-<?php if(isset($subcopy)): ?>
++<?php if (isset($subcopy)) { ?>
+ <?php $__env->slot('subcopy'); ?>
+ <?php $__env->startComponent('mail::subcopy'); ?>
+ <?php echo e($subcopy); ?>
+ 
+-<?php if (isset($__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc)): ?>
++<?php if (isset($__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc)) { ?>
+ <?php $component = $__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc; ?>
+ <?php unset($__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+ <?php $__env->endSlot(); ?>
+-<?php endif; ?>
++<?php } ?>
+ 
+ 
+ <?php $__env->slot('footer'); ?>
+ <?php $__env->startComponent('mail::footer'); ?>
+ © <?php echo e(date('Y')); ?> <?php echo e(config('app.name')); ?>. <?php echo app('translator')->get('All rights reserved.'); ?>
+-<?php if (isset($__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c)): ?>
++<?php if (isset($__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c)) { ?>
+ <?php $component = $__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c; ?>
+ <?php unset($__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+ <?php $__env->endSlot(); ?>
+-<?php if (isset($__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21)): ?>
++<?php if (isset($__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21)) { ?>
+ <?php $component = $__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21; ?>
+ <?php unset($__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/message.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/message.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  93) storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/8a7fcc3428ef203465efa30d058661bc192640ca.php
+@@ -2,4 +2,4 @@
+ <?php $__env->startSection('code', '403'); ?>
+ <?php $__env->startSection('message', __($exception->getMessage() ?: 'Forbidden')); ?>
+ 
+-<?php echo $__env->make('errors::minimal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/403.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php echo $__env->make('errors::minimal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/403.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  94) storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/917fecd7c024e8d9901f42092ee92a7d052720a5.php
+@@ -20,9 +20,9 @@
+     <body class="font-sans antialiased">
+         <div id="app" data-page="<?php echo e(json_encode($page)); ?>"></div>
+ 
+-        <?php if(app()->environment('local')): ?>
++        <?php if (app()->environment('local')) { ?>
+             <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
+-        <?php endif; ?>
++        <?php } ?>
+     </body>
+ </html>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/resources/views/app.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/resources/views/app.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  95) storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/34152470f9647bcd330d6f4e3533886efa0acd6a.php
+@@ -1,2 +1,2 @@
+ [<?php echo e($slot); ?>](<?php echo e($url); ?>)
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/header.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/header.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  96) storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/0ceb5b20f6105395bb6558a09a2639b03c580406.php
+@@ -58,4 +58,4 @@
+ </table>
+ </body>
+ </html>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/layout.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/layout.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  97) storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/8146bbc1603ebdcf7dd2bf28837bff3c22b69de1.php
+@@ -4,10 +4,10 @@
+         <?php $__env->startComponent('mail::header', ['url' => config('app.url')]); ?>
+             <?php echo e(config('app.name')); ?>
+ 
+-        <?php if (isset($__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4)): ?>
++        <?php if (isset($__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4)) { ?>
+ <?php $component = $__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4; ?>
+ <?php unset($__componentOriginala6c60a8eadc3b56c524581de8cda10d4f5a799b4); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+     <?php $__env->endSlot(); ?>
+ 
+@@ -16,32 +16,32 @@
+ 
+ 
+     
+-    <?php if(isset($subcopy)): ?>
++    <?php if (isset($subcopy)) { ?>
+         <?php $__env->slot('subcopy'); ?>
+             <?php $__env->startComponent('mail::subcopy'); ?>
+                 <?php echo e($subcopy); ?>
+ 
+-            <?php if (isset($__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc)): ?>
++            <?php if (isset($__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc)) { ?>
+ <?php $component = $__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc; ?>
+ <?php unset($__componentOriginalba845ad32dfe5e4470519a452789aeb20250b6fc); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+         <?php $__env->endSlot(); ?>
+-    <?php endif; ?>
++    <?php } ?>
+ 
+     
+     <?php $__env->slot('footer'); ?>
+         <?php $__env->startComponent('mail::footer'); ?>
+             © <?php echo e(date('Y')); ?> <?php echo e(config('app.name')); ?>. <?php echo app('translator')->get('All rights reserved.'); ?>
+-        <?php if (isset($__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c)): ?>
++        <?php if (isset($__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c)) { ?>
+ <?php $component = $__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c; ?>
+ <?php unset($__componentOriginala991192d5a5d5f731a8cf5f31528af3b372f333c); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+     <?php $__env->endSlot(); ?>
+-<?php if (isset($__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21)): ?>
++<?php if (isset($__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21)) { ?>
+ <?php $component = $__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21; ?>
+ <?php unset($__componentOriginalc32b54e0a3261a2d3631146e856277520bd12d21); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/message.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/message.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  98) storage/framework/views/fea30106e42f04748a061ec34842ea4b9ef1c29b.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/fea30106e42f04748a061ec34842ea4b9ef1c29b.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/fea30106e42f04748a061ec34842ea4b9ef1c29b.php
+@@ -2,7 +2,7 @@
+ <?php echo e(__('You have been invited to join the :team team!', ['team' => $invitation->team->name])); ?>
+ 
+ 
+-<?php if(Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::registration())): ?>
++<?php if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::registration())) { ?>
+ <?php echo e(__('If you do not have an account, you may create one by clicking the button below. After creating an account, you may click the invitation acceptance button in this email to accept the team invitation:')); ?>
+ 
+ 
+@@ -9,35 +9,35 @@
+ <?php $__env->startComponent('mail::button', ['url' => route('register')]); ?>
+ <?php echo e(__('Create Account')); ?>
+ 
+-<?php if (isset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e)): ?>
++<?php if (isset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e)) { ?>
+ <?php $component = $__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e; ?>
+ <?php unset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+ 
+ <?php echo e(__('If you already have an account, you may accept this invitation by clicking the button below:')); ?>
+ 
+ 
+-<?php else: ?>
++<?php } else { ?>
+ <?php echo e(__('You may accept this invitation by clicking the button below:')); ?>
+ 
+-<?php endif; ?>
++<?php } ?>
+ 
+ 
+ <?php $__env->startComponent('mail::button', ['url' => $acceptUrl]); ?>
+ <?php echo e(__('Accept Invitation')); ?>
+ 
+-<?php if (isset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e)): ?>
++<?php if (isset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e)) { ?>
+ <?php $component = $__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e; ?>
+ <?php unset($__componentOriginalb8f5c8a6ad1b73985c32a4b97acff83989288b9e); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+ 
+ <?php echo e(__('If you did not expect to receive an invitation to this team, you may discard this email.')); ?>
+ 
+-<?php if (isset($__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d)): ?>
++<?php if (isset($__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d)) { ?>
+ <?php $component = $__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d; ?>
+ <?php unset($__componentOriginal2dab26517731ed1416679a121374450d5cff5e0d); ?>
+-<?php endif; ?>
++<?php } ?>
+ <?php echo $__env->renderComponent(); ?>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/jetstream/src/../resources/views/mail/team-invitation.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/jetstream/src/../resources/views/mail/team-invitation.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+  99) storage/framework/views/4209ded90efe0d468d09d9c478926f110c4c94cf.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/4209ded90efe0d468d09d9c478926f110c4c94cf.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/4209ded90efe0d468d09d9c478926f110c4c94cf.php
+@@ -36,4 +36,4 @@
+         </div>
+     </body>
+ </html>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 100) storage/framework/views/67b00129add1a40a1d55c816ded386acd31565a7.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/67b00129add1a40a1d55c816ded386acd31565a7.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/67b00129add1a40a1d55c816ded386acd31565a7.php
+@@ -3,12 +3,12 @@
+ 
+ <?php echo strip_tags($slot); ?>
+ 
+-<?php if(isset($subcopy)): ?>
++<?php if (isset($subcopy)) { ?>
+ 
+ <?php echo strip_tags($subcopy); ?>
+ 
+-<?php endif; ?>
++<?php } ?>
+ 
+ <?php echo strip_tags($footer); ?>
+ 
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/layout.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/layout.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 101) storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/d98ab9c6bf8e88bc86c8ecb36a44c3c7c86c68eb.php
+@@ -1,13 +1,13 @@
+ <tr>
+ <td class="header">
+ <a href="<?php echo e($url); ?>" style="display: inline-block;">
+-<?php if(trim($slot) === 'Laravel'): ?>
++<?php if ('Laravel' === trim($slot)) { ?>
+ <img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
+-<?php else: ?>
++<?php } else { ?>
+ <?php echo e($slot); ?>
+ 
+-<?php endif; ?>
++<?php } ?>
+ </a>
+ </td>
+ </tr>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/header.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/header.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 102) storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/92f56370175cc74971330a8efe0d5a467ae862d3.php
+@@ -1,3 +1,3 @@
+ <?php echo e($slot); ?>
+ 
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/footer.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/text/footer.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 103) storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/faebb22ae02f5ab1acf9f2bc5fa388dba97b90e0.php
+@@ -17,4 +17,4 @@
+ </td>
+ </tr>
+ </table>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/button.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/button.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+ 104) storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
+      ---------- begin diff ----------
+--- /Users/jackellis/Git/order-remembererer/storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
++++ /Users/jackellis/Git/order-remembererer/storage/framework/views/68b94d958560605ad6daa3497583d2ba01557762.php
+@@ -10,4 +10,4 @@
+ </table>
+ </td>
+ </tr>
+-<?php /**PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/footer.blade.php ENDPATH**/ ?>
+\ No newline at end of file
++<?php /*PATH /Users/jackellis/Git/order-remembererer/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/footer.blade.php ENDPATH*/ ?>
+\ No newline at end of file
+
+      ----------- end diff -----------
+
+
+Checked all files in 1.313 seconds, 16.000 MB memory used
