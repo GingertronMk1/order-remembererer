@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class EnsureTeam
 {
@@ -17,22 +16,15 @@ class EnsureTeam
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (!Auth::user()->isMemberOfATeam()) {
+        $user = $request->user();
+        if ($user->isMemberOfATeam()) {
+            if (is_null($user->current_team_id)) {
+                $user->current_team_id = $user->allTeams()->first()->id;
+                $user->save();
+            }
+            return $next($request);
+        } else {
             return redirect()->route('teams.create');
         }
-        $this->ensureUserHasCurrentTeamSet();
-        return $next($request);
     }
-
-    protected function ensureUserHasCurrentTeamSet(): void
-    {
-        /** @var \App\Models\User $user */
-        $user = Auth::user();
-        if (is_null($user)) {
-            $user->current_team_id = $user->allTeams()->first()->id;
-            $user->save();
-        }
-    }
-
 }
