@@ -81,7 +81,8 @@
           "array": true,
           "object": true
         }
-      ]
+      ],
+      "prettier/prettier": "warn"
     }
   }
 }
