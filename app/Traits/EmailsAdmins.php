@@ -1,11 +1,13 @@
 <?php
 
-namespace app\Traits;
+namespace App\Traits;
+
+use App\Observers\EmailsAdminsObserver;
 
 trait EmailsAdmins
 {
     public static function bootEmailsAdmins()
     {
-        static::observe(EmailsAdminsOberver::class);
+        static::observe(EmailsAdminsObserver::class);
     }
 }

@@ -6,13 +6,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ModelUpdated extends Mailable
+class EmailsAdmins extends Mailable
 {
     use Queueable;
     use SerializesModels;
 
-    private $type;
-    private $model;
+    public $type;
+    public $model;
 
     /**
      * Create a new message instance.
@@ -33,6 +33,6 @@ class ModelUpdated extends Mailable
      */
     public function build()
     {
-        return $this->view("emails.admin-observed.{$this->type}");
+        return $this->view("emails.emails-admins.{$this->type}");
     }
 }

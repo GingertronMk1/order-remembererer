@@ -2,12 +2,21 @@
 
 namespace App\Observers;
 
-use App\Mail\ModelUpdated;
+use App\Mail\EmailsAdmins;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EmailsAdminsObserver
 {
+    private $users;
+
+    public function __construct()
+    {
+        Log::info('Constructing EmailsAdminsObserver');
+        $this->users = User::where('admin', true)->get()->all();
+    }
+
     /**
      * Handle the "created" event.
      *
@@ -15,7 +24,8 @@ class EmailsAdminsObserver
      */
     public function created($model)
     {
-        Mail::to(User::where('admin', true)->get()->all())->send(new ModelUpdated('created', $model));
+        Log::info('created');
+        Mail::to($this->users)->send(new EmailsAdmins('created', $model));
     }
 
     /**
@@ -25,7 +35,8 @@ class EmailsAdminsObserver
      */
     public function updated($model)
     {
-        Mail::to(User::where('admin', true)->get()->all())->send(new ModelUpdated('updated', $model));
+        Log::info('updated');
+        Mail::to(User::where('admin', true)->get()->all())->send(new EmailsAdmins('updated', $model));
     }
 
     /**
