@@ -38,14 +38,13 @@
                       <button
                         type="button"
                         :class="
-                          base_classes +
-                          [
+                          base_classes.concat([
                             'hover:bg-gray-50',
                             'hover:text-gray-700',
                             'focus:outline-none',
                             'focus:bg-gray-50',
                             'active:bg-gray-50',
-                          ]
+                          ])
                         "
                       >
                         {{ $page.props.user.current_team.name }}
@@ -157,8 +156,10 @@
                       <button
                         type="button"
                         :class="
-                          base_classes +
-                          ['hover:text-gray-700', 'focus:outline-none']
+                          base_classes.concat([
+                            'hover:text-gray-700',
+                            'focus:outline-none',
+                          ])
                         "
                       >
                         {{ $page.props.user.name }}
