@@ -1,3 +1,1 @@
-<pre>
-    @json($model->getAttributes())
-</pre>
+@include('emails.emails-admins.updated')
