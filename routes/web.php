@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CuisineController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', DashboardController::class);
+
 Route::middleware([
     'auth:sanctum',
     'verified',
@@ -23,4 +25,7 @@ Route::middleware([
     Route::resources([
         'cuisine' => CuisineController::class,
     ]);
+    Route::get('/dashboard', function () {
+        return 'Dashboard';
+    })->name('dashboard');
 });
