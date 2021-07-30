@@ -1,7 +1,5 @@
 <template>
   <div>
-    <inertia-head :title="page_title" />
-
     <jet-banner />
 
     <div class="min-h-screen bg-gray-100">
