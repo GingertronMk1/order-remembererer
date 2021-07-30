@@ -455,6 +455,10 @@ export default {
           name: "Cuisines",
           route: "cuisine.index",
         },
+        {
+          name: "Vendors",
+          route: "vendor.index",
+        },
       ],
     };
   },

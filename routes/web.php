@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', DashboardController::class);
+Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 Route::middleware([
     'auth:sanctum',
@@ -24,8 +25,6 @@ Route::middleware([
 ])->group(function () {
     Route::resources([
         'cuisine' => CuisineController::class,
+        'vendor' => VendorController::class,
     ]);
-    Route::get('/dashboard', function () {
-        return 'Dashboard';
-    })->name('dashboard');
 });

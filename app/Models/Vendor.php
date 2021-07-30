@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Cuisine extends Model
+class Vendor extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,10 +16,14 @@ class Cuisine extends Model
     protected $fillable = [
         'name',
         'description',
+        'address',
+        'website',
+        'email',
+        'phone',
     ];
 
-    public function vendors()
+    public function cuisines()
     {
-        return $this->belongsToMany(Vendor::class);
+        return $this->belongsToMany(Cuisine::class);
     }
 }
