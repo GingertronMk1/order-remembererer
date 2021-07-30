@@ -39,7 +39,7 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        if(Vendor::create($request->all())) {
+        if (Vendor::create($request->all())) {
             return redirect()->route('vendor.index');
         }
     }
@@ -74,8 +74,8 @@ class VendorController extends Controller
     public function update(Request $request, Vendor $vendor)
     {
         if (
-            $vendor->update($request->all()) &&
-            $vendor->cuisines()->sync(array_map(function ($cuisine) { return $cuisine['id']; }, $request->input('cuisines')))) {
+            $vendor->update($request->all())
+            && $vendor->cuisines()->sync(array_map(function ($cuisine) { return $cuisine['id']; }, $request->input('cuisines')))) {
             return redirect()->back()->with('success', 'Vendor updated successfully');
         }
     }
