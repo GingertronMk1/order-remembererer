@@ -41,7 +41,9 @@
     "tailwindcss": "^2.0.1",
     "vue": "^3.0.5",
     "vue-eslint-parser": "^7.9.0",
-    "vue-loader": "^16.1.2",
+    "vue-loader": "^16.1.2"
+  },
+  "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3"
   },
   "prettier": {
