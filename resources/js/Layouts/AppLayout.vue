@@ -40,8 +40,10 @@
                         :class="
                           base_classes +
                           [
-                            'hover:bg-gray-50 hover:text-gray-700',
-                            'focus:outline-none focus:bg-gray-50',
+                            'hover:bg-gray-50',
+                            'hover:text-gray-700',
+                            'focus:outline-none',
+                            'focus:bg-gray-50',
                             'active:bg-gray-50',
                           ]
                         "
