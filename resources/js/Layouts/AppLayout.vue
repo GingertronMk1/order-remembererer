@@ -439,7 +439,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: null,
+      default: this.$page.props.page_title,
     },
   },
 
