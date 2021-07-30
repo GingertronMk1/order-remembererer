@@ -77,7 +77,9 @@
         <div class="col-span-6 sm:col-span-4">
           <jet-label class="mb-2"> Selected Cuisines </jet-label>
           <div class="flex flex-row items-stretch flex-wrap">
-              <span class="text-sm" v-if="form.cuisines.length < 1">No cuisines selected</span>
+            <span v-if="form.cuisines.length < 1" class="text-sm"
+              >No cuisines selected</span
+            >
             <jet-button
               v-for="cuisine in form.cuisines"
               :key="cuisine.id"
@@ -91,7 +93,9 @@
         <div class="col-span-6 sm:col-span-4">
           <jet-label class="mb-2"> Other Cuisines </jet-label>
           <div class="flex flex-row items-stretch flex-wrap">
-              <span class="text-sm" v-if="unselected_cuisines.length < 1">No more cuisines</span>
+            <span v-if="unselected_cuisines.length < 1" class="text-sm"
+              >No more cuisines</span
+            >
             <jet-button
               v-for="cuisine in unselected_cuisines"
               :key="cuisine.id"
