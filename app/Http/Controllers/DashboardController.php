@@ -15,11 +15,6 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-        ]);
+        return inertia('Dashboard');
     }
 }
