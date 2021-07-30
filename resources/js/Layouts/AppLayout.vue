@@ -1,6 +1,6 @@
 <template>
   <div>
-    <inertia-head :title="title" />
+    <inertia-head :title="page_title" />
 
     <jet-banner />
 
@@ -439,7 +439,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: this.$page.props.page_title,
+      default: null,
     },
   },
 
@@ -460,6 +460,7 @@ export default {
           route: "vendor.index",
         },
       ],
+      page_title: null,
     };
   },
 
@@ -484,6 +485,7 @@ export default {
   },
 
   mounted() {
+    this.page_title = this.title ? this.title : this.$page.props.page_title;
     if (process.env.NODE_ENV !== "production") {
       let obj = Object.assign({}, this.$page.props);
       Object.keys(obj).map(function (key) {
