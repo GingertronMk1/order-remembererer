@@ -76,11 +76,11 @@
       <template #form>
         <div class="col-span-6 sm:col-span-4">
           <jet-label> Selected Cuisines </jet-label>
-          <div class="flex flex-row flex-wrap space-x-2 space-y-2">
+          <div class="flex flex-row items-stretch flex-wrap">
             <jet-button
               v-for="cuisine in form.cuisines"
               :key="cuisine.id"
-              class="hover:bg-red-500"
+              class="hover:bg-red-500 mr-2 mb-2"
               @click.prevent="removeCuisine(cuisine)"
               ><i class="fas fa-times mr-2"></i>{{ cuisine.name }}</jet-button
             >
@@ -89,11 +89,11 @@
         <section-border class="col-span-6 sm:col-span-4" />
         <div class="col-span-6 sm:col-span-4">
           <jet-label> Other Cuisines </jet-label>
-          <div class="flex flex-row flex-wrap space-x-2 space-y-2">
+          <div class="flex flex-row items-stretch flex-wrap">
             <jet-button
               v-for="cuisine in unselected_cuisines"
               :key="cuisine.id"
-              class="hover:bg-green-500"
+              class="hover:bg-green-500 mr-2 mb-2"
               @click.prevent="addCuisine(cuisine)"
               ><i class="fas fa-plus mr-2"></i>
               {{ cuisine.name }}
