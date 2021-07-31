@@ -29,8 +29,8 @@ class OrderRequest extends FormRequest
             $other_inputs = array_filter(
                 $inputs,
                 function ($input) use ($current_input) {
-                            return $input !== $current_input;
-                        }
+                    return $input !== $current_input;
+                }
             );
 
             $ret[$current_input] = [
