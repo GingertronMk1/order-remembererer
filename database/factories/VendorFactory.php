@@ -22,12 +22,12 @@ class VendorFactory extends Factory
     public function definition()
     {
         return [
-'name' => $this->faker->name(),
-'description' => $this->faker->paragraphs(3, true),
-'address' => $this->faker->address(),
-'website' => $this->faker->url(),
-'email' => $this->faker->email(),
-'phone' => $this->faker->phoneNumber()
+            'name' => $this->faker->name(),
+            'description' => $this->faker->paragraphs(3, true),
+            'address' => $this->faker->address(),
+            'website' => $this->faker->url(),
+            'email' => $this->faker->email(),
+            'phone' => $this->faker->phoneNumber(),
         ];
     }
 }

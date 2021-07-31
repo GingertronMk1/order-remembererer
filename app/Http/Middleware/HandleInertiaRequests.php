@@ -41,13 +41,14 @@ class HandleInertiaRequests extends Middleware
             'page_title' => config('app.name'),
         ];
 
-        foreach([
+        foreach ([
             'success',
             'danger',
         ] as $type) {
-            if($request->session()->get($type)) {
+            if ($request->session()->get($type)) {
                 $data['jetstream.flash.banner'] = $request->session()->get($type);
                 $data['jetstream.flash.bannerStyle'] = $type;
+
                 break;
             }
         }
