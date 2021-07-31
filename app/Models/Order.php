@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Accountable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +11,7 @@ class Order extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Accountable;
 
     protected $fillable = [
         'food',
