@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Cuisine;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CuisinePolicy extends AdminOverridesPolicy
+class OrderPolicy extends AdminOverridesPolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class CuisinePolicy extends AdminOverridesPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return !!$user->email_verified_at;
     }
 
     /**
@@ -25,9 +25,17 @@ class CuisinePolicy extends AdminOverridesPolicy
      *
      * @return bool|\Illuminate\Auth\Access\Response
      */
-    public function view(User $user, Cuisine $cuisine)
+    public function view(User $user, Order $order)
     {
-        return true;
+        $order_user = $order->user;
+
+        foreach ($user->allTeams() as $team) {
+            if ($order_user->allTeams()->contains($team)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -45,9 +53,9 @@ class CuisinePolicy extends AdminOverridesPolicy
      *
      * @return bool|\Illuminate\Auth\Access\Response
      */
-    public function update(User $user, Cuisine $cuisine)
+    public function update(User $user, Order $order)
     {
-        return $cuisine->user_id === $user->id;
+        return $order->user_id === $user->id;
     }
 
     /**
@@ -55,9 +63,9 @@ class CuisinePolicy extends AdminOverridesPolicy
      *
      * @return bool|\Illuminate\Auth\Access\Response
      */
-    public function delete(User $user, Cuisine $cuisine)
+    public function delete(User $user, Order $order)
     {
-        return false;
+        return $order->user_id === $user->id;
     }
 
     /**
@@ -65,9 +73,8 @@ class CuisinePolicy extends AdminOverridesPolicy
      *
      * @return bool|\Illuminate\Auth\Access\Response
      */
-    public function restore(User $user, Cuisine $cuisine)
+    public function restore(User $user, Order $order)
     {
-        return false;
     }
 
     /**
@@ -75,8 +82,7 @@ class CuisinePolicy extends AdminOverridesPolicy
      *
      * @return bool|\Illuminate\Auth\Access\Response
      */
-    public function forceDelete(User $user, Cuisine $cuisine)
+    public function forceDelete(User $user, Order $order)
     {
-        return false;
     }
 }

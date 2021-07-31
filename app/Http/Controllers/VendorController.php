@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
+        /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Vendor::class, 'vendor');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -35,6 +35,7 @@ class VendorPolicy extends AdminOverridesPolicy
      */
     public function create(User $user)
     {
+        return !!$user->email_verified_at;
     }
 
     /**
@@ -44,6 +45,7 @@ class VendorPolicy extends AdminOverridesPolicy
      */
     public function update(User $user, Vendor $vendor)
     {
+        return $vendor->user_id === $user->id;
     }
 
     /**
