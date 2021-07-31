@@ -37,8 +37,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
-        return array_merge(parent::share($request), [
+        $data = [
             'page_title' => config('app.name'),
-        ]);
+        ];
+
+        foreach([
+            'success',
+            'danger',
+        ] as $type) {
+            if($request->session()->get($type)) {
+                $data['jetstream.flash.banner'] = $request->session()->get($type);
+                $data['jetstream.flash.bannerStyle'] = $type;
+                break;
+            }
+        }
+
+        return array_merge(parent::share($request), $data);
     }
 }
