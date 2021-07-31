@@ -15,6 +15,7 @@ class Order extends Model
         'food',
         'drink',
         'other',
+        'vendor_id'
     ];
 
     protected $with = [
