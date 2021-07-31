@@ -52,7 +52,7 @@ export default {
     JetInput,
     JetButton,
     JetLabel,
-    InputError
+    InputError,
   },
   props: {
     order: {
