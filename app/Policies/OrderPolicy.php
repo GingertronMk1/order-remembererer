@@ -17,7 +17,7 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function viewAny(User $user)
     {
-        return !!$user->email_verified_at;
+        return (bool) $user->email_verified_at;
     }
 
     /**
@@ -45,7 +45,7 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function create(User $user)
     {
-        return !!$user->email_verified_at;
+        return (bool) $user->email_verified_at;
     }
 
     /**
