@@ -1,13 +1,26 @@
 <template>
-  <div>
+  <div
+    :class="[
+      'absolute',
+      'w-full',
+      'z-10',
+      'transition-all',
+      'duration-1000',
+      'flex',
+      'flex-row',
+      'justify-center',
+      show && message ? 'top-4' : '-top-1/4',
+    ]"
+  >
     <div
       :class="{
         'bg-indigo-500': style == 'success',
         'bg-red-700': style == 'danger',
+        'rounded-lg': true,
+        'w-3/4': true,
       }"
-      v-if="show && message"
     >
-      <div class="max-w-screen-xl mx-auto py-2 px-3 sm:px-6 lg:px-8">
+      <div class="max-w-screen-xl mx-auto p-2 px-3">
         <div class="flex items-center justify-between flex-wrap">
           <div class="w-0 flex-1 flex items-center min-w-0">
             <span
@@ -112,6 +125,10 @@ export default {
     message() {
       return this.$page.props.jetstream.flash?.banner || "";
     },
+  },
+
+  mounted() {
+      setTimeout(() => this.show = false, 2500);
   },
 };
 </script>
