@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Vendor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VendorOrderController extends Controller
@@ -45,7 +45,7 @@ class VendorOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Vendor $vendor)
+    public function store(OrderRequest $request, Vendor $vendor)
     {
         if (Order::create(array_merge($request->all(), ['vendor_id' => $vendor->id]))) {
             return redirect()->route('vendor.order.index', $vendor->id)->with('success', 'Order created successfully');
@@ -76,7 +76,7 @@ class VendorOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor, Order $order)
+    public function update(OrderRequest $request, Vendor $vendor, Order $order)
     {
         if ($order->update(array_merge($request->all(), ['vendor_id' => $vendor->id]))) {
             return redirect()->route('vendor.order.index', $vendor->id)->with('success', 'Order updated successfully');

@@ -9,10 +9,12 @@
       <template #form>
         <div class="col-span-6 sm:col-span-4">
           <jet-label for="food" value="Food" />
+          <input-error :message="form.errors.food" />
           <jet-input id="food" v-model="form.food" type="text" class="w-full" />
         </div>
         <div class="col-span-6 sm:col-span-4">
           <jet-label for="drink" value="Drink" />
+          <input-error :message="form.errors.drink" />
           <jet-input
             id="drink"
             v-model="form.drink"
@@ -22,6 +24,7 @@
         </div>
         <div class="col-span-6 sm:col-span-4">
           <jet-label for="other" value="Other" />
+          <input-error :message="form.errors.other" />
           <jet-input
             id="other"
             v-model="form.other"
@@ -41,6 +44,7 @@ import FormSection from "@/Jetstream/FormSection.vue";
 import JetInput from "@/Jetstream/Input.vue";
 import JetButton from "@/Jetstream/Button.vue";
 import JetLabel from "@/Jetstream/Label.vue";
+import InputError from "@/Jetstream/InputError.vue";
 
 export default {
   components: {
@@ -48,6 +52,7 @@ export default {
     JetInput,
     JetButton,
     JetLabel,
+    InputError
   },
   props: {
     order: {
