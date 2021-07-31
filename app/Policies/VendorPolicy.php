@@ -10,7 +10,6 @@ class VendorPolicy extends AdminOverridesPolicy
 {
     use HandlesAuthorization;
 
-
     /**
      * Determine whether the user can view any models.
      *

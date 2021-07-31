@@ -10,8 +10,6 @@ class AddVendorUserId extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -28,8 +26,6 @@ class AddVendorUserId extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -37,6 +33,5 @@ class AddVendorUserId extends Migration
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
         });
-
     }
 }

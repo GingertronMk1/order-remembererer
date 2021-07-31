@@ -18,7 +18,7 @@ class AdminOverridesPolicy
      */
     public function before(User $user, $ability)
     {
-        if($user->admin) {
+        if ($user->admin) {
             return true;
         }
     }
