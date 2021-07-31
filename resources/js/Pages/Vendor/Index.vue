@@ -9,6 +9,9 @@
           <span class="flex flex-row justify-between">
             <h3 class="text-lg" v-text="vendor.name" />
             <span class="flex flex-row space-x-3">
+              <inertia-link :href="route('vendor.order.index', { vendor: vendor })">
+                <jet-button>View Team Orders</jet-button>
+              </inertia-link>
               <inertia-link :href="route('vendor.edit', { vendor: vendor })">
                 <jet-button>Edit</jet-button>
               </inertia-link>

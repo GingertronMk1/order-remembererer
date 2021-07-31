@@ -3,6 +3,7 @@
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\VendorOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,5 +31,6 @@ Route::middleware([
     Route::resources([
         'cuisine' => CuisineController::class,
         'vendor' => VendorController::class,
+        'vendor.order' => VendorOrderController::class,
     ]);
 });

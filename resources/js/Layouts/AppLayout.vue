@@ -475,7 +475,7 @@ export default {
       return (
         this.$page.props.jetstream.hasTeamFeatures &&
         this.$page.props.user.all_teams &&
-        this.$page.props.user.all_teams.length > 0
+        Object.keys(this.$page.props.user.all_teams).length > 0
       );
     },
   },
@@ -488,6 +488,7 @@ export default {
         obj[key] = Object.assign({}, obj[key]);
       });
       console.log(obj);
+      console.log(typeof this.$page.props.user.all_teams);
     }
   },
 

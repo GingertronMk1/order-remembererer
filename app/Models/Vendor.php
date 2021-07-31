@@ -28,4 +28,9 @@ class Vendor extends Model
     {
         return $this->belongsToMany(Cuisine::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

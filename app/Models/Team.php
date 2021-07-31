@@ -41,4 +41,14 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function orders()
+    {
+        $orders = [];
+        foreach ($this->users as $user) {
+            $orders = array_merge($orders, $user->orders()->get()->all());
+        }
+
+        return collect($orders);
+    }
 }
