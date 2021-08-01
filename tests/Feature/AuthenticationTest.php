@@ -13,7 +13,7 @@ use Tests\TestCase;
  */
 class AuthenticationTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testLoginScreenCanBeRendered()
     {

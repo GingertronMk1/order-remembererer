@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class BrowserSessionsTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testOtherBrowserSessionsCanBeLoggedOut()
     {

@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class TwoFactorAuthenticationSettingsTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testTwoFactorAuthenticationCanBeEnabled()
     {

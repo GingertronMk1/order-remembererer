@@ -13,7 +13,7 @@ use Tests\TestCase;
  */
 class DeleteAccountTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testUserAccountsCanBeDeleted()
     {

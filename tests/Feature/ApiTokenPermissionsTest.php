@@ -14,7 +14,7 @@ use Tests\TestCase;
  */
 class ApiTokenPermissionsTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testApiTokenPermissionsCanBeUpdated()
     {

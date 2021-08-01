@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class UpdateTeamNameTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testTeamNamesCanBeUpdated()
     {

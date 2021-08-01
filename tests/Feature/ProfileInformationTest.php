@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class ProfileInformationTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testProfileInformationCanBeUpdated()
     {

@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class LeaveTeamTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testUsersCanLeaveTeams()
     {

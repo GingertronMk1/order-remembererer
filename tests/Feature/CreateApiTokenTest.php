@@ -13,7 +13,7 @@ use Tests\TestCase;
  */
 class CreateApiTokenTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testApiTokensCanBeCreated()
     {

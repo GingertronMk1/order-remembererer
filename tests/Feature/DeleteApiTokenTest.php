@@ -14,7 +14,7 @@ use Tests\TestCase;
  */
 class DeleteApiTokenTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testApiTokensCanBeDeleted()
     {

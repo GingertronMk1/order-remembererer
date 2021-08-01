@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class UpdateTeamMemberRoleTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testTeamMemberRolesCanBeUpdated()
     {

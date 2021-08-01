@@ -12,7 +12,7 @@ use Tests\TestCase;
  */
 class RemoveTeamMemberTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testTeamMembersCanBeRemovedFromTeams()
     {

@@ -12,8 +12,6 @@ use Tests\TestCase;
  */
 class CreateTeamTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function testTeamsCanBeCreated()
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());

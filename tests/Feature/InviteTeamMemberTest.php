@@ -14,7 +14,7 @@ use Tests\TestCase;
  */
 class InviteTeamMemberTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function testTeamMembersCanBeInvitedToTeam()
     {
