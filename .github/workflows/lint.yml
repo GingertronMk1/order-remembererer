@@ -21,7 +21,7 @@ jobs:
       # Install all the NPM stuff
       - name: NPM install
         shell: bash
-        run: npm install
+        run: npm ci
 
       # Linting tings
       - name: NPM lint
