@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 use Tests\TestCase;
@@ -14,8 +13,6 @@ use Tests\TestCase;
  */
 class DeleteApiTokenTest extends TestCase
 {
-
-
     public function testApiTokensCanBeDeleted()
     {
         if (!Features::hasApiFeatures()) {

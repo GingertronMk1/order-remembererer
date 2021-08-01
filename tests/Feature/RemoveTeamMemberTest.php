@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -12,8 +11,6 @@ use Tests\TestCase;
  */
 class RemoveTeamMemberTest extends TestCase
 {
-
-
     public function testTeamMembersCanBeRemovedFromTeams()
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());

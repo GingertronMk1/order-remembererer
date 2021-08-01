@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Laravel\Fortify\Features;
 use Tests\TestCase;
@@ -15,8 +14,6 @@ use Tests\TestCase;
  */
 class PasswordResetTest extends TestCase
 {
-
-
     public function testResetPasswordLinkScreenCanBeRendered()
     {
         if (!Features::enabled(Features::updatePasswords())) {

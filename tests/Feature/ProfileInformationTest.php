@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -12,8 +11,6 @@ use Tests\TestCase;
  */
 class ProfileInformationTest extends TestCase
 {
-
-
     public function testProfileInformationCanBeUpdated()
     {
         $this->actingAs($user = User::factory()->create());

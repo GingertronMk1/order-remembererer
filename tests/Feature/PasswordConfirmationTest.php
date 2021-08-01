@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
 use Tests\TestCase;
 
@@ -13,8 +12,6 @@ use Tests\TestCase;
  */
 class PasswordConfirmationTest extends TestCase
 {
-
-
     public function testConfirmPasswordScreenCanBeRendered()
     {
         $user = Features::hasTeamFeatures()

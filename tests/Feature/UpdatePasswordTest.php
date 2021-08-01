@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -13,8 +12,6 @@ use Tests\TestCase;
  */
 class UpdatePasswordTest extends TestCase
 {
-
-
     public function testPasswordCanBeUpdated()
     {
         $this->actingAs($user = User::factory()->create());

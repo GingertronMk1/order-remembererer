@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Jetstream\Mail\TeamInvitation;
 use Tests\TestCase;
@@ -14,8 +13,6 @@ use Tests\TestCase;
  */
 class InviteTeamMemberTest extends TestCase
 {
-
-
     public function testTeamMembersCanBeInvitedToTeam()
     {
         Mail::fake();
