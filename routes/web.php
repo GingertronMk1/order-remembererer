@@ -22,9 +22,7 @@ Route::middleware([
     'verified',
     'ensure-team',
 ])->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('dashboard');
-    });
+    Route::permanentRedirect('/', '/dashboard');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
