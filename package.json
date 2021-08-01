@@ -13,7 +13,8 @@
     "lint": "eslint \"./resources/js/**/*.{js,vue}\"",
     "lint-fix": "npm run lint -- --fix",
     "lint-log": "npm run lint > eslint.log",
-    "lint-fix-log": "npm run lint-fix > eslint.log"
+    "lint-fix-log": "npm run lint-fix > eslint.log",
+    "postinstall": "sass-migrator division **/*.scss"
   },
   "devDependencies": {
     "@inertiajs/inertia": "^0.9.1",
@@ -38,6 +39,7 @@
     "resolve-url-loader": "^4.0.0",
     "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
+    "sass-migrator": "^1.5.1",
     "tailwindcss": "^2.0.1",
     "vue": "^3.0.5",
     "vue-eslint-parser": "^7.9.0",
