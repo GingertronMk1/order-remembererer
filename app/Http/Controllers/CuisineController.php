@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CuisineRequest;
 use App\Models\Cuisine;
-use Illuminate\Http\Request;
 
 class CuisineController extends Controller
 {
@@ -34,7 +34,7 @@ class CuisineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CuisineRequest $request)
     {
         if (Cuisine::create($request->all())) {
             return redirect()->route('cuisine.index');
@@ -65,7 +65,7 @@ class CuisineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuisine $cuisine)
+    public function update(CuisineRequest $request, Cuisine $cuisine)
     {
         if ($cuisine->update($request->all())) {
             return redirect()->route('cuisine.index');
