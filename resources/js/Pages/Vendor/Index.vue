@@ -12,7 +12,10 @@
               <inertia-link
                 :href="route('vendor.order.index', { vendor: vendor })"
               >
-                <jet-button>View Team Orders</jet-button>
+                <jet-button>
+                  View Orders for
+                  {{ $page.props.user.current_team.name }}
+                </jet-button>
               </inertia-link>
               <inertia-link :href="route('vendor.edit', { vendor: vendor })">
                 <jet-button>Edit</jet-button>
