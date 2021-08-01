@@ -23,11 +23,23 @@ import ApiTokenManager from "@/Pages/API/Partials/ApiTokenManager.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 
 export default {
-  props: ["tokens", "availablePermissions", "defaultPermissions"],
-
   components: {
     ApiTokenManager,
     AppLayout,
+  },
+  props: {
+    tokens: {
+      type: Array,
+      default: () => [],
+    },
+    availablePermissions: {
+      type: Array,
+      default: () => [],
+    },
+    defaultPermissions: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

@@ -15,9 +15,9 @@
           <jet-label for="name" value="Name" />
           <jet-input
             id="name"
+            v-model="createApiTokenForm.name"
             type="text"
             class="mt-1 block w-full"
-            v-model="createApiTokenForm.name"
             autofocus
           />
           <jet-input-error
@@ -27,15 +27,15 @@
         </div>
 
         <!-- Token Permissions -->
-        <div class="col-span-6" v-if="availablePermissions.length > 0">
+        <div v-if="availablePermissions.length > 0" class="col-span-6">
           <jet-label for="permissions" value="Permissions" />
 
           <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="permission in availablePermissions" :key="permission">
               <label class="flex items-center">
                 <jet-checkbox
-                  :value="permission"
                   v-model:checked="createApiTokenForm.permissions"
+                  :value="permission"
                 />
                 <span class="ml-2 text-sm text-gray-600">{{ permission }}</span>
               </label>
@@ -78,23 +78,23 @@
           <template #content>
             <div class="space-y-6">
               <div
-                class="flex items-center justify-between"
                 v-for="token in tokens"
                 :key="token.id"
+                class="flex items-center justify-between"
               >
                 <div>
                   {{ token.name }}
                 </div>
 
                 <div class="flex items-center">
-                  <div class="text-sm text-gray-400" v-if="token.last_used_ago">
+                  <div v-if="token.last_used_ago" class="text-sm text-gray-400">
                     Last used {{ token.last_used_ago }}
                   </div>
 
                   <button
+                    v-if="availablePermissions.length > 0"
                     class="cursor-pointer ml-6 text-sm text-gray-400 underline"
                     @click="manageApiTokenPermissions(token)"
-                    v-if="availablePermissions.length > 0"
                   >
                     Permissions
                   </button>
@@ -124,6 +124,7 @@
         </div>
 
         <div
+          v-if="$page.props.jetstream.flash.token"
           class="
             mt-4
             bg-gray-100
@@ -133,7 +134,6 @@
             font-mono
             text-sm text-gray-500
           "
-          v-if="$page.props.jetstream.flash.token"
         >
           {{ $page.props.jetstream.flash.token }}
         </div>
@@ -158,8 +158,8 @@
           <div v-for="permission in availablePermissions" :key="permission">
             <label class="flex items-center">
               <jet-checkbox
-                :value="permission"
                 v-model:checked="updateApiTokenForm.permissions"
+                :value="permission"
               />
               <span class="ml-2 text-sm text-gray-600">{{ permission }}</span>
             </label>
@@ -174,9 +174,9 @@
 
         <jet-button
           class="ml-2"
-          @click="updateApiToken"
           :class="{ 'opacity-25': updateApiTokenForm.processing }"
           :disabled="updateApiTokenForm.processing"
+          @click="updateApiToken"
         >
           Save
         </jet-button>
@@ -201,9 +201,9 @@
 
         <jet-danger-button
           class="ml-2"
-          @click="deleteApiToken"
           :class="{ 'opacity-25': deleteApiTokenForm.processing }"
           :disabled="deleteApiTokenForm.processing"
+          @click="deleteApiToken"
         >
           Delete
         </jet-danger-button>
@@ -244,7 +244,20 @@ export default {
     JetSectionBorder,
   },
 
-  props: ["tokens", "availablePermissions", "defaultPermissions"],
+  props: {
+    tokens: {
+      type: Array,
+      default: () => [],
+    },
+    availablePermissions: {
+      type: Array,
+      default: () => [],
+    },
+    defaultPermissions: {
+      type: Array,
+      default: () => [],
+    },
+  },
 
   data() {
     return {

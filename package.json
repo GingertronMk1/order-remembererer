@@ -64,12 +64,6 @@
       "ecmaVersion": 2021,
       "sourceType": "module"
     },
-    "ignorePatterns": [
-      "**/Jetstream",
-      "**/Pages/Profile",
-      "**/Pages/API",
-      "**/Pages/Auth"
-    ],
     "globals": {
       "route": "readonly",
       "require": "readonly",

@@ -1,5 +1,6 @@
 <template>
   <input
+    ref="input"
     class="
       border-gray-300
       focus:border-indigo-300
@@ -11,13 +12,17 @@
     "
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
-    ref="input"
   />
 </template>
 
 <script>
 export default {
-  props: ["modelValue"],
+  props: {
+    modelValue: {
+      type: [String, Number, Boolean, Array, Object, Date, Function, Symbol],
+      required: true,
+    },
+  },
 
   emits: ["update:modelValue"],
 

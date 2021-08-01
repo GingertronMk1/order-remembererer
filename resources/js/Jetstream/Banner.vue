@@ -31,12 +31,12 @@
               }"
             >
               <svg
+                v-if="style == 'success'"
                 class="h-5 w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                v-if="style == 'success'"
               >
                 <path
                   stroke-linecap="round"
@@ -47,12 +47,12 @@
               </svg>
 
               <svg
+                v-if="style == 'danger'"
                 class="h-5 w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                v-if="style == 'danger'"
               >
                 <path
                   stroke-linecap="round"
@@ -128,7 +128,7 @@ export default {
   },
 
   mounted() {
-      setTimeout(() => this.show = false, 2500);
+    setTimeout(() => (this.show = false), 2500);
   },
 };
 </script>

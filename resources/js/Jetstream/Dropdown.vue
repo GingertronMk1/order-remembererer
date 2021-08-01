@@ -39,12 +39,15 @@ import { onMounted, onUnmounted, ref } from "vue";
 export default {
   props: {
     align: {
+      type: String,
       default: "right",
     },
     width: {
+      type: String,
       default: "48",
     },
     contentClasses: {
+      type: Array,
       default: () => ["py-1", "bg-white"],
     },
   },

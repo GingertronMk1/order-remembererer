@@ -5,9 +5,17 @@
 </template>
 
 <script>
-
 export default {
-  props: ["href", "active"],
+  props: {
+    href: {
+      type: String,
+      required: true,
+    },
+    active: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   computed: {
     classes() {

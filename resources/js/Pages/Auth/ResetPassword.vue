@@ -13,9 +13,9 @@
         <jet-label for="email" value="Email" />
         <jet-input
           id="email"
+          v-model="form.email"
           type="email"
           class="mt-1 block w-full"
-          v-model="form.email"
           required
           autofocus
         />
@@ -25,9 +25,9 @@
         <jet-label for="password" value="Password" />
         <jet-input
           id="password"
+          v-model="form.password"
           type="password"
           class="mt-1 block w-full"
-          v-model="form.password"
           required
           autocomplete="new-password"
         />
@@ -37,9 +37,9 @@
         <jet-label for="password_confirmation" value="Confirm Password" />
         <jet-input
           id="password_confirmation"
+          v-model="form.password_confirmation"
           type="password"
           class="mt-1 block w-full"
-          v-model="form.password_confirmation"
           required
           autocomplete="new-password"
         />
@@ -76,8 +76,8 @@ export default {
   },
 
   props: {
-    email: String,
-    token: String,
+    email: { type: String, required: true },
+    token: { type: String, required: true },
   },
 
   data() {

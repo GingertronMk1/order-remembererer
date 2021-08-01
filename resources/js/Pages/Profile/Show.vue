@@ -49,8 +49,6 @@ import UpdatePasswordForm from "@/Pages/Profile/Partials/UpdatePasswordForm.vue"
 import UpdateProfileInformationForm from "@/Pages/Profile/Partials/UpdateProfileInformationForm.vue";
 
 export default {
-  props: ["sessions"],
-
   components: {
     AppLayout,
     DeleteUserForm,
@@ -59,6 +57,12 @@ export default {
     TwoFactorAuthenticationForm,
     UpdatePasswordForm,
     UpdateProfileInformationForm,
+  },
+  props: {
+    sessions: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>
