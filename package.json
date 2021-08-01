@@ -14,7 +14,7 @@
     "lint-fix": "npm run lint -- --fix",
     "lint-log": "npm run lint > eslint.log",
     "lint-fix-log": "npm run lint-fix > eslint.log",
-    "prepare": "sass-migrator division **/*.scss"
+    "postprepare": "echo \"POST PREPARED\""
   },
   "devDependencies": {
     "@inertiajs/inertia": "^0.9.1",
