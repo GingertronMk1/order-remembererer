@@ -17,28 +17,44 @@ class CuisineTest extends TestCase
      */
     public function testCuisinesMustBeLoggedIn()
     {
-        $user = User::factory()->withPersonalTeam()->create();
         $cuisine = Cuisine::factory()->create();
-        $modifiers = [
-            'index' => [],
-            'store' => [],
-            'create' => [],
-            'show' => compact('cuisine'),
-            'update' => compact('cuisine'),
-            'edit' => compact('cuisine'),
-            'destroy' => compact('cuisine'),
-        ];
-        foreach ($modifiers as $modifier => $params) {
-            $response = $this->get(route('cuisine.'.$modifier, $params));
 
+        $tests = [
+            "index" => function() use ($cuisine) {
+                return $this->get(route('cuisine.index'));
+            },
+            "create" => function() use ($cuisine) {
+                return $this->get(route('cuisine.create'));
+            },
+            "store" => function() use ($cuisine) {
+                return $this->post(route('cuisine.store'), []);
+            },
+            "show" => function() use ($cuisine) {
+                return $this->get(route('cuisine.show', compact('cuisine')));
+            },
+            "edit" => function() use ($cuisine) {
+                return $this->get(route('cuisine.edit', compact('cuisine')));
+            },
+            "update" => function() use ($cuisine) {
+                return $this->put(route('cuisine.update', compact('cuisine')), []);
+            },
+            "destroy" => function() use ($cuisine) {
+                return $this->delete(route('cuisine.destroy', compact('cuisine')));
+            },
+        ];
+
+        foreach($tests as $test) {
+            $response = $test();
+            echo $response->getContent() . PHP_EOL . '---' . PHP_EOL;
             $response->assertRedirect(route('login'));
         }
 
+        $user = User::factory()->withPersonalTeam()->create();
+        echo print_r($user, true) . PHP_EOL . '---' . PHP_EOL;
         $this->actingAs($user);
 
-        foreach ($modifiers as $modifier => $params) {
-            $response = $this->get(route('cuisine.'.$modifier, $params));
-
+        foreach($tests as $test) {
+            $response = $test();
             $response->assertStatus(200);
         }
     }
