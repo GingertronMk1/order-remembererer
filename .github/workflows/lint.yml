@@ -33,9 +33,11 @@ jobs:
         shell: bash
         run: composer install
 
-      - name: Generate app key
+      - name: Set up Laravel
         shell: bash
-        run: echo "APP_KEY=$(php artisan key:generate --show)" >> .env.testing
+        run: |
+          echo "APP_KEY=$(php artisan key:generate --show)" >> .env.testing
+          chmod -r 777 storage/
 
       # Do the linting
       - name: Run PHP-CS-Fixer
@@ -50,4 +52,4 @@ jobs:
       - name: Show Logs
         shell: bash
         if: ${{ failure() }}
-        run: cat storage/logs/laravel.log
+        run: cat ./storage/logs/laravel.log
