@@ -44,6 +44,10 @@ jobs:
         shell: bash
         run: echo "APP_KEY=$(php artisan key:generate --show)" > .env
 
+      # Set directoy permissions
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
       # Do the linting
       - name: Run PHP-CS-Fixer
         shell: bash
