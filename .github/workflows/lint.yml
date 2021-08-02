@@ -38,11 +38,11 @@ jobs:
       - name: Set up Laravel
         shell: bash
         run: |
-          echo "APP_KEY=$(php artisan key:generate --show)" >> .env.testing
           chmod -R 777 storage/
-          php artisan route:clear
           mkdir -p storage/logs
           touch storage/logs/laravel.log
+          php artisan key:generate --env=testing
+          php artisan route:clear
 
       # Do the linting
       - name: Run PHP-CS-Fixer

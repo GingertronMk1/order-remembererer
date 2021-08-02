@@ -59,7 +59,7 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function update(User $user, Order $order)
     {
-        return $order->user_id === $user->id;
+        return $order->user_id == $user->id;
     }
 
     /**
@@ -69,7 +69,7 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function delete(User $user, Order $order)
     {
-        return $order->user_id === $user->id;
+        return $order->user_id == $user->id;
     }
 
     /**
@@ -79,6 +79,7 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function restore(User $user, Order $order)
     {
+        return $order->user_id == $user->id;
     }
 
     /**
@@ -88,5 +89,6 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function forceDelete(User $user, Order $order)
     {
+        return $order->user_id == $user->id;
     }
 }

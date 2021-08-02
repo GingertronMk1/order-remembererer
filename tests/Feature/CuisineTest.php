@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Team;
+use App\Models\Cuisine;
 use App\Models\User;
-use App\Models\Vendor;
 use Tests\TestCase;
 
 /**
@@ -13,40 +12,118 @@ use Tests\TestCase;
  */
 class CuisineTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function testUsersMustBeOnSameTeamToLookAtEachOthersOrders()
-    {
-        $vendor = Vendor::factory()->create();
-        [$user1, $user2] = User::factory(2)->withPersonalTeam()->create();
+    private $admin;
+    private $user1;
+    private $user2;
+    private $unverified;
 
-        $order = $user1->orders()->create([
-            'vendor_id' => $vendor->id,
-            'ford' => 'test food',
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->admin = User::factory()->admin()->withPersonalTeam()->create();
+        [$this->user1, $this->user2] = User::factory(2)->withPersonalTeam()->create();
+        $this->unverified = User::factory()->unverified()->withPersonalTeam()->create();
+        $this->cuisine = Cuisine::factory()->create();
+    }
+
+    public function testCreateCuisines()
+    {
+        // Admin's fine to create cuisine
+        $response = $this
+            ->actingAs($this->admin)
+            ->post(route('cuisine.store'), ['name' => 'Italian'])
+        ;
+        $response->assertRedirect(route('cuisine.index'));
+
+        // Verified user's fine to create cuisine
+        $response = $this
+            ->actingAs($this->user1)
+            ->post(route('cuisine.store'), ['name' => 'Italian'])
+        ;
+        $response->assertRedirect(route('cuisine.index'));
+
+        // Unverified user's not fine to create cuisine
+        $response = $this
+            ->actingAs($this->unverified)
+            ->post(route('cuisine.store'), ['name' => 'Italian'])
+        ;
+        $response->assertStatus(403);
+    }
+
+    public function testUpdateCuisines()
+    {
+        $cuisine = $this->user1->cuisines()->create([
+            'name' => 'Italian',
         ]);
 
-        echo $order->user_id.PHP_EOL;
+        // Admin's fine to update cuisine
+        $response = $this
+            ->actingAs($this->admin)
+            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
+        ;
+        $response->assertRedirect(route('cuisine.index'));
 
-        foreach ([200 => $user1, 403 => $user2] as $expectedStatus => $user) {
-            $this->actingAs($user);
+        // Creator's fine to update cuisine
+        $response = $this
+            ->actingAs($this->user1)
+            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
+        ;
+        $response->assertRedirect(route('cuisine.index'));
 
-            $response = $this->get(route('vendor.order.show', compact('vendor', 'order')));
-            $response->assertStatus($expectedStatus);
-        }
+        // Other user's not fine to update cuisine
+        $response = $this
+            ->actingAs($this->user2)
+            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
+        ;
+        $response->assertStatus(403);
+    }
 
-        $team = Team::factory()->create();
+    public function testDeleteCuisines()
+    {
+        $response = $this->actingAs($this->user1)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(403);
+        $response = $this->actingAs($this->user2)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(403);
+        $response = $this->actingAs($this->unverified)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(403);
+        $response = $this->actingAs($this->admin)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(302);
+    }
 
-        $team->users()->attach([$user1->id, $user2->id], ['role' => 'editor']);
+    public function testCuisineValidation()
+    {
+        $this->actingAs($this->admin);
 
-        $user1 = $user1->fresh();       // Grab fresh DB copies of the users
-        $user2 = $user2->fresh();
+        // Creating new Cuisines
+        $response = $this->post(route('cuisine.store'), []);
+        $response->assertSessionHasErrors(['name']);
 
-        foreach ([$user1, $user2] as $user) {
-            $this->actingAs($user);
+        $response = $this->post(route('cuisine.store'), ['description' => 1]);
+        $response->assertSessionHasErrors(['name']);
 
-            $response = $this->get(route('vendor.order.show', compact('vendor', 'order')));
-            $response->assertStatus(200);
-        }
+        $response = $this->post(route('cuisine.store'), ['name' => 1]);
+        $response->assertSessionHasErrors(['name']);
+
+        $response = $this->post(route('cuisine.store'), ['name' => 'test', 'description' => 1]);
+        $response->assertSessionHasErrors(['description']);
+
+        $response = $this->post(route('cuisine.store'), ['name' => 'test', 'description' => 'testing']);
+        $response->assertSessionHasNoErrors();
+
+        // Updating an exsiting Cuisine
+        $response = $this->put(route('cuisine.update', ['cuisine' => $this->cuisine]), []);
+        $response->assertSessionHasErrors(['name']);
+
+        $response = $this->put(route('cuisine.update', ['cuisine' => $this->cuisine]), ['description' => 1]);
+        $response->assertSessionHasErrors(['name']);
+
+        $response = $this->put(route('cuisine.update', ['cuisine' => $this->cuisine]), ['name' => 1]);
+        $response->assertSessionHasErrors(['name']);
+
+        $response = $this->put(route('cuisine.update', ['cuisine' => $this->cuisine]), ['name' => 'test', 'description' => 1]);
+        $response->assertSessionHasErrors(['description']);
+
+        $response = $this->put(route('cuisine.update', ['cuisine' => $this->cuisine]), ['name' => 'test', 'description' => 'testing']);
+        $response->assertSessionHasNoErrors();
     }
 }

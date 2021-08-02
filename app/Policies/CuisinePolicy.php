@@ -47,7 +47,7 @@ class CuisinePolicy extends AdminOverridesPolicy
      */
     public function update(User $user, Cuisine $cuisine)
     {
-        return $cuisine->user_id === $user->id;
+        return $cuisine->user_id == $user->id;
     }
 
     /**
