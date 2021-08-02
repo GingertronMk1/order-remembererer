@@ -78,7 +78,8 @@ class CuisineTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function testDeleteCuisines() {
+    public function testDeleteCuisines()
+    {
         $response = $this->actingAs($this->user1)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
         $response->assertStatus(403);
         $response = $this->actingAs($this->user2)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));

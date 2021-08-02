@@ -5,10 +5,12 @@ namespace Tests\Feature;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class VendorTest extends TestCase
 {
     private $admin;
@@ -84,7 +86,8 @@ class VendorTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function testDeleteVendors() {
+    public function testDeleteVendors()
+    {
         $response = $this->actingAs($this->user1)->delete(route('vendor.destroy', ['vendor' => $this->vendor]));
         $response->assertStatus(403);
         $response = $this->actingAs($this->user2)->delete(route('vendor.destroy', ['vendor' => $this->vendor]));
@@ -131,6 +134,4 @@ class VendorTest extends TestCase
         $response = $this->put(route('vendor.update', ['vendor' => $this->vendor]), ['name' => 'test', 'description' => 'testing']);
         $response->assertSessionHasNoErrors();
     }
-
-
 }
