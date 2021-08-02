@@ -42,7 +42,11 @@ jobs:
 
       - name: Generate app key
         shell: bash
-        run: echo "APP_KEY=$(php artisan key:generate --show)" > .env
+        run: |
+          touch .env
+          echo "APP_KEY=$(php artisan key:generate --show)" >> .env
+          echo "LOG_CHANNEL=errorlog" >> .env
+          echo "LOG_LEVEL=debug" >> .env
 
       # Set directoy permissions
       - name: Directory Permissions
@@ -60,4 +64,5 @@ jobs:
 
       - name: Show Logs
         shell: bash
+        if: ${{ failure() }}
         run: cat storage/logs/laravel.log
