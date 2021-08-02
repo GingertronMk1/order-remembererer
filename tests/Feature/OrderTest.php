@@ -26,7 +26,10 @@ class OrderTest extends TestCase
 
         $this->vendor = Vendor::factory()->create();
         $this->admin = User::factory()->admin()->withPersonalTeam()->create();
-        [$this->user1, $this->user2] = User::factory(2)->withPersonalTeam()->create();
+        [
+            $this->user1,
+            $this->user2
+        ] = User::factory(2)->withPersonalTeam()->create();
         $this->team = Team::factory()->create();
         $this->order = $this->user1->orders()->create([
             'vendor_id' => $this->vendor->id,
@@ -111,5 +114,26 @@ class OrderTest extends TestCase
             ;
             call_user_func([$response, $val['fn']], $val['expected']);
         }
+    }
+
+    public function testValidCreation()
+    {
+        $this->user1->refresh();
+        $this->actingAs($this->user1);
+        $response = $this->get(route('vendor.order.show', [
+            'vendor' => $this->vendor,
+            'order' => $this->order,
+        ]));
+
+        // $response->assertStatus(200);
+
+        $response = $this
+            ->post(
+            route(
+                'vendor.order.store',
+                ['vendor' => $this->vendor]
+            ));
+
+        echo $response->getContent();
     }
 }
