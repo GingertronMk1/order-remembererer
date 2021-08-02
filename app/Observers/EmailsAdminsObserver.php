@@ -13,7 +13,6 @@ class EmailsAdminsObserver
 
     public function __construct()
     {
-        Log::info('Constructing EmailsAdminsObserver');
         $this->users = User::where('admin', true)->get()->all();
     }
 
@@ -24,7 +23,6 @@ class EmailsAdminsObserver
      */
     public function created($model)
     {
-        Log::info('created');
         Mail::to($this->users)->send(new EmailsAdmins('created', $model));
     }
 
@@ -35,7 +33,6 @@ class EmailsAdminsObserver
      */
     public function updated($model)
     {
-        Log::info('updated');
         Mail::to(User::where('admin', true)->get()->all())->send(new EmailsAdmins('updated', $model));
     }
 
