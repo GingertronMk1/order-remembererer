@@ -5,6 +5,7 @@ $finder
     ->exclude('bootstrap')
     ->exclude('vendor')
     ->exclude('storage')
+    ->exclude('node_modules')
     ->in(__DIR__)
 ;
 
