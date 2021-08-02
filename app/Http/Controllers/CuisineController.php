@@ -8,6 +8,14 @@ use App\Models\Cuisine;
 class CuisineController extends Controller
 {
     /**
+     * Create the controller instance.
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Cuisine::class, 'cuisine');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
