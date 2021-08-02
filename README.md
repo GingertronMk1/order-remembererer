@@ -19,3 +19,9 @@ What a `User` gets from a `Venue`
 ### `Team`
 
 A group of people - a `User` can belong to many `Team`s
+
+## Future Ideas
+
+### `Purchase`
+
+A time-limited invitation to a `Team` to order from a `Venue`
