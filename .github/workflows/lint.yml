@@ -1,4 +1,4 @@
-name: Lint PHP and JS
+name: Lint PHP and JS and run tests
 
 # Trigger on push and pull request to main
 on:
@@ -43,3 +43,8 @@ jobs:
       - name: Run PHP-CS-Fixer
         shell: bash
         run: composer fix-show
+
+      # Do some testing
+      - name: Run PHP Artisan test
+        shell: bash
+        run: php artisan test
