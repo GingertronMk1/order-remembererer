@@ -9,7 +9,9 @@ class AccountabilityObserver
 {
     public function creating($model)
     {
-        $user = Auth::user() ? Auth::user() : User::get()->firstWhere('admin', true);
-        $model->user_id = $user->id;
+        if($model->user_id === null) {
+            $user = Auth::user() ? Auth::user() : User::get()->firstWhere('admin', true);
+            $model->user_id = $user->id;
+        }
     }
 }
