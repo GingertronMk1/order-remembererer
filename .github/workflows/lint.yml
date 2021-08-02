@@ -57,3 +57,7 @@ jobs:
       - name: Run PHP Artisan test
         shell: bash
         run: php artisan test
+
+      - name: Show Logs
+        shell: bash
+        run: cat storage/logs/laravel.log
