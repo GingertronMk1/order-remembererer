@@ -39,6 +39,11 @@ jobs:
       - name: Composer install
         shell: bash
         run: composer install
+
+      - name: Generate app key
+        shell: bash
+        run: echo "APP_KEY $(php artisan key:generate --show)" > .env
+
       # Do the linting
       - name: Run PHP-CS-Fixer
         shell: bash
