@@ -43,6 +43,8 @@ jobs:
           echo "APP_KEY=$(php artisan key:generate --show)" >> .env.testing
           chmod -R 777 storage/
           php artisan route:clear
+          mkdir -p storage/logs
+          touch storage/logs/laravel.log
 
       # Do the linting
       - name: Run PHP-CS-Fixer
