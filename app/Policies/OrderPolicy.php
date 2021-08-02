@@ -27,14 +27,14 @@ class OrderPolicy extends AdminOverridesPolicy
      */
     public function view(User $user, Order $order)
     {
-        if($order->user_id == $user->id) {
+        if ($order->user_id == $user->id) {
             return true;
         }
 
         $order_user = $order->user;
 
         foreach ($user->allTeams() as $team) {
-            if ($order_user->allTeams()->map(function($val) { return $val->id; })->contains($team->id)) {
+            if ($order_user->allTeams()->map(function ($val) { return $val->id; })->contains($team->id)) {
                 return true;
             }
         }

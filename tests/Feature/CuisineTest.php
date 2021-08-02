@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Cuisine;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Vendor;
@@ -24,14 +23,13 @@ class CuisineTest extends TestCase
 
         $order = $user1->orders()->create([
             'vendor_id' => $vendor->id,
-            'ford' => 'test food'
+            'ford' => 'test food',
         ]);
 
-        echo $order->user_id . PHP_EOL;
+        echo $order->user_id.PHP_EOL;
 
-        foreach([200 => $user1, 403 => $user2] as $expectedStatus => $user)  {
+        foreach ([200 => $user1, 403 => $user2] as $expectedStatus => $user) {
             $this->actingAs($user);
-
 
             $response = $this->get(route('vendor.order.show', compact('vendor', 'order')));
             $response->assertStatus($expectedStatus);
@@ -44,7 +42,7 @@ class CuisineTest extends TestCase
         $user1 = $user1->fresh();       // Grab fresh DB copies of the users
         $user2 = $user2->fresh();
 
-        foreach([$user1, $user2] as $user)  {
+        foreach ([$user1, $user2] as $user) {
             $this->actingAs($user);
 
             $response = $this->get(route('vendor.order.show', compact('vendor', 'order')));
