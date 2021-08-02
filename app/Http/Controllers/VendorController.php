@@ -50,7 +50,7 @@ class VendorController extends Controller
         $vendor = Vendor::create($request->all());
         if (
             $vendor
-            && $vendor->cuisines()->sync(array_map(function ($cuisine) { return $cuisine['id']; }, $request->input('cuisines')))
+            && $vendor->cuisines()->sync(array_map(function ($cuisine) { return $cuisine['id']; }, $request->input('cuisines', [])))
         ) {
             return redirect()->route('vendor.index')->with('success', 'Vendor created successfully');
         }
@@ -87,7 +87,7 @@ class VendorController extends Controller
     {
         if (
             $vendor->update($request->all())
-            && $vendor->cuisines()->sync(array_map(function ($cuisine) { return $cuisine['id']; }, $request->input('cuisines')))
+            && $vendor->cuisines()->sync(array_map(function ($cuisine) { return $cuisine['id']; }, $request->input('cuisines', [])))
         ) {
             return redirect()->route('vendor.index')->with('success', 'Vendor updated successfully');
         }
