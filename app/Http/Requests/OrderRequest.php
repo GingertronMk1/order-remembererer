@@ -34,7 +34,7 @@ class OrderRequest extends FormRequest
             );
 
             $ret[$current_input] = [
-                'required_without:'.
+                'required_without_all:'.
                 implode(
                     ',',
                     $other_inputs
