@@ -50,6 +50,45 @@ class CuisineTest extends TestCase
         $response->assertStatus(403);
     }
 
+    public function testUpdateCuisines()
+    {
+        $cuisine = $this->user1->cuisines()->create([
+            'name' => 'Italian',
+        ]);
+
+        // Admin's fine to update cuisine
+        $response = $this
+            ->actingAs($this->admin)
+            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
+        ;
+        $response->assertRedirect(route('cuisine.index'));
+
+        // Creator's fine to update cuisine
+        $response = $this
+            ->actingAs($this->user1)
+            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
+        ;
+        $response->assertRedirect(route('cuisine.index'));
+
+        // Other user's not fine to update cuisine
+        $response = $this
+            ->actingAs($this->user2)
+            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
+        ;
+        $response->assertStatus(403);
+    }
+
+    public function testDeleteCuisines() {
+        $response = $this->actingAs($this->user1)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(403);
+        $response = $this->actingAs($this->user2)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(403);
+        $response = $this->actingAs($this->unverified)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(403);
+        $response = $this->actingAs($this->admin)->delete(route('cuisine.destroy', ['cuisine' => $this->cuisine]));
+        $response->assertStatus(302);
+    }
+
     public function testCuisineValidation()
     {
         $this->actingAs($this->admin);
@@ -85,33 +124,5 @@ class CuisineTest extends TestCase
 
         $response = $this->put(route('cuisine.update', ['cuisine' => $this->cuisine]), ['name' => 'test', 'description' => 'testing']);
         $response->assertSessionHasNoErrors();
-    }
-
-    public function testUpdateCuisines()
-    {
-        $cuisine = $this->user1->cuisines()->create([
-            'name' => 'Italian',
-        ]);
-
-        // Admin's fine to update cuisine
-        $response = $this
-            ->actingAs($this->admin)
-            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
-        ;
-        $response->assertRedirect(route('cuisine.index'));
-
-        // Creator's fine to update cuisine
-        $response = $this
-            ->actingAs($this->user1)
-            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
-        ;
-        $response->assertRedirect(route('cuisine.index'));
-
-        // Other user's not fine to update cuisine
-        $response = $this
-            ->actingAs($this->user2)
-            ->put(route('cuisine.update', compact('cuisine')), ['name' => 'Italianer'])
-        ;
-        $response->assertStatus(403);
     }
 }
