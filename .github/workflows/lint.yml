@@ -28,6 +28,10 @@ jobs:
         shell: bash
         run: npm run lint
 
+      - name: NPM run prod
+        shell: bash
+        run: npm run prod
+
       # Composer install
       - name: Composer install
         shell: bash
