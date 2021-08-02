@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Cuisine;
+use App\Models\Team;
 use App\Models\User;
+use App\Models\Vendor;
 use Tests\TestCase;
 
 /**
@@ -15,46 +17,37 @@ class CuisineTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function testCuisinesMustBeLoggedIn()
+    public function testUsersMustBeOnSameTeamToLookAtEachOthersOrders()
     {
-        $cuisine = Cuisine::factory()->create();
+        $vendor = Vendor::factory()->create();
+        [$user1, $user2] = User::factory(2)->withPersonalTeam()->create();
 
-        $tests = [
-            'index' => function () {
-                return $this->get(route('cuisine.index'));
-            },
-            'create' => function () {
-                return $this->get(route('cuisine.create'));
-            },
-            'store' => function () {
-                return $this->post(route('cuisine.store'), []);
-            },
-            'show' => function () use ($cuisine) {
-                return $this->get(route('cuisine.show', compact('cuisine')));
-            },
-            'edit' => function () use ($cuisine) {
-                return $this->get(route('cuisine.edit', compact('cuisine')));
-            },
-            'update' => function () use ($cuisine) {
-                return $this->put(route('cuisine.update', compact('cuisine')), []);
-            },
-            'destroy' => function () use ($cuisine) {
-                return $this->delete(route('cuisine.destroy', compact('cuisine')));
-            },
-        ];
+        $order = $user1->orders()->create([
+            'vendor_id' => $vendor->id,
+            'ford' => 'test food'
+        ]);
 
-        foreach ($tests as $test) {
-            $response = $test();
-            echo $response->getContent().PHP_EOL.'---'.PHP_EOL;
-            $response->assertRedirect(route('login'));
+        echo $order->user_id . PHP_EOL;
+
+        foreach([200 => $user1, 403 => $user2] as $expectedStatus => $user)  {
+            $this->actingAs($user);
+
+
+            $response = $this->get(route('vendor.order.show', compact('vendor', 'order')));
+            $response->assertStatus($expectedStatus);
         }
 
-        $user = User::factory()->withPersonalTeam()->create();
-        echo print_r($user, true).PHP_EOL.'---'.PHP_EOL;
-        $this->actingAs($user);
+        $team = Team::factory()->create();
 
-        foreach ($tests as $test) {
-            $response = $test();
+        $team->users()->attach([$user1->id, $user2->id], ['role' => 'editor']);
+
+        $user1 = $user1->fresh();       // Grab fresh DB copies of the users
+        $user2 = $user2->fresh();
+
+        foreach([$user1, $user2] as $user)  {
+            $this->actingAs($user);
+
+            $response = $this->get(route('vendor.order.show', compact('vendor', 'order')));
             $response->assertStatus(200);
         }
     }
