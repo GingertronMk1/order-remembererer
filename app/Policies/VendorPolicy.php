@@ -17,6 +17,7 @@ class VendorPolicy extends AdminOverridesPolicy
      */
     public function viewAny(User $user)
     {
+        return true;
     }
 
     /**
@@ -26,6 +27,7 @@ class VendorPolicy extends AdminOverridesPolicy
      */
     public function view(User $user, Vendor $vendor)
     {
+        return true;
     }
 
     /**
@@ -45,7 +47,7 @@ class VendorPolicy extends AdminOverridesPolicy
      */
     public function update(User $user, Vendor $vendor)
     {
-        return $vendor->user_id === $user->id;
+        return $vendor->user_id == $user->id;
     }
 
     /**
