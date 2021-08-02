@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           echo "APP_KEY=$(php artisan key:generate --show)" >> .env.testing
-          chmod 777 storage/ -r
+          chmod -R 777 storage/
 
       # Do the linting
       - name: Run PHP-CS-Fixer
