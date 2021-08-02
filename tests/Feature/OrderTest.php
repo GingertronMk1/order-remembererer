@@ -99,12 +99,29 @@ class OrderTest extends TestCase
                 'expected' => route('vendor.order.index', ['vendor' => $this->vendor]),
             ],
         ] as $val) {
+            // Create an Order for User 1
             $order = $this->user1->orders()->create([
                 'vendor_id' => $this->vendor->id,
                 'food' => 'test food',
             ]);
 
+            // Refresh the current user
             $val['user']->refresh();
+
+            // First try to update User 1's Order
+            $response = $this
+                ->actingAs($val['user'])
+                ->put(route('vendor.order.update', [
+                    'vendor' => $this->vendor->id,
+                    'order' => $order->id,
+                ]), ['food' => 'test food'])
+            ;
+
+            // If they are User 1 or the admin they should be able to update the Order
+            // Otherwise they would get a 403
+            call_user_func([$response, $val['fn']], $val['expected']);
+
+            // Same for deleting
             $response = $this
                 ->actingAs($val['user'])
                 ->delete(route('vendor.order.destroy', [
@@ -116,24 +133,73 @@ class OrderTest extends TestCase
         }
     }
 
-    public function testValidCreation()
+    public function testValidCreationAndUpdating()
     {
-        $this->user1->refresh();
+        // Pretending to be User 1
         $this->actingAs($this->user1);
-        $response = $this->get(route('vendor.order.show', [
-            'vendor' => $this->vendor,
-            'order' => $this->order,
-        ]));
 
-        // $response->assertStatus(200);
-
+        // Try to create an empty order
         $response = $this
             ->post(
-            route(
-                'vendor.order.store',
-                ['vendor' => $this->vendor]
-            ));
+                route(
+                    'vendor.order.store',
+                    ['vendor' => $this->vendor]
+                )
+            )
+        ;
 
-        echo $response->getContent();
+        // Should have errors
+        $response->assertStatus(302)->assertSessionHasErrors(['food', 'drink', 'other']);
+
+        // Try to update an order to make it empty
+        $response = $this
+            ->put(
+                route(
+                    'vendor.order.update',
+                    [
+                        'vendor' => $this->vendor,
+                        'order' => $this->order,
+                    ]
+                )
+            )
+        ;
+
+        // Should have errors
+        $response->assertStatus(302)->assertSessionHasErrors(['food', 'drink', 'other']);
+
+        // Now go through creating/updating orders with each individual field filled in
+        // They should all be fine
+        foreach ([
+            ['food' => 'test food'],
+            ['drink' => 'test drink'],
+            ['other' => 'test other'],
+        ] as $data) {
+            $response = $this
+                ->post(
+                    route(
+                        'vendor.order.store',
+                        ['vendor' => $this->vendor]
+                    ),
+                    $data
+                )
+            ;
+
+            $response->assertRedirect(route('vendor.order.index', ['vendor' => $this->vendor]));
+
+            $response = $this
+                ->put(
+                    route(
+                        'vendor.order.update',
+                        [
+                            'vendor' => $this->vendor,
+                            'order' => $this->order,
+                        ]
+                    ),
+                    $data
+                )
+            ;
+
+            $response->assertRedirect(route('vendor.order.index', ['vendor' => $this->vendor]));
+        }
     }
 }
