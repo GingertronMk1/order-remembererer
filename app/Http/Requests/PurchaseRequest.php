@@ -29,15 +29,15 @@ class PurchaseRequest extends FormRequest
             'vendor_id' => ['required', 'exists:'.Vendor::class.',id'],
             'expires_at' => ['required', 'after:now'],
             'user_ids' => ['required', 'array'],
-            'user_ids.*' => ['required', Rule::in($this->user()->currentTeam->allUsers()->map(function($user) {
-            return $user->id;
-        })->toArray())],
+            'user_ids.*' => ['required', Rule::in($this->user()->currentTeam->allUsers()->map(function ($user) {
+                return $user->id;
+            })->toArray())],
         ];
     }
 
     public function messages()
     {
-        $json = json_encode($this->user()->currentTeam->allUsers()->map(function($user) {
+        $json = json_encode($this->user()->currentTeam->allUsers()->map(function ($user) {
             return $user->id;
         })->toArray());
 

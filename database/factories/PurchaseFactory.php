@@ -27,7 +27,7 @@ class PurchaseFactory extends Factory
         return [
             'vendor_id' => Vendor::pluck('id')->random(),
             'user_id' => User::pluck('id')->random(),
-            'expires_at' => Carbon::now()->addHours($this->faker->randomDigitNotNull())
+            'expires_at' => Carbon::now()->addHours($this->faker->randomDigitNotNull()),
         ];
     }
 }

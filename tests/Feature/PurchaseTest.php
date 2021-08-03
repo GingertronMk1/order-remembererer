@@ -108,12 +108,13 @@ class PurchaseTest extends TestCase
         $response->assertSessionHasNoErrors();
     }
 
-    public function testInvitations() {
+    public function testInvitations()
+    {
         $this->actingAs($this->admin);
 
         $purchase = Purchase::create([
             'vendor_id' => $this->vendor->id,
-            'expires_at' => Carbon::now()->addHour()
+            'expires_at' => Carbon::now()->addHour(),
         ]);
 
         $purchase_invitation = $purchase->invitations()->create([
@@ -128,7 +129,7 @@ class PurchaseTest extends TestCase
 
         $purchase = Purchase::create([
             'vendor_id' => $this->vendor->id,
-            'expires_at' => Carbon::now()->subHour()
+            'expires_at' => Carbon::now()->subHour(),
         ]);
 
         $purchase_invitation = $purchase->invitations()->create([

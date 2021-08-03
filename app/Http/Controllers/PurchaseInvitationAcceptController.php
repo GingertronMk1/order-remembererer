@@ -21,7 +21,6 @@ class PurchaseInvitationAcceptController extends Controller
             $message = 'This invitation has expired.';
         }
 
-
         if (null !== $message) {
             return response(['message' => $message], 403);
         }
