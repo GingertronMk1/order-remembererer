@@ -20,8 +20,10 @@ class PurchaseInvitationAcceptController extends Controller
         } elseif ($purchase_invitation->purchase->expired || $purchase_invitation->purchase->expires_at < now()) {
             $message = 'This invitation has expired.';
         }
-        if (false && null !== $message) {
-            return inertia('PurchaseInvitation/Error', compact('message'));
+
+
+        if (null !== $message) {
+            return response(['message' => $message], 403);
         }
         $purchase_invitation->viewed_at = now();
         if ($purchase_invitation->save()) {
