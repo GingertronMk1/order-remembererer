@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('purchase-invitation', PurchaseInvitationAcceptController::class)->only('edit', 'update')->scoped([
-    'purchase_invitation' => 'token'
+    'purchase_invitation' => 'token',
 ]);
 
 Route::middleware([

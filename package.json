@@ -13,7 +13,7 @@
     "pretty": "prettier --write \"./resources/js/**/*.{js,jsx,json,vue}\"",
     "lint": "eslint \"./resources/js/**/*.{js,vue}\"",
     "lint-fix": "npm run lint -- --fix",
-    "fix": "npm run lint-fix",
+    "fix": "npm run lint-fix && composer fix",
     "lint-log": "npm run lint > eslint.log",
     "lint-fix-log": "npm run lint-fix > eslint.log",
     "prepare": "sass-migrator division **/*.scss"

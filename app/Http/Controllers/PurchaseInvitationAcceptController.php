@@ -15,23 +15,24 @@ class PurchaseInvitationAcceptController extends Controller
     public function edit(PurchaseInvitation $purchase_invitation)
     {
         $message = null;
-        if($purchase_invitation->viewed_at !== null) {
+        if (null !== $purchase_invitation->viewed_at) {
             $message = 'This invitation has already been viewed.';
-        } else if ($purchase_invitation->purchase->expired || $purchase_invitation->purchase->expires_at < now()) {
+        } elseif ($purchase_invitation->purchase->expired || $purchase_invitation->purchase->expires_at < now()) {
             $message = 'This invitation has expired.';
         }
-        if(false && $message !== null) {
+        if (false && null !== $message) {
             return inertia('PurchaseInvitation/Error', compact('message'));
         }
         $purchase_invitation->viewed_at = now();
-        if($purchase_invitation->save()) {
+        if ($purchase_invitation->save()) {
             return inertia('PurchaseInvitation/Accept', compact('purchase_invitation'));
         }
     }
+
     public function update(Request $request, PurchaseInvitation $purchase_invitation)
     {
         $purchase_invitation->accepted = $request->all();
-        if($purchase_invitation->save()) {
+        if ($purchase_invitation->save()) {
             return redirect()->route('dashboard');
         }
     }

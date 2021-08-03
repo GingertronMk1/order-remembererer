@@ -6,16 +6,16 @@
 
       <template #form>
         <div class="col-span-6 sm:col-span-4">
-            <jet-label for="food" value="Food" />
-            <jet-checkbox v-model="form.food" :checked="form.food" />
+          <jet-label for="food" value="Food" />
+          <jet-checkbox v-model="form.food" :checked="form.food" />
         </div>
         <div class="col-span-6 sm:col-span-4">
-            <jet-label for="drink" value="Drink" />
-            <jet-checkbox v-model="form.drink" :checked="form.drink" />
+          <jet-label for="drink" value="Drink" />
+          <jet-checkbox v-model="form.drink" :checked="form.drink" />
         </div>
         <div class="col-span-6 sm:col-span-4">
-            <jet-label for="other" value="Other" />
-            <jet-checkbox v-model="form.other" :checked="form.other" />
+          <jet-label for="other" value="Other" />
+          <jet-checkbox v-model="form.other" :checked="form.other" />
         </div>
       </template>
       <template #actions>
@@ -32,20 +32,24 @@ import JetCheckbox from "@/Jetstream/Checkbox.vue";
 
 export default {
   components: { FormSection, JetLabel, JetButton, JetCheckbox },
-  props: { purchase_invitation: { type: Object, required: true } },
+  props: { purchaseInvitation: { type: Object, required: true } },
   data() {
     return {
       form: this.$inertia.form({
-          food: true,
-          drink: true,
-          other: true,
+        food: true,
+        drink: true,
+        other: true,
       }),
     };
   },
   mounted() {},
   methods: {
     formSubmit() {
-        this.form.put(route('purchase-invitation.update', {purchase_invitation: this.purchase_invitation.token}))
+      this.form.put(
+        route("purchase-invitation.update", {
+          purchase_invitation: this.purchaseInvitation.token,
+        })
+      );
     },
   },
 };
