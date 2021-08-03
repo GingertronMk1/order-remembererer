@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Purchase;
 use Dompdf\Dompdf;
-
 use Illuminate\Http\Request;
 
 class PurchasePdfController extends Controller
@@ -12,7 +11,6 @@ class PurchasePdfController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Purchase $purchase, Request $request)
@@ -20,7 +18,7 @@ class PurchasePdfController extends Controller
         $title = "Order for {$purchase->vendor->name} at {$purchase->expires_at}";
         $view = view('pdf.purchase', compact('purchase', 'title'));
         // reference the Dompdf namespace
-        if(0) {
+        if (0) {
             return $view;
         }
 
@@ -35,6 +33,6 @@ class PurchasePdfController extends Controller
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream($title . ".pdf", ['Attachment' => false]);
+        $dompdf->stream($title.'.pdf', ['Attachment' => false]);
     }
 }

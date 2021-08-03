@@ -55,7 +55,6 @@ class Purchase extends Model
 
     public function expire()
     {
-
         $data = [];
 
         $this->invitations->each(function ($invitation) use (&$data) {
@@ -63,13 +62,13 @@ class Purchase extends Model
             $order = Order::where('user_id', $user_id)->where('vendor_id', $this->vendor_id)->first();
             if ($order) {
                 $data[$user_id] = ['name' => User::find($user_id)];
-                foreach([
+                foreach ([
                     'food',
                     'drink',
-                    'other'
+                    'other',
                 ] as $aspect) {
-                    if ($invitation->accepted[$aspect] && $order->$aspect) {
-                        $data[$user_id][$aspect] = $order->$aspect;
+                    if ($invitation->accepted[$aspect] && $order->{$aspect}) {
+                        $data[$user_id][$aspect] = $order->{$aspect};
                     } else {
                         $data[$user_id][$aspect] = 'N/A';
                     }

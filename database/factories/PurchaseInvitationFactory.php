@@ -23,6 +23,7 @@ class PurchaseInvitationFactory extends Factory
     public function definition()
     {
         $purchase = Purchase::get()->random();
+
         return [
             'purchase_id' => $purchase->id,
             'user_id' => $purchase->user->currentTeam->users->random()->id,
@@ -30,7 +31,7 @@ class PurchaseInvitationFactory extends Factory
                 'food' => $this->faker->boolean(),
                 'drink' => $this->faker->boolean(),
                 'other' => $this->faker->boolean(),
-            ]
+            ],
         ];
     }
 }

@@ -33,9 +33,9 @@ class PurchaseFactory extends Factory
 
     public function expiryPassed()
     {
-        return $this->state(function(array $attributes) {
+        return $this->state(function (array $attributes) {
             return [
-                'expires_at' => Carbon::now()
+                'expires_at' => Carbon::now(),
             ];
         });
     }
