@@ -30,4 +30,13 @@ class PurchaseFactory extends Factory
             'expires_at' => Carbon::now()->addHours($this->faker->randomDigitNotNull()),
         ];
     }
+
+    public function expiryPassed()
+    {
+        return $this->state(function(array $attributes) {
+            return [
+                'expires_at' => Carbon::now()
+            ];
+        });
+    }
 }

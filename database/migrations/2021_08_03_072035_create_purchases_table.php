@@ -17,6 +17,7 @@ class CreatePurchasesTable extends Migration
             $table->foreignId('user_id');
             $table->dateTime('expires_at');
             $table->boolean('expired')->default(false);
+            $table->json('data')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

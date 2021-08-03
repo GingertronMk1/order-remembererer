@@ -4,6 +4,7 @@ use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseInvitationAcceptController;
+use App\Http\Controllers\PurchasePdfController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorOrderController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::middleware([
     Route::permanentRedirect('/', '/dashboard');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/purchase/{purchase}/pdf', PurchasePdfController::class)->name('purchase.pdf');
 
     Route::resources([
         'cuisine' => CuisineController::class,

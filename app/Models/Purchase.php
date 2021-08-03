@@ -21,6 +21,7 @@ class Purchase extends Model
 
     protected $casts = [
         'expires_at' => 'datetime',
+        'data' => 'json',
     ];
 
     protected $with = [
@@ -50,5 +51,34 @@ class Purchase extends Model
     public function invitations()
     {
         return $this->hasMany(PurchaseInvitation::class);
+    }
+
+    public function expire()
+    {
+
+        $data = [];
+
+        $this->invitations->each(function ($invitation) use (&$data) {
+            $user_id = $invitation->user_id;
+            $order = Order::where('user_id', $user_id)->where('vendor_id', $this->vendor_id)->first();
+            if ($order) {
+                $data[$user_id] = ['name' => User::find($user_id)];
+                foreach([
+                    'food',
+                    'drink',
+                    'other'
+                ] as $aspect) {
+                    if ($invitation->accepted[$aspect] && $order->$aspect) {
+                        $data[$user_id][$aspect] = $order->$aspect;
+                    } else {
+                        $data[$user_id][$aspect] = 'N/A';
+                    }
+                }
+            }
+        });
+
+        $this->data = $data;
+        $this->expired = true;
+        $this->save();
     }
 }
