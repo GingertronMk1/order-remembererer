@@ -131,7 +131,7 @@
               </div>
 
               <!-- Settings Dropdown -->
-              <div class="ml-3 relative">
+              <div v-if="is_user" class="ml-3 relative">
                 <jet-dropdown align="right" width="48">
                   <template #trigger>
                     <button
@@ -277,7 +277,7 @@
           </div>
 
           <!-- Responsive Settings Options -->
-          <div class="pt-4 pb-1 border-t border-gray-200">
+          <div v-if="is_user" class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
               <div
                 v-if="$page.props.jetstream.managesProfilePhotos"
@@ -436,17 +436,17 @@ export default {
         {
           name: "Cuisines",
           route: "cuisine.index",
-          active: "cuisine.*"
+          active: "cuisine.*",
         },
         {
           name: "Vendors",
           route: "vendor.index",
-          active: "vendor.*"
+          active: "vendor.*",
         },
         {
           name: "Purchases",
           route: "purchase.index",
-          active: "purchase.*"
+          active: "purchase.*",
         },
       ],
       page_title: null,
@@ -469,6 +469,9 @@ export default {
 
   computed: {
     nav_links() {
+      if (!this.is_user) {
+        return [];
+      }
       return this.raw_links.map(({ name, route, active }) => {
         return {
           name: name,
@@ -480,9 +483,15 @@ export default {
 
     allow_teams() {
       return (
+        this.is_user &&
         this.$page.props.jetstream.hasTeamFeatures &&
         this.$page.props.user.all_teams &&
         Object.keys(this.$page.props.user.all_teams).length > 0
+      );
+    },
+    is_user() {
+      return (
+        this.$page.props.user && Object.keys(this.$page.props.user).length > 0
       );
     },
   },
@@ -495,7 +504,6 @@ export default {
         obj[key] = Object.assign({}, obj[key]);
       });
       console.log(obj);
-      console.log(typeof this.$page.props.user.all_teams);
       console.log(this.route().current());
       console.table(this.nav_links);
     }

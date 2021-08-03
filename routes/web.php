@@ -3,6 +3,7 @@
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseInvitationAcceptController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorOrderController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('purchase-invitation', PurchaseInvitationAcceptController::class)->only('edit', 'update')->scoped([
+    'purchase_invitation' => 'token'
+]);
+
 Route::middleware([
     'auth:sanctum',
     'verified',
@@ -31,6 +36,6 @@ Route::middleware([
         'cuisine' => CuisineController::class,
         'vendor' => VendorController::class,
         'vendor.order' => VendorOrderController::class,
-        'purchase' => PurchaseController::class
+        'purchase' => PurchaseController::class,
     ]);
 });

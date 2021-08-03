@@ -8,34 +8,31 @@ class CreatePurchasesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vendor_id');
-            $table->foreignId('team_id');
+            $table->foreignId('user_id');
             $table->dateTime('expires_at');
+            $table->boolean('expired')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('vendor_id')->references('id')->on('vendors');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
         Schema::table('purchases', function (Blueprint $table) {
-            $table->dropForeignKey(['vendor_id']);
-            $table->dropForeignKey(['team_id']);
+            $table->dropForeign(['vendor_id']);
+            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('purchases');
     }

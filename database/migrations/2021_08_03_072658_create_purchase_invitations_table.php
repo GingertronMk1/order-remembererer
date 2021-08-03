@@ -8,8 +8,6 @@ class CreatePurchaseInvitationsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -19,6 +17,7 @@ class CreatePurchaseInvitationsTable extends Migration
             $table->foreignId('user_id');
             $table->string('token');
             $table->json('accepted');
+            $table->datetime('viewed_at')->nullable();
             $table->timestamps();
 
             $table->foreign('purchase_id')->references('id')->on('purchases');
@@ -28,14 +27,12 @@ class CreatePurchaseInvitationsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
         Schema::table('purchase_invitations', function (Blueprint $table) {
-            $table->dropForeignKey(['purchase_id']);
-            $table->dropForeignKey(['user_id']);
+            $table->dropForeign(['purchase_id']);
+            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('purchase_invitations');
     }

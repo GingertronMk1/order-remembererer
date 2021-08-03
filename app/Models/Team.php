@@ -54,6 +54,11 @@ class Team extends JetstreamTeam
 
     public function purchases()
     {
-        return $this->hasMany(Purchase::class);
+        $purchases = [];
+        foreach ($this->users as $user) {
+            $purchases = array_merge($purchases, $user->purchases()->get()->all());
+        }
+
+        return collect($purchases);
     }
 }

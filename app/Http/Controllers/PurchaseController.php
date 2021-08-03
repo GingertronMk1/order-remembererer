@@ -17,7 +17,9 @@ class PurchaseController extends Controller
     public function index()
     {
         return inertia('Purchase/Index', [
-            'purchases' => Auth::user()->currentTeam->purchases
+            'purchases' => Auth::user()->currentTeam->purchases()->map(function ($purchase) {
+                return $purchase->load('invitations');
+            }),
         ]);
     }
 
@@ -29,63 +31,63 @@ class PurchaseController extends Controller
     public function create()
     {
         return inertia('Purchase/Create', [
-            'vendors' => Vendor::all()
+            'vendors' => Vendor::all(),
+            'team' => Auth::user()->currentTeam->load('users'),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $purchase = Purchase::create($request->all());
+        if ($purchase) {
+            foreach ($request->input('user_ids') as $user_id) {
+                $purchase->invitations()->create([
+                    'user_id' => $user_id,
+                ]);
+            }
+
+            return redirect()->route('purchase.index');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
     public function show(Purchase $purchase)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
     public function edit(Purchase $purchase)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Purchase $purchase)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
     public function destroy(Purchase $purchase)
     {
-        //
     }
 }
