@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Purchase/Create', [
+            'vendors' => Vendor::all()
+        ]);
     }
 
     /**
