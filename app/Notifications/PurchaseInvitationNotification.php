@@ -49,9 +49,9 @@ class PurchaseInvitationNotification extends Notification
                 'Accept Invitation',
                 url(
                     route(
-                    'purchase-invitation.edit',
-                    ['purchase_invitation' => $this->purchaseInvitation]
-                )
+                        'purchase-invitation.edit',
+                        ['purchase_invitation' => $this->purchaseInvitation]
+                    )
                 )
             )
             ->line('Thank you for using our application!')
