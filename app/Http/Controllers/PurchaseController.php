@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Purchase;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PurchaseRequest $request)
     {
         $purchase = Purchase::create($request->all());
         if ($purchase) {
