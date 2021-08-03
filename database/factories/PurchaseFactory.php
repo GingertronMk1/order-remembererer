@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Purchase;
+use App\Models\User;
+use App\Models\Vendor;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PurchaseFactory extends Factory
@@ -22,6 +25,9 @@ class PurchaseFactory extends Factory
     public function definition()
     {
         return [
+            'vendor_id' => Vendor::pluck('id')->random(),
+            'user_id' => User::pluck('id')->random(),
+            'expires_at' => Carbon::now()->addHours($this->faker->randomDigitNotNull())
         ];
     }
 }
