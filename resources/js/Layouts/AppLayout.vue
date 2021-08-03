@@ -436,10 +436,17 @@ export default {
         {
           name: "Cuisines",
           route: "cuisine.index",
+          active: "cuisine.*"
         },
         {
           name: "Vendors",
           route: "vendor.index",
+          active: "vendor.*"
+        },
+        {
+          name: "Purchases",
+          route: "purchase.index",
+          active: "purchase.*"
         },
       ],
       page_title: null,
@@ -466,7 +473,7 @@ export default {
         return {
           name: name,
           href: this.route(route),
-          active: active || this.route().current(route),
+          active: this.route().current(route || active),
         };
       });
     },
@@ -489,6 +496,8 @@ export default {
       });
       console.log(obj);
       console.log(typeof this.$page.props.user.all_teams);
+      console.log(this.route().current());
+      console.table(this.nav_links);
     }
   },
 
