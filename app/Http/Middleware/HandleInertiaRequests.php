@@ -53,6 +53,12 @@ class HandleInertiaRequests extends Middleware
             }
         }
 
+        if ($request->user()) {
+            $data['notifications'] = $request->user()->unreadNotifications;
+        } else {
+            $data['notifications'] = null;
+        }
+
         return array_merge(parent::share($request), $data);
     }
 }

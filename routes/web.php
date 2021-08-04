@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\NotificationController as ApiNotificationController;
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PurchaseController;
@@ -40,4 +41,10 @@ Route::middleware([
         'vendor.order' => VendorOrderController::class,
         'purchase' => PurchaseController::class,
     ]);
+
+    Route::prefix('iapi/')->name('iapi.')->group(function () {
+        Route::resources([
+            'notification' => ApiNotificationController::class,
+        ]);
+    });
 });
