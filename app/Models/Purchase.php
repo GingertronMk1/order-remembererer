@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\PurchaseExpiredNotification;
 use App\Traits\Accountable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,8 +61,9 @@ class Purchase extends Model
         $this->invitations->each(function ($invitation) use (&$data) {
             $user_id = $invitation->user_id;
             $order = Order::where('user_id', $user_id)->where('vendor_id', $this->vendor_id)->first();
+            $user = User::find($user_id);
             if ($order) {
-                $data[$user_id] = ['name' => User::find($user_id)];
+                $data[$user_id] = ['name' => $user ? $user->id : 'Error finding user'];
                 foreach ([
                     'food',
                     'drink',
@@ -78,6 +80,8 @@ class Purchase extends Model
 
         $this->data = $data;
         $this->expired = true;
-        $this->save();
+        if($this->save()) {
+            $this->user->notify(new PurchaseExpiredNotification($this));
+        };
     }
 }
