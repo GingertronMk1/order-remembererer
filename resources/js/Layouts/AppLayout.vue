@@ -17,7 +17,7 @@
                 </inertia-link>
               </div>
 
-              <!-- Navigation <inertia-links -->
+              <!-- Navigation Links -->
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <jet-nav-link
                   v-for="(link, index) in nav_links"
@@ -30,6 +30,42 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+              <div v-if="$page.props.notifications" class="ml-3 relative">
+                <jet-dropdown align="right" width="48">
+                  <template #trigger>
+                    <span class="inline-flex rounded-md">
+                      <button
+                        type="button"
+                        :class="
+                          base_classes.concat([
+                            'hover:text-gray-700',
+                            'focus:outline-none',
+                          ])
+                        "
+                      >
+                        Notifications
+
+                        <logo />
+                      </button>
+                    </span>
+                  </template>
+
+                  <template #content>
+                    <div class="flex flex-col p-2">
+                      <notification
+                        v-for="notification in $page.props.notifications"
+                        :key="'notification' + notification"
+                      />
+                      <div
+                        v-if="$page.props.notifications.length === 0"
+                        class="text-center"
+                      >
+                        No unread notifications
+                      </div>
+                    </div>
+                  </template>
+                </jet-dropdown>
+              </div>
               <div class="ml-3 relative">
                 <!-- Teams Dropdown -->
                 <jet-dropdown v-if="allow_teams" align="right" width="60">
@@ -164,18 +200,7 @@
                       >
                         {{ $page.props.user.name }}
 
-                        <svg
-                          class="ml-2 -mr-0.5 h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
+                        <logo />
                       </button>
                     </span>
                   </template>
@@ -408,6 +433,7 @@ import JetDropdown from "@/Jetstream/Dropdown.vue";
 import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
+import Notification from "@/Components/Notification.vue";
 
 export default {
   components: {
@@ -417,6 +443,7 @@ export default {
     JetDropdownLink,
     JetNavLink,
     JetResponsiveNavLink,
+    Notification,
   },
   props: {
     title: {
