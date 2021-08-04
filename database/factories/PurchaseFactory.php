@@ -24,9 +24,11 @@ class PurchaseFactory extends Factory
      */
     public function definition()
     {
+        $vendor_id = Vendor::pluck('id')->random();
+        $user_id = User::pluck('id')->random();
         return [
-            'vendor_id' => Vendor::pluck('id')->random(),
-            'user_id' => User::pluck('id')->random(),
+            'vendor_id' => $vendor_id,
+            'user_id' => $user_id,
             'expires_at' => Carbon::now()->addHours($this->faker->randomDigitNotNull()),
         ];
     }
@@ -37,6 +39,12 @@ class PurchaseFactory extends Factory
             return [
                 'expires_at' => Carbon::now(),
             ];
+        });
+    }
+
+    public function forUser($user_id) {
+        return $this->state(function (array $attributes) use ($user_id) {
+            return compact('user_id');
         });
     }
 }

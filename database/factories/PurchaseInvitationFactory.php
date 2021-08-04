@@ -26,7 +26,7 @@ class PurchaseInvitationFactory extends Factory
 
         return [
             'purchase_id' => $purchase->id,
-            'user_id' => $purchase->user->currentTeam->users->random()->id,
+            'user_id' => $purchase->user->currentTeam->allUsers()->random()->id,
             'accepted' => [
                 'food' => $this->faker->boolean(),
                 'drink' => $this->faker->boolean(),

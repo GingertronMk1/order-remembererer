@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Purchase;
+use App\Models\PurchaseInvitation;
 use Illuminate\Database\Seeder;
 
 class PurchaseSeeder extends Seeder
@@ -11,5 +13,6 @@ class PurchaseSeeder extends Seeder
      */
     public function run()
     {
+        Purchase::factory()->expiryPassed()->hasInvitations(4)->create();
     }
 }
