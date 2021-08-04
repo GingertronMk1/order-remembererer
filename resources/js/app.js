@@ -19,7 +19,14 @@ createInertiaApp({
       .component("app-layout", AppLayout)
       .component("card", Card)
       .component("logo", Logo)
-      .mixin({ methods: { route } })
+      .mixin({
+        methods: {
+          route,
+          dateToLocaleString: (date) => {
+            return new Date(Date.parse(date)).toLocaleString();
+          },
+        },
+      })
       .mount(el);
   },
 });

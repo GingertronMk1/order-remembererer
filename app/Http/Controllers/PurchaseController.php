@@ -18,9 +18,7 @@ class PurchaseController extends Controller
     public function index()
     {
         return inertia('Purchase/Index', [
-            'purchases' => Auth::user()->currentTeam->purchases()->map(function ($purchase) {
-                return $purchase->load('invitations');
-            }),
+            'purchases' => Auth::user()->purchases()->with('invitations')->get(),
         ]);
     }
 

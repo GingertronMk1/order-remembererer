@@ -51,10 +51,9 @@
                   </template>
 
                   <template #content>
-                    <div class="flex flex-col p-2">
+                    <div class="flex flex-col p-2 space-y-2">
                       <notification
-                        v-for="notification in $page.props.notifications"
-                        :key="'notification' + notification"
+                        :notifications="$page.props.notifications"
                       />
                       <div
                         v-if="$page.props.notifications.length === 0"
