@@ -80,8 +80,8 @@ class Purchase extends Model
 
         $this->data = $data;
         $this->expired = true;
-        if($this->save()) {
+        if ($this->save()) {
             $this->user->notify(new PurchaseExpiredNotification($this));
-        };
+        }
     }
 }

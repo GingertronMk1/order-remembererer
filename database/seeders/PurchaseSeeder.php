@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Purchase;
-use App\Models\PurchaseInvitation;
 use Illuminate\Database\Seeder;
 
 class PurchaseSeeder extends Seeder

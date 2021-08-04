@@ -13,17 +13,15 @@ class TestingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
         Team::factory(5)->has(
             User::factory()->withPersonalTeam()->count(5)
         )->create([
-            'user_id' => User::factory()->withPersonalTeam()->create()->id
+            'user_id' => User::factory()->withPersonalTeam()->create()->id,
         ]);
-        User::get()->each(function(User $user) {
+        User::get()->each(function (User $user) {
             $user->switchTeam($user->allTeams()->first());
         });
 

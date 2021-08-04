@@ -26,6 +26,7 @@ class PurchaseFactory extends Factory
     {
         $vendor_id = Vendor::pluck('id')->random();
         $user_id = User::pluck('id')->random();
+
         return [
             'vendor_id' => $vendor_id,
             'user_id' => $user_id,
@@ -42,7 +43,8 @@ class PurchaseFactory extends Factory
         });
     }
 
-    public function forUser($user_id) {
+    public function forUser($user_id)
+    {
         return $this->state(function (array $attributes) use ($user_id) {
             return compact('user_id');
         });

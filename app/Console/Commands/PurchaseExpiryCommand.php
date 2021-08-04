@@ -38,7 +38,7 @@ class PurchaseExpiryCommand extends Command
     public function handle()
     {
         Purchase::where('expired', false)->where('expires_at', '<', Carbon::now())->each(function (Purchase $purchase) {
-            fwrite(STDOUT, "Expiring purchase {$purchase->id}" . PHP_EOL);
+            fwrite(STDOUT, "Expiring purchase {$purchase->id}".PHP_EOL);
             $purchase->expire();
         });
     }

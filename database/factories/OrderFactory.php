@@ -27,7 +27,7 @@ class OrderFactory extends Factory
 
         $user_id = User::pluck('id')->random();
         $vendor_id = Vendor::pluck('id')->random();
-        while(Order::where('user_id', $user_id)->where('vendor_id', $vendor_id)->count()) {
+        while (Order::where('user_id', $user_id)->where('vendor_id', $vendor_id)->count()) {
             $user_id = User::pluck('id')->random();
             $vendor_id = Vendor::pluck('id')->random();
         }
