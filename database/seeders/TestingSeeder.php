@@ -29,6 +29,11 @@ class TestingSeeder extends Seeder
             Cuisine::factory()->count(3)
         )->create();
 
-        Order::factory(100)->create();
+        // Generate orders for literally every user/vendor combination
+        User::get()->each(function($user) {
+            Vendor::get()->each(function ($vendor) use ($user) {
+                Order::factory()->user($user->id)->vendor($vendor->id)->create();
+            });
+        });
     }
 }
