@@ -22,7 +22,7 @@ class PurchaseInvitationAcceptController extends Controller
         }
 
         if (null !== $message) {
-            return response(['message' => $message], 403);
+            abort(403, $message);
         }
         $purchase_invitation->viewed_at = now();
         if ($purchase_invitation->save()) {

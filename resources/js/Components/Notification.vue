@@ -8,11 +8,14 @@
         class="text-xs"
         v-text="dateToLocaleString(notification.created_at)"
       />
+      <i
+        class="text-xs fas fa-times cursor-pointer hover:text-red-500"
+        @click.prevent="deleteNotification(notification)"
+      ></i>
     </template>
     <component
       :is="getComponentType(notification)"
       :notification="notification"
-      @click="deleteNotification(notification)"
     />
   </card>
 </template>
@@ -51,11 +54,8 @@ export default {
     },
     deleteNotification(notification) {
       axios({
-        method: "PUT",
-        url: route("iapi.notification.update", { notification: notification }),
-        data: {
-          read_at: new Date().toJSON(),
-        },
+        method: "POST",
+        url: route("iapi.notification.read", { notification: notification }),
       }).then(({ data }) => {
         if (data === 1) {
           this.$page.props.notifications.splice(

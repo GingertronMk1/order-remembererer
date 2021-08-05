@@ -31,7 +31,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
               <div v-if="$page.props.notifications" class="ml-3 relative">
-                <jet-dropdown align="right" width="48">
+                <jet-dropdown align="right" width="96" :close-on-click="false">
                   <template #trigger>
                     <span class="inline-flex rounded-md">
                       <button
@@ -412,7 +412,7 @@
 
       <!-- Page Heading -->
       <header v-if="$slots.header" class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-row">
           <slot name="header"></slot>
         </div>
       </header>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\NotificationController as ApiNotificationController;
+use App\Http\Controllers\Api\NotificationReadController as ApiNotificationReadController;
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PurchaseController;
@@ -43,8 +43,6 @@ Route::middleware([
     ]);
 
     Route::prefix('iapi/')->name('iapi.')->group(function () {
-        Route::resources([
-            'notification' => ApiNotificationController::class,
-        ]);
+        Route::post('notification/{notification}/read', ApiNotificationReadController::class)->name('notification.read');
     });
 });
