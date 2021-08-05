@@ -30,7 +30,7 @@ class TestingSeeder extends Seeder
         )->create();
 
         // Generate orders for literally every user/vendor combination
-        User::get()->each(function($user) {
+        User::get()->each(function ($user) {
             Vendor::get()->each(function ($vendor) use ($user) {
                 Order::factory()->user($user->id)->vendor($vendor->id)->create();
             });

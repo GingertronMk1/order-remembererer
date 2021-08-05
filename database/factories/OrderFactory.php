@@ -41,12 +41,15 @@ class OrderFactory extends Factory
         ];
     }
 
-    public function user($user_id) {
+    public function user($user_id)
+    {
         return $this->state(function (array $attributes) use ($user_id) {
             return compact('user_id');
         });
     }
-    public function vendor($vendor_id) {
+
+    public function vendor($vendor_id)
+    {
         return $this->state(function (array $attributes) use ($vendor_id) {
             return compact('vendor_id');
         });
