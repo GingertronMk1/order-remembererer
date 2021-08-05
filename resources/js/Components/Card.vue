@@ -2,7 +2,12 @@
   <div
     class="flex flex-col rounded-xl bg-white shadow-md p-4 box-border w-full"
   >
-    <slot v-if="$slots.title" name="title"></slot>
+    <div
+      v-if="$slots.title"
+      class="flex flex-row justify-between align-center text-xl"
+    >
+      <slot name="title"></slot>
+    </div>
     <hr class="my-2" />
     <slot></slot>
   </div>

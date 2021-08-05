@@ -20,7 +20,7 @@
         class="absolute z-50 mt-2 rounded-md shadow-lg"
         :class="[widthClass, alignmentClasses]"
         style="display: none"
-        @click="open = false"
+        @click="closeOnClick ? (open = false) : null"
       >
         <div
           class="rounded-md ring-1 ring-black ring-opacity-5"
@@ -50,6 +50,10 @@ export default {
       type: Array,
       default: () => ["py-1", "bg-white"],
     },
+    closeOnClick: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   setup() {
@@ -71,9 +75,7 @@ export default {
 
   computed: {
     widthClass() {
-      return {
-        48: "w-48",
-      }[this.width.toString()];
+      return `w-${this.width.toString()}`;
     },
 
     alignmentClasses() {

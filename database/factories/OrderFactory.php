@@ -23,12 +23,35 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        $i = 0;
+
+        $user_id = User::pluck('id')->random();
+        $vendor_id = Vendor::pluck('id')->random();
+        while (Order::where('user_id', $user_id)->where('vendor_id', $vendor_id)->count()) {
+            $user_id = User::pluck('id')->random();
+            $vendor_id = Vendor::pluck('id')->random();
+        }
+
         return [
-            'user_id' => User::pluck('id')->random(),
-            'vendor_id' => Vendor::pluck('id')->random(),
+            'user_id' => $user_id,
+            'vendor_id' => $vendor_id,
             'food' => $this->faker->word(),
             'drink' => $this->faker->word(),
             'other' => $this->faker->word(),
         ];
+    }
+
+    public function user($user_id)
+    {
+        return $this->state(function (array $attributes) use ($user_id) {
+            return compact('user_id');
+        });
+    }
+
+    public function vendor($vendor_id)
+    {
+        return $this->state(function (array $attributes) use ($vendor_id) {
+            return compact('vendor_id');
+        });
     }
 }

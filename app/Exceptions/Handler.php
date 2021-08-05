@@ -34,4 +34,33 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        $response = parent::render($request, $e);
+        $status = $response->status();
+        $referrer = url()->previous();
+
+        if (!app()->environment(['local', 'testing'])) {
+            switch ($status) {
+            case 500:
+            case 503:
+            case 404:
+            case 403:
+                return inertia('Error', ['status' => $status,
+                    'message' => $e->getMessage(),
+                    'referrer' => $referrer, ])
+                    ->toResponse($request)
+                    ->setStatusCode($status)
+                ;
+
+            case 419:
+                return back()->with([
+                    'message' => 'The page expired, please try again.',
+                ]);
+            }
+        }
+
+        return $response;
+    }
 }

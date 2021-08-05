@@ -51,4 +51,14 @@ class Team extends JetstreamTeam
 
         return collect($orders);
     }
+
+    public function purchases()
+    {
+        $purchases = [];
+        foreach ($this->users as $user) {
+            $purchases = array_merge($purchases, $user->purchases()->get()->all());
+        }
+
+        return collect($purchases);
+    }
 }

@@ -19,7 +19,7 @@ export default {
     },
     href: {
       type: String,
-      required: true,
+      default: "#",
     },
     as: {
       type: String,

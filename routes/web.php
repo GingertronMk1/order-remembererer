@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\NotificationReadController as ApiNotificationReadController;
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseInvitationAcceptController;
+use App\Http\Controllers\PurchasePdfController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorOrderController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('purchase-invitation', PurchaseInvitationAcceptController::class)->only('edit', 'update')->scoped([
+    'purchase_invitation' => 'token',
+]);
+
 Route::middleware([
     'auth:sanctum',
     'verified',
@@ -25,10 +33,16 @@ Route::middleware([
     Route::permanentRedirect('/', '/dashboard');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/purchase/{purchase}/pdf', PurchasePdfController::class)->name('purchase.pdf');
 
     Route::resources([
         'cuisine' => CuisineController::class,
         'vendor' => VendorController::class,
         'vendor.order' => VendorOrderController::class,
+        'purchase' => PurchaseController::class,
     ]);
+
+    Route::prefix('iapi/')->name('iapi.')->group(function () {
+        Route::post('notification/{notification}/read', ApiNotificationReadController::class)->name('notification.read');
+    });
 });

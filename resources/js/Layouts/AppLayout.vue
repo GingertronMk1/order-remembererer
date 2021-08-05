@@ -17,7 +17,7 @@
                 </inertia-link>
               </div>
 
-              <!-- Navigation <inertia-links -->
+              <!-- Navigation Links -->
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <jet-nav-link
                   v-for="(link, index) in nav_links"
@@ -30,6 +30,41 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+              <div v-if="$page.props.notifications" class="ml-3 relative">
+                <jet-dropdown align="right" width="96" :close-on-click="false">
+                  <template #trigger>
+                    <span class="inline-flex rounded-md">
+                      <button
+                        type="button"
+                        :class="
+                          base_classes.concat([
+                            'hover:text-gray-700',
+                            'focus:outline-none',
+                          ])
+                        "
+                      >
+                        Notifications
+
+                        <logo />
+                      </button>
+                    </span>
+                  </template>
+
+                  <template #content>
+                    <div class="flex flex-col p-2 space-y-2">
+                      <notification
+                        :notifications="$page.props.notifications"
+                      />
+                      <div
+                        v-if="$page.props.notifications.length === 0"
+                        class="text-center"
+                      >
+                        No unread notifications
+                      </div>
+                    </div>
+                  </template>
+                </jet-dropdown>
+              </div>
               <div class="ml-3 relative">
                 <!-- Teams Dropdown -->
                 <jet-dropdown v-if="allow_teams" align="right" width="60">
@@ -131,7 +166,7 @@
               </div>
 
               <!-- Settings Dropdown -->
-              <div class="ml-3 relative">
+              <div v-if="is_user" class="ml-3 relative">
                 <jet-dropdown align="right" width="48">
                   <template #trigger>
                     <button
@@ -164,18 +199,7 @@
                       >
                         {{ $page.props.user.name }}
 
-                        <svg
-                          class="ml-2 -mr-0.5 h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
+                        <logo />
                       </button>
                     </span>
                   </template>
@@ -277,7 +301,7 @@
           </div>
 
           <!-- Responsive Settings Options -->
-          <div class="pt-4 pb-1 border-t border-gray-200">
+          <div v-if="is_user" class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
               <div
                 v-if="$page.props.jetstream.managesProfilePhotos"
@@ -388,7 +412,7 @@
 
       <!-- Page Heading -->
       <header v-if="$slots.header" class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-row">
           <slot name="header"></slot>
         </div>
       </header>
@@ -408,6 +432,7 @@ import JetDropdown from "@/Jetstream/Dropdown.vue";
 import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
+import Notification from "@/Components/Notification.vue";
 
 export default {
   components: {
@@ -417,6 +442,7 @@ export default {
     JetDropdownLink,
     JetNavLink,
     JetResponsiveNavLink,
+    Notification,
   },
   props: {
     title: {
@@ -436,10 +462,17 @@ export default {
         {
           name: "Cuisines",
           route: "cuisine.index",
+          active: "cuisine.*",
         },
         {
           name: "Vendors",
           route: "vendor.index",
+          active: "vendor.*",
+        },
+        {
+          name: "Purchases",
+          route: "purchase.index",
+          active: "purchase.*",
         },
       ],
       page_title: null,
@@ -462,20 +495,29 @@ export default {
 
   computed: {
     nav_links() {
+      if (!this.is_user) {
+        return [];
+      }
       return this.raw_links.map(({ name, route, active }) => {
         return {
           name: name,
           href: this.route(route),
-          active: active || this.route().current(route),
+          active: this.route().current(route || active),
         };
       });
     },
 
     allow_teams() {
       return (
+        this.is_user &&
         this.$page.props.jetstream.hasTeamFeatures &&
         this.$page.props.user.all_teams &&
         Object.keys(this.$page.props.user.all_teams).length > 0
+      );
+    },
+    is_user() {
+      return (
+        this.$page.props.user && Object.keys(this.$page.props.user).length > 0
       );
     },
   },
@@ -488,7 +530,8 @@ export default {
         obj[key] = Object.assign({}, obj[key]);
       });
       console.log(obj);
-      console.log(typeof this.$page.props.user.all_teams);
+      console.log(this.route().current());
+      console.table(this.nav_links);
     }
   },
 
