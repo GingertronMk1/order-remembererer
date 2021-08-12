@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\PurchaseExpiryJob;
 use App\Notifications\PurchaseExpiredNotification;
 use App\Traits\Accountable;
 use Illuminate\Database\Eloquent\Builder;
@@ -54,34 +55,12 @@ class Purchase extends Model
         return $this->hasMany(PurchaseInvitation::class);
     }
 
-    public function expire()
+    public function expire($sync = false)
     {
-        $data = [];
-
-        $this->invitations->each(function ($invitation) use (&$data) {
-            $user_id = $invitation->user_id;
-            $order = Order::where('user_id', $user_id)->where('vendor_id', $this->vendor_id)->first();
-            $user = User::find($user_id);
-            if ($order) {
-                $data[$user_id] = ['name' => $user ? $user->id : 'Error finding user'];
-                foreach ([
-                    'food',
-                    'drink',
-                    'other',
-                ] as $aspect) {
-                    if ($invitation->accepted[$aspect] && $order->{$aspect}) {
-                        $data[$user_id][$aspect] = $order->{$aspect};
-                    } else {
-                        $data[$user_id][$aspect] = 'N/A';
-                    }
-                }
-            }
-        });
-
-        $this->data = $data;
-        $this->expired = true;
-        if ($this->save()) {
-            $this->user->notify(new PurchaseExpiredNotification($this));
+        if($sync) {
+            PurchaseExpiryJob::dispatchSync($this);
+        } else {
+            PurchaseExpiryJob::dispatch($this);
         }
     }
 }

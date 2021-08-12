@@ -13,7 +13,7 @@ class PurchaseExpiryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'purchase:expire';
+    protected $signature = 'purchase:expire {-s|--sync}';
 
     /**
      * The console command description.
@@ -39,7 +39,7 @@ class PurchaseExpiryCommand extends Command
     {
         Purchase::where('expired', false)->where('expires_at', '<', Carbon::now())->each(function (Purchase $purchase) {
             fwrite(STDOUT, "Expiring purchase {$purchase->id}".PHP_EOL);
-            $purchase->expire();
+            $purchase->expire($this->options('sync'));
         });
     }
 }
