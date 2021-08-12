@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Jobs\PurchaseExpiryJob;
-use App\Notifications\PurchaseExpiredNotification;
 use App\Traits\Accountable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -57,7 +56,7 @@ class Purchase extends Model
 
     public function expire($sync = false)
     {
-        if($sync) {
+        if ($sync) {
             PurchaseExpiryJob::dispatchSync($this);
         } else {
             PurchaseExpiryJob::dispatch($this);
