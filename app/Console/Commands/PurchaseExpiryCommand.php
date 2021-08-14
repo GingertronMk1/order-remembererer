@@ -13,7 +13,7 @@ class PurchaseExpiryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'purchase:expire {-s|--sync}';
+    protected $signature = 'purchase:expire {--S|--sync}';
 
     /**
      * The console command description.
