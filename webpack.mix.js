@@ -38,3 +38,7 @@ mix.js("resources/js/app.js", "public/js/app.js")
     })
     .webpackConfig(require("./webpack.config"))
     .version();
+
+if (!mix.inProduction()) {
+    mix.sourceMaps();
+}

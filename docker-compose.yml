@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  web:
+    image: nginx:alpine
+    working_dir: /src
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.order-remembererer.rule=Host(`order-remembererer.ginge.localhost`)"
+    volumes:
+      - ./etc/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:delegated,ro
+      - .:/src:delegated
+    networks:
+      - internal
+      - traefik
+  app:
+    build:
+      context: .
+      dockerfile: ./etc/docker/app.dockerfile
+    working_dir: /src
+    volumes:
+      - ./etc/php/php.ini:/usr/local/etc/php/conf.d/00_mvc.ini:delegated,ro
+      - .:/src:delegated
+    networks:
+      - internal
+      - local-mysql
+  worker:
+    build:
+      context: .
+      dockerfile: ./etc/docker/app.dockerfile
+    command: php artisan queue:listen --verbose
+    depends_on:
+      - redis
+    restart: on-failure
+    working_dir: /src
+    volumes:
+      - ./etc/php/php.ini:/usr/local/etc/php/conf.d/00_mvc.ini:delegated,ro
+      - .:/src:delegated
+      - /storage/logs
+    networks:
+      - internal
+      - local-mysql
+  redis:
+    image: redis
+    command: redis-server
+    volumes:
+      - redis:/data:delegated
+    networks:
+      - internal
+volumes:
+  redis:
+networks:
+  internal:
+  traefik:
+    external: true
+  local-mysql:
+    external: true
