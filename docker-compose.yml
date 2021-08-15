@@ -6,7 +6,7 @@ services:
     working_dir: /src
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.order-remembererer.rule=Host(`order-remembererer.ginge.localhost`)"
+      - "traefik.http.routers.${APP_NAME}.rule=Host(`${APP_URL}`)"
     volumes:
       - ./etc/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:delegated,ro
       - .:/src:delegated
@@ -24,7 +24,32 @@ services:
     networks:
       - internal
       - local-mysql
-  worker:
+  npm-runner:
+    build:
+      context: .
+      dockerfile: ./etc/docker/app.dockerfile
+    command: npm run watch
+    restart: on-failure
+    working_dir: /src
+    volumes:
+      - ./etc/php/php.ini:/usr/local/etc/php/conf.d/00_mvc.ini:delegated,ro
+      - .:/src:delegated
+      - /storage/logs
+  scheduler:
+    build:
+      context: .
+      dockerfile: ./etc/docker/app.dockerfile
+    command: php artisan schedule:work
+    restart: on-failure
+    working_dir: /src
+    volumes:
+      - ./etc/php/php.ini:/usr/local/etc/php/conf.d/00_mvc.ini:delegated,ro
+      - .:/src:delegated
+      - /storage/logs
+    networks:
+      - internal
+      - local-mysql
+  queue-runner:
     build:
       context: .
       dockerfile: ./etc/docker/app.dockerfile
